@@ -65,6 +65,9 @@ export default function DownloadOSMSPayslip() {
     tname: "",
     desig: "",
     school: "",
+    bank: "",
+    account: "",
+    ifsc: "",
     disability: "",
     empid: "",
     pan: "",
@@ -193,6 +196,9 @@ export default function DownloadOSMSPayslip() {
       empid: tData.empid,
       pan: tData.pan,
       udise: tData.udise,
+      bank: tData.bank,
+      account: tData.account,
+      ifsc: tData.ifsc,
     });
     let timeOut = setTimeout(() => {
       let paySlip = document.getElementById("payslip");
