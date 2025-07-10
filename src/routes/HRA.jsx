@@ -20,7 +20,7 @@ export default function HRA() {
   const salaryMonth = month < 5 ? "january" : "july";
 
   const [loader, setLoader] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showDownloadBtn, setShowDownloadBtn] = useState(false);
   const [isSpouseEmployed, setIsSpouseEmployed] = useState(false);
   const [limitWarning, setLimitWarning] = useState(false);
@@ -106,6 +106,7 @@ export default function HRA() {
       tname: tData.tname,
       school: tData.school,
     });
+    setShowModal(true);
   };
   useEffect(() => {
     if (salary.spouseHra + salary.hra > 12000) {
@@ -279,7 +280,7 @@ export default function HRA() {
                       {limitWarning && (
                         <div>
                           <h6 className="text-danger">
-                            Your & Your Spouse's HRA Exceeds Rs. 12000 Limit
+                            Your & Your Spouse's HRA Exceeds Rs. 12000 Limit,
                             Change your HRA
                           </h6>
                           <div className="mb-3">
