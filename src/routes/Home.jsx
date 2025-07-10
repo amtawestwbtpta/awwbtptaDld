@@ -26,6 +26,17 @@ export default function Home() {
       </button> */}
       {/* <button
         type="button"
+        className="btn btn-primary m-2"
+        onClick={() => {
+          navigate(
+            `/DownloadOSMSPayslip?data={"pan":"ACPPI7856P","month":"july","year":"2025"}`
+          );
+        }}
+      >
+        Go to OSMS Payslip
+      </button> */}
+      {/* <button
+        type="button"
         className="btn btn-success m-2"
         onClick={() => {
           navigate(`/LeaveProposal?data={"pan":"DZZPR9226Q"}`);

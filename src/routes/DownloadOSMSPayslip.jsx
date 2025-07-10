@@ -14,9 +14,10 @@ export default function DownloadOSMSPayslip() {
   const { teachersState, setTeachersState } = useGlobalContext();
   const [searchParams] = useSearchParams();
   const data = JSON.parse(searchParams.get("data"));
+  const key = searchParams.get("key");
   const hashedKey =
     "$2b$10$29RaD8KJZFiWh9OnKeFKt.CjgjR.h410z3DYlXUh/mJw/RGY6sL1S";
-  const { pan, month, year, key } = data;
+  const { pan, month, year } = data;
 
   const [teacher, setTeacher] = useState({
     id: "",
@@ -65,6 +66,9 @@ export default function DownloadOSMSPayslip() {
     tname: "",
     desig: "",
     school: "",
+    bank: "",
+    account: "",
+    ifsc: "",
     disability: "",
     empid: "",
     pan: "",
@@ -193,6 +197,9 @@ export default function DownloadOSMSPayslip() {
       empid: tData.empid,
       pan: tData.pan,
       udise: tData.udise,
+      bank: tData.bank,
+      account: tData.account,
+      ifsc: tData.ifsc,
     });
     let timeOut = setTimeout(() => {
       let paySlip = document.getElementById("payslip");
