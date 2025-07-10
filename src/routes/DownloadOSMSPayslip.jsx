@@ -14,7 +14,7 @@ export default function DownloadOSMSPayslip() {
   const { teachersState, setTeachersState } = useGlobalContext();
   const [searchParams] = useSearchParams();
   const data = JSON.parse(searchParams.get("data"));
-  const key = JSON.parse(searchParams.get("key"));
+  const key = searchParams.get("key");
   const hashedKey =
     "$2b$10$29RaD8KJZFiWh9OnKeFKt.CjgjR.h410z3DYlXUh/mJw/RGY6sL1S";
   const { pan, month, year } = data;
