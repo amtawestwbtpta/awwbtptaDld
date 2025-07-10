@@ -14,7 +14,20 @@ const width = 2480;
 const height = 3508;
 
 export default function HRADeclaration({ data }) {
-  const { tname, school, basic, hra, salaryMonth, year } = data;
+  const {
+    tname,
+    school,
+    basic,
+    hra,
+    salaryMonth,
+    year,
+    spouseName,
+    spouseOfficeName,
+    spouseOfficeAddress,
+    spouseBasic,
+    spouseHra,
+    spouseHouseRenntPaid,
+  } = data;
   return (
     // <PDFViewer
     //   style={{
@@ -141,7 +154,9 @@ export default function HRADeclaration({ data }) {
               <Text style={styles.rowText}>1. Name:</Text>
             </View>
             <View style={[{ width: "60%" }, styles.underLineView]}>
-              <Text style={styles.underLineText}></Text>
+              <Text style={styles.underLineText}>
+                {spouseName && spouseName}
+              </Text>
             </View>
           </View>
           <View style={styles.rowView}>
@@ -149,7 +164,9 @@ export default function HRADeclaration({ data }) {
               <Text style={styles.rowText}>2. Name of the Office: </Text>
             </View>
             <View style={[{ width: "60%" }, styles.underLineView]}>
-              <Text style={styles.underLineText}></Text>
+              <Text style={styles.underLineText}>
+                {spouseOfficeName && spouseOfficeName}
+              </Text>
             </View>
           </View>
           <View style={styles.rowView}>
@@ -157,7 +174,9 @@ export default function HRADeclaration({ data }) {
               <Text style={styles.rowText}>3. Address of Office: </Text>
             </View>
             <View style={[{ width: "60%" }, styles.underLineView]}>
-              <Text style={styles.underLineText}></Text>
+              <Text style={styles.underLineText}>
+                {spouseOfficeAddress && spouseOfficeAddress}
+              </Text>
             </View>
           </View>
           <View style={styles.rowView}>
@@ -167,7 +186,9 @@ export default function HRADeclaration({ data }) {
               </Text>
             </View>
             <View style={[{ width: "50%" }, styles.underLineView]}>
-              <Text style={styles.underLineText}> </Text>
+              <Text style={styles.underLineText}>
+                {spouseBasic && `Rs. ${spouseBasic}`}
+              </Text>
             </View>
           </View>
           <View style={styles.rowView}>
@@ -175,7 +196,9 @@ export default function HRADeclaration({ data }) {
               <Text style={styles.rowText}>5. House Rent Drawn Per month:</Text>
             </View>
             <View style={[{ width: "40%" }, styles.underLineView]}>
-              <Text style={styles.underLineText}> </Text>
+              <Text style={styles.underLineText}>
+                {spouseHra && `Rs. ${spouseHra}`}
+              </Text>
             </View>
           </View>
           <View style={styles.rowView}>
@@ -185,7 +208,9 @@ export default function HRADeclaration({ data }) {
               </Text>
             </View>
             <View style={[{ width: "40%" }, styles.underLineView]}>
-              <Text style={styles.underLineText}> </Text>
+              <Text style={styles.underLineText}>
+                {spouseHouseRenntPaid && `Rs. ${spouseHouseRenntPaid}`}
+              </Text>
             </View>
           </View>
           <Text style={[styles.text, { textAlign: "left", marginTop: 5 }]}>
