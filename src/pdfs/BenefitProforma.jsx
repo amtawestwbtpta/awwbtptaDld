@@ -8,7 +8,7 @@ import {
   Font,
 } from "@react-pdf/renderer";
 import Ropa from "../modules/Ropa";
-import { useEffect } from "react";
+import { RoundTo } from "../modules/calculatefunctions";
 
 const width = 2480;
 const height = 3508;
@@ -16,9 +16,7 @@ const height = 3508;
 export default function BenefitProforma({ data, year }) {
   const currentYear = new Date().getFullYear();
   const teacherYear = currentYear - year;
-  useEffect(() => {
-    console.log(data);
-  }, []);
+
   return (
     <Document
       style={{ margin: 5, padding: 5 }}
@@ -473,24 +471,19 @@ export default function BenefitProforma({ data, year }) {
                   </Text>
                 </View>
                 <View style={{ width: "50%" }}>
-                  {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
-                    <Text style={[styles.text, { textAlign: "left" }]}>
-                      : Rs.{" "}
-                      {RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)} (
-                      {Ropa(teacher?.basic).lv},{" "}
-                      {
-                        Ropa(
-                          RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)
-                        ).ce
-                      }
-                      )
-                    </Text>
-                  ) : (
-                    <Text style={[styles.text, { textAlign: "left" }]}>
-                      : Rs. {teacher?.mbasic} ({Ropa(teacher?.mbasic).lv},{" "}
-                      {Ropa(teacher?.mbasic).ce})
-                    </Text>
-                  )}
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    : Rs. {RoundTo(teacher.basic + teacher.basic * 0.03, 100)} (
+                    {
+                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                        .lv
+                    }
+                    ,{" "}
+                    {
+                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                        .ce
+                    }
+                    )
+                  </Text>
                 </View>
               </View>
               <View
@@ -511,24 +504,17 @@ export default function BenefitProforma({ data, year }) {
                 </View>
                 <View style={{ width: "50%" }}>
                   <Text style={[styles.text, { textAlign: "left" }]}>
-                    {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
-                      <Text style={[styles.text, { textAlign: "left" }]}>
-                        : Rs.{" "}
-                        {RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)} (
-                        {Ropa(teacher?.basic).lv},{" "}
-                        {
-                          Ropa(
-                            RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)
-                          ).ce
-                        }
-                        )
-                      </Text>
-                    ) : (
-                      <Text style={[styles.text, { textAlign: "left" }]}>
-                        : Rs. {teacher?.mbasic} ({Ropa(teacher?.mbasic).lv},{" "}
-                        {Ropa(teacher?.mbasic).ce})
-                      </Text>
-                    )}
+                    : Rs. {RoundTo(teacher.basic + teacher.basic * 0.03, 100)} (
+                    {
+                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                        .lv
+                    }
+                    ,{" "}
+                    {
+                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                        .ce
+                    }
+                    )
                   </Text>
                 </View>
               </View>

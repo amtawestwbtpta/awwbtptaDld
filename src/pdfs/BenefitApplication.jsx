@@ -8,12 +8,11 @@ import {
   Image,
   Font,
 } from "@react-pdf/renderer";
-import Check from "../images/check.png";
 
 const width = 2480;
 const height = 3508;
 
-export default function ServiceConfirmation({ data, year }) {
+export default function BenefitApplication({ data, year }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -27,7 +26,12 @@ export default function ServiceConfirmation({ data, year }) {
                 parseInt(dojParts[2]) + teacherYear
               }`
             : "";
-
+        let incrementDate = `01-07-${parseInt(dojParts[2]) + teacherYear}`;
+        if (parseInt(dojParts[1]) >= 7) {
+          incrementDate = `${dojParts[0]}-${dojParts[1]}-${
+            parseInt(dojParts[2]) + teacherYear
+          }`;
+        }
         return (
           <Page
             size="A4"
@@ -51,7 +55,9 @@ export default function ServiceConfirmation({ data, year }) {
 
                 <View style={styles.checkContainer}>
                   <Image
-                    src={Check.src}
+                    source={{
+                      uri: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/check.png",
+                    }}
                     style={[
                       styles.checkImage,
                       { marginLeft: teacherYear === 20 ? 50 : 28 },
@@ -111,8 +117,8 @@ export default function ServiceConfirmation({ data, year }) {
                     </Text>
                   )}{" "}
                   years benefit (one additional increment in the same level) on{" "}
-                  {newDate} as per G.O. No. 437- SE(P&B)/SL/SS-408/19; Dt.-
-                  13/12/2019.
+                  {incrementDate} as per G.O. No. 437- SE(P&B)/SL/SS-408/19;
+                  Dt.- 13/12/2019.
                 </Text>
 
                 <Text style={styles.paragraph}>

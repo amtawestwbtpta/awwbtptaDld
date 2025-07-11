@@ -9,7 +9,7 @@ import {
   Font,
   PDFViewer,
 } from "@react-pdf/renderer";
-import ropa from "../modules/ropa";
+import Ropa from "../modules/Ropa";
 const width = 2480;
 const height = 3508;
 
@@ -20,7 +20,7 @@ export default function ServiceConfirmation({ data }) {
       title={`Service Confirmation Form`}
     >
       {data.map((teacher, index) => {
-        const level = ropa(teacher?.basic).lv;
+        const level = Ropa(teacher?.basic).lv;
         return (
           <Page
             size="A4"

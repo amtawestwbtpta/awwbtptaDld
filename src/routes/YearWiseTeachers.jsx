@@ -157,10 +157,11 @@ const YearWiseTeachers = () => {
         const q1 = await readCSVFile(`january-${year}`);
         const januaryMonthSalary = q1?.filter((el) => el.id === id)[0];
         teacher.mbasic = januaryMonthSalary.basic;
-        teacher.basic = RoundTo(
-          januaryMonthSalary.basic + januaryMonthSalary.basic * 0.06,
+        const normalIncrement = RoundTo(
+          januaryMonthSalary.basic + januaryMonthSalary.basic * 0.03,
           100
         );
+        teacher.basic = RoundTo(normalIncrement + normalIncrement * 0.03, 100);
 
         fData = [...fData, teacher];
       });
