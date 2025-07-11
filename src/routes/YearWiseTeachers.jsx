@@ -4,6 +4,8 @@ import {
   getServiceLife,
   monthNamesWithIndex,
   months,
+  readCSVFile,
+  RoundTo,
   uniqArray,
 } from "../modules/calculatefunctions";
 import ServiceConfirmation from "../pdfs/ServiceConfirmation";
@@ -138,6 +140,35 @@ const YearWiseTeachers = () => {
       }
     });
     return x.length;
+  };
+  const [benefitData, setBenefitData] = useState([]);
+  const benefitProforma = async () => {
+    if (!showProforma) {
+      let fData = [];
+      const mData = filteredData.map(async (teacher) => {
+        const { doj, id } = teacher;
+        const joiningMonth = parseInt(doj?.split("-")[1]);
+        const joiningMonthName = monthNamesWithIndex.find(
+          (month) => month.rank === joiningMonth
+        ).monthName;
+        console.log(joiningMonthName);
+        const year = new Date().getFullYear();
+
+        const q1 = await readCSVFile(`january-${year}`);
+        const januaryMonthSalary = q1?.filter((el) => el.id === id)[0];
+        teacher.mbasic = januaryMonthSalary.basic;
+        teacher.basic = RoundTo(
+          januaryMonthSalary.basic + januaryMonthSalary.basic * 0.06,
+          100
+        );
+
+        fData = [...fData, teacher];
+      });
+      await Promise.all(mData).then(() => {
+        setBenefitData(fData);
+      });
+    }
+    setShowProforma(!showProforma);
   };
 
   useEffect(() => {
@@ -758,7 +789,7 @@ const YearWiseTeachers = () => {
                 <button
                   type="button"
                   className="btn btn-primary m-2 p-2 rounded"
-                  onClick={() => setShowProforma(!showProforma)}
+                  onClick={() => benefitProforma()}
                 >
                   {showProforma
                     ? "Hide Benefit Proforma"
@@ -782,7 +813,7 @@ const YearWiseTeachers = () => {
                   <PDFDownloadLink
                     document={
                       <BenefitProforma
-                        data={filteredData}
+                        data={benefitData}
                         year={parseInt(selectedYear)}
                       />
                     }

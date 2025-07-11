@@ -7,6 +7,8 @@ import {
   Image,
   Font,
 } from "@react-pdf/renderer";
+import Ropa from "../modules/Ropa";
+import { useEffect } from "react";
 
 const width = 2480;
 const height = 3508;
@@ -14,6 +16,9 @@ const height = 3508;
 export default function BenefitProforma({ data, year }) {
   const currentYear = new Date().getFullYear();
   const teacherYear = currentYear - year;
+  useEffect(() => {
+    console.log(data);
+  }, []);
   return (
     <Document
       style={{ margin: 5, padding: 5 }}
@@ -437,13 +442,13 @@ export default function BenefitProforma({ data, year }) {
                 <View style={{ width: "50%" }}>
                   {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
                     <Text style={[styles.text, { textAlign: "left" }]}>
-                      {`: Rs.                    (LEVEL-      ,CELL-     )  (01-07-${currentYear})`}
+                      : Rs. {teacher?.basic} ({Ropa(teacher?.basic).lv},{" "}
+                      {Ropa(teacher?.basic).ce}) (01-07-{currentYear})
                     </Text>
                   ) : (
                     <Text style={[styles.text, { textAlign: "left" }]}>
-                      {`: Rs.                    (LEVEL-      ,CELL-     )  (01-07-${
-                        currentYear - 1
-                      })`}
+                      : Rs. {teacher?.mbasic} ({Ropa(teacher?.mbasic).lv},{" "}
+                      {Ropa(teacher?.mbasic).ce}) (01-07-{currentYear - 1})
                     </Text>
                   )}
                 </View>
@@ -468,9 +473,24 @@ export default function BenefitProforma({ data, year }) {
                   </Text>
                 </View>
                 <View style={{ width: "50%" }}>
-                  <Text style={[styles.text, { textAlign: "left" }]}>
-                    {`: Rs.                    (LEVEL-      ,CELL-     )`}
-                  </Text>
+                  {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : Rs.{" "}
+                      {RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)} (
+                      {Ropa(teacher?.basic).lv},{" "}
+                      {
+                        Ropa(
+                          RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)
+                        ).ce
+                      }
+                      )
+                    </Text>
+                  ) : (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : Rs. {teacher?.mbasic} ({Ropa(teacher?.mbasic).lv},{" "}
+                      {Ropa(teacher?.mbasic).ce})
+                    </Text>
+                  )}
                 </View>
               </View>
               <View
@@ -491,7 +511,24 @@ export default function BenefitProforma({ data, year }) {
                 </View>
                 <View style={{ width: "50%" }}>
                   <Text style={[styles.text, { textAlign: "left" }]}>
-                    {`: Rs.                    (LEVEL-      ,CELL-     )`}
+                    {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
+                      <Text style={[styles.text, { textAlign: "left" }]}>
+                        : Rs.{" "}
+                        {RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)} (
+                        {Ropa(teacher?.basic).lv},{" "}
+                        {
+                          Ropa(
+                            RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)
+                          ).ce
+                        }
+                        )
+                      </Text>
+                    ) : (
+                      <Text style={[styles.text, { textAlign: "left" }]}>
+                        : Rs. {teacher?.mbasic} ({Ropa(teacher?.mbasic).lv},{" "}
+                        {Ropa(teacher?.mbasic).ce})
+                      </Text>
+                    )}
                   </Text>
                 </View>
               </View>
