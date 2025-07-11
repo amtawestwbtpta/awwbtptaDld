@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Page,
   Text,
@@ -8,30 +7,19 @@ import {
   Image,
   Font,
 } from "@react-pdf/renderer";
-import ropa from "../modules/ropa";
-import Check from "../images/check.png";
-import { RoundTo } from "../modules/calculatefunctions";
 
 const width = 2480;
 const height = 3508;
 
 export default function BenefitProforma({ data, year }) {
   const currentYear = new Date().getFullYear();
-
+  const teacherYear = currentYear - year;
   return (
-    <Document title="Benefit Proforma of Teachers">
+    <Document
+      style={{ margin: 5, padding: 5 }}
+      title={`Benefit Proforma of Teachers`}
+    >
       {data.map((teacher, index) => {
-        const teacherYear = currentYear - year;
-        const dojParts = teacher?.doj?.split("-") || [];
-        const completionDate =
-          dojParts.length === 3
-            ? `${
-                parseInt(dojParts[0]) - 1 <= 9
-                  ? "0" + (parseInt(dojParts[0]) - 1)
-                  : parseInt(dojParts[0]) - 1
-              }-${dojParts[1]}-${parseInt(dojParts[2]) + teacherYear}`
-            : "";
-
         return (
           <Page
             size="A4"
@@ -40,64 +28,158 @@ export default function BenefitProforma({ data, year }) {
             key={index}
           >
             <View style={styles.pageMainView}>
-              <Text style={[styles.title, styles.underline]}>
+              <Text style={[styles.title, { textDecoration: "underline" }]}>
                 DISTRICT PRIMARY SCHOOL COUNCIL, HOWRAH
               </Text>
+              <View>
+                <Image
+                  source={{
+                    uri: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/check.png",
+                  }}
+                  style={{
+                    width: 10,
+                    height: 10,
+                    position: "absolute",
+                    marginLeft: teacherYear === 20 ? 376 : 350,
+                  }}
+                />
+              </View>
 
-              <Image
-                src={Check.src}
+              <Text
                 style={[
-                  styles.checkImage,
-                  { left: teacherYear === 20 ? 376 : 350 },
+                  styles.title2,
+                  {
+                    textDecoration: "underline",
+                    textDecorationStyle: "dotted",
+                  },
                 ]}
-              />
-
-              <Text style={[styles.title2, styles.dottedUnderline]}>
+              >
                 PROFORMA FOR OPTION & FIXATION OF PAY FOR CAS FOR 10 / 20 YEARS
-                UNDER ROPA '19
+                UNDER ROPA ‘19
               </Text>
-
-              <Text style={[styles.title, styles.dotPlaceholder]}>.....</Text>
+              <Text
+                style={[
+                  styles.title,
+                  {
+                    position: "absolute",
+                    marginTop: 21,
+                    marginLeft: teacherYear === 20 ? 348 : 371,
+                  },
+                ]}
+              >
+                .....
+              </Text>
 
               <Text style={styles.text}>
                 In terms of Memorandum, Vide No.-437-SE(P&B) SL/SS-408/19 Dt.
                 13.12.2019 of the School Education Department (Planning & Budget
                 Branch), Govt. of W.B.
               </Text>
-
-              <View style={styles.sectionHeader}>
+              <View style={{ marginVertical: 10 }}>
                 <Text style={styles.titleMain}>
                   PART- A :: OPTION (to be filled in by incumbent)
                 </Text>
               </View>
-
-              <Text style={styles.optionText}>
-                I <Text style={styles.dottedUnderline}>{teacher?.tname}</Text>{" "}
-                do hereby opt to avail the benefit of Career Advancement Scheme
-                for Completion of{" "}
-                {teacherYear === 20 ? (
-                  <>
-                    <Text style={styles.strikethrough}>10 years OR </Text>20
-                    years
-                  </>
-                ) : (
-                  <>
-                    10 years{" "}
-                    <Text style={styles.strikethrough}>OR 20 years</Text>
-                  </>
-                )}{" "}
-                of continuous service under ROPA'2019 with effect from{" "}
-                <Text style={styles.dottedUnderline}>01/07/{currentYear}</Text>{" "}
-                i.e., w.e.f. the date of my entitlement* or with effect from 1st
-                Day of July {currentYear} i.e., w.e.f the date of next
-                increment*
-              </Text>
-
-              <View style={styles.declarationSection}>
-                <Text style={[styles.text, styles.underlineBold]}>
-                  Declaration:
-                </Text>{" "}
-                <Text style={styles.text}>
+              {teacherYear === 20 ? (
+                <Text
+                  style={[styles.text, { textAlign: "left", textIndent: 30 }]}
+                >
+                  I{" "}
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        textDecoration: "underline",
+                        textDecorationStyle: "dotted",
+                      },
+                    ]}
+                  >
+                    {teacher?.tname}
+                  </Text>{" "}
+                  do hereby opt to avail the benefit of Career Advancement
+                  Scheme for Completion of{" "}
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        textDecoration: "line-through",
+                      },
+                    ]}
+                  >
+                    10 years OR
+                  </Text>{" "}
+                  20 years of continuous service under ROPA'2019 with effect
+                  from{" "}
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        textDecoration: "underline",
+                        textDecorationStyle: "dotted",
+                      },
+                    ]}
+                  >
+                    01/07/{currentYear}{" "}
+                  </Text>{" "}
+                  i.e., w.e.f. the date of my entitlement* or with effect from
+                  1st Day of July {currentYear} i.e., w.e.f the date of next
+                  increment*
+                </Text>
+              ) : (
+                <Text
+                  style={[styles.text, { textAlign: "left", textIndent: 30 }]}
+                >
+                  I{" "}
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        textDecoration: "underline",
+                        textDecorationStyle: "dotted",
+                      },
+                    ]}
+                  >
+                    {teacher?.tname}
+                  </Text>{" "}
+                  do hereby opt to avail the benefit of Career Advancement
+                  Scheme for Completion of 10 years{" "}
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        textDecoration: "line-through",
+                      },
+                    ]}
+                  >
+                    OR 20 years
+                  </Text>{" "}
+                  of continuous service under ROPA'2019 with effect from{" "}
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        textDecoration: "underline",
+                        textDecorationStyle: "dotted",
+                      },
+                    ]}
+                  >
+                    01/07/{currentYear}{" "}
+                  </Text>
+                  i.e., w.e.f. the date of my entitlement* or with effect from
+                  1st Day of July {currentYear} i.e., w.e.f the date of next
+                  increment*
+                </Text>
+              )}
+              <View style={{ marginVertical: 10 }}>
+                <Text style={[styles.text, { textAlign: "left" }]}>
+                  <Text
+                    style={[
+                      styles.text,
+                      { textDecoration: "underline", fontWeight: "heavy" },
+                    ]}
+                  >
+                    Declaration:
+                  </Text>{" "}
                   I hereby undertake to refund to the Government any amount
                   which may be drawn by me in excess of what is admissible to me
                   on account of erroneous fixation of pay in the revised pay
@@ -105,195 +187,485 @@ export default function BenefitProforma({ data, year }) {
                   brought to my notice.
                 </Text>
               </View>
-
-              <View style={styles.signatureContainer}>
-                <View style={styles.datePlace}>
-                  <Text style={styles.text}>Date: {completionDate}</Text>
-                  <Text style={styles.text}>Place: JOYPUR</Text>
-                </View>
-
-                <View style={styles.teacherDetails}>
-                  <Text style={styles.text}>Signature of the Teacher:</Text>
-                  <Text style={styles.text}>
-                    Name with designation: {teacher?.tname} (
-                    {teacher?.desig === "AT" ? "A.T." : "H.T."})
+              <View
+                style={{
+                  justifyContent: "flex-start",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  marginBottom: 5,
+                }}
+              >
+                <Text style={[styles.text, { textAlign: "left" }]}>
+                  Date: {teacher?.doj?.slice(0, 2)}.{teacher?.doj?.slice(3, 5)}.
+                  {parseInt(teacher?.doj?.slice(6, 10)) + teacherYear}
+                  {"\n"}
+                  Place: JOYPUR
+                </Text>
+                <Text
+                  style={[
+                    styles.text,
+                    {
+                      textAlign: "left",
+                      marginLeft: teacher?.school?.length > 30 ? 100 : 130,
+                    },
+                  ]}
+                >
+                  Signature of the Teacher:{"\n"}
+                  Name with designation: {teacher?.tname} (
+                  {teacher?.desig === "AT" ? "A.T." : "H.T."}){"\n"}
+                  Name of the School:{" "}
+                  <Text
+                    style={[
+                      styles.text,
+                      { fontSize: teacher?.school?.length > 30 ? 10 : 12 },
+                    ]}
+                  >
+                    {teacher?.school}
                   </Text>
-                  <Text style={styles.text}>
-                    Name of the School: {teacher?.school}
-                  </Text>
-                  <Text style={styles.text}>Name of the Circle: AMTA WEST</Text>
-                </View>
+                  {"\n"}
+                  Name of the Circle: AMTA WEST
+                </Text>
               </View>
-
-              <View style={styles.divider} />
-
-              <View style={styles.sectionHeader}>
+              <View
+                style={{
+                  marginBottom: 5,
+                  height: 3,
+                  backgroundColor: "black",
+                }}
+              ></View>
+              <View style={{ marginBottom: 5 }}>
                 <Text style={styles.titleMain}>
                   PART- B :: FIXATION (to be filled in by Circle end)
                 </Text>
               </View>
-
-              <DetailRow
-                index="1"
-                label="Name of the Teacher"
-                value={teacher?.tname}
-              />
-              <DetailRow
-                index="3"
-                label="Name of the Circle"
-                value="AMTA WEST"
-              />
-              <DetailRow
-                index="4"
-                label="Designation"
-                value={
-                  teacher?.desig === "AT" ? "Assistant Teacher" : "Head Teacher"
-                }
-              />
-              <DetailRow
-                index="5"
-                label="Date of Joining into Service"
-                value={teacher?.doj}
-              />
-
-              <View style={styles.detailRow}>
-                <Text style={styles.indexCell}>6.</Text>
-                <Text style={styles.labelCell}>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>1.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Name of the Teacher
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    : {teacher?.tname}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>3.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Name of the Circle
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    : AMTA WEST
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>4.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Designation
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    :{" "}
+                    {teacher?.desig === "AT"
+                      ? "Assistant Teacher"
+                      : "Head Teacher"}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>5.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Date of Joining into Service
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    : {teacher?.doj}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>6.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
                   {teacherYear === 20 ? (
-                    <>
+                    <Text style={[styles.text, { textAlign: "left" }]}>
                       Date of Completion of{" "}
-                      <Text style={styles.strikethrough}>10/</Text> 20 Years
-                    </>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textDecoration: "line-through" },
+                        ]}
+                      >
+                        10/
+                      </Text>{" "}
+                      20 Years
+                    </Text>
                   ) : (
-                    <>
+                    <Text style={[styles.text, { textAlign: "left" }]}>
                       Date of Completion of 10{" "}
-                      <Text style={styles.strikethrough}>/20</Text> Years
-                    </>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textDecoration: "line-through" },
+                        ]}
+                      >
+                        /20
+                      </Text>{" "}
+                      Years
+                    </Text>
                   )}
-                  <Text style={styles.smallText}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
                     (After taking LWP if any, into account)
                   </Text>
                   <Image
-                    src={Check.src}
-                    style={[
-                      styles.smallCheck,
-                      { left: teacherYear === 20 ? 145 : 125 },
-                    ]}
+                    source={{
+                      uri: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/check.png",
+                    }}
+                    style={{
+                      width: 10,
+                      height: 10,
+                      position: "absolute",
+                      marginLeft: teacherYear === 20 ? 145 : 125,
+                      marginTop: -5,
+                    }}
                   />
-                </Text>
-                <Text style={styles.valueCell}>: {completionDate}</Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    :{" "}
+                    {parseInt(teacher?.doj?.slice(0, 2)) - 1 <= 9
+                      ? "0" + (parseInt(teacher?.doj?.slice(0, 2)) - 1)
+                      : parseInt(teacher?.doj?.slice(0, 2)) - 1}
+                    -{teacher?.doj?.slice(3, 5)}-
+                    {parseInt(teacher?.doj?.slice(6, 10)) + teacherYear}
+                  </Text>
+                </View>
               </View>
-
-              <DetailRow
-                index="7"
-                label="Date of OPTION for availing this benefit"
-                value={completionDate}
-              />
-
-              <DetailRow
-                index="8"
-                label="Existing Basic Pay (With Level)"
-                value={
-                  parseInt(teacher?.doj?.slice(3, 5)) >= 7
-                    ? `Rs. ${teacher?.basic} (${ropa(teacher?.basic).lv}, ${
-                        ropa(teacher?.basic).ce
-                      }) (01-07-${currentYear})`
-                    : `Rs. ${teacher?.mbasic} (${ropa(teacher?.mbasic).lv}, ${
-                        ropa(teacher?.mbasic).ce
-                      }) (01-07-${currentYear - 1})`
-                }
-              />
-
-              <DetailRow
-                index="9"
-                label="Next higher of the amount at serial no. 8 above in the same level"
-                value={
-                  parseInt(teacher?.doj?.slice(3, 5)) >= 7
-                    ? `Rs. ${RoundTo(
-                        teacher?.basic + teacher?.basic * 0.03,
-                        100
-                      )} (${ropa(teacher?.basic).lv}, ${
-                        ropa(
-                          RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)
-                        ).ce
-                      })`
-                    : `Rs. ${teacher?.mbasic} (${ropa(teacher?.mbasic).lv}, ${
-                        ropa(teacher?.mbasic).ce
-                      })`
-                }
-              />
-
-              <DetailRow
-                index="10"
-                label="Basic Pay fixed at (as per serial no. 9)"
-                value={
-                  parseInt(teacher?.doj?.slice(3, 5)) >= 7
-                    ? `Rs. ${RoundTo(
-                        teacher?.basic + teacher?.basic * 0.03,
-                        100
-                      )} (${ropa(teacher?.basic).lv}, ${
-                        ropa(
-                          RoundTo(teacher?.basic + teacher?.basic * 0.03, 100)
-                        ).ce
-                      })`
-                    : `Rs. ${teacher?.mbasic} (${ropa(teacher?.mbasic).lv}, ${
-                        ropa(teacher?.mbasic).ce
-                      })`
-                }
-              />
-
-              <DetailRow
-                index="11"
-                label="Date of Effect"
-                value={
-                  parseInt(teacher?.doj?.slice(3, 5)) >= 7
-                    ? `${dojParts[0]}-${dojParts[1]}-${
-                        parseInt(dojParts[2]) + teacherYear
-                      }`
-                    : `01-07-${currentYear}`
-                }
-              />
-
-              <DetailRow
-                index="12"
-                label="Date of Next Increment"
-                value={
-                  parseInt(teacher?.doj?.slice(3, 5)) >= 7
-                    ? `01-07-${currentYear + 1}`
-                    : `01-07-${currentYear}`
-                }
-              />
-
-              <Text style={[styles.text, styles.verificationText]}>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>7.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Date of OPTION for availing this benefit
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    : {teacher?.doj?.slice(0, 2)}-{teacher?.doj?.slice(3, 5)}-
+                    {parseInt(teacher?.doj?.slice(6, 10)) + teacherYear}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>8.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Existing Basic Pay (With Level)
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      {`: Rs.                    (LEVEL-      ,CELL-     )  (01-07-${currentYear})`}
+                    </Text>
+                  ) : (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      {`: Rs.                    (LEVEL-      ,CELL-     )  (01-07-${
+                        currentYear - 1
+                      })`}
+                    </Text>
+                  )}
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>9.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Next higher of the amount at serial no. 8
+                  </Text>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    above in the same level
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    {`: Rs.                    (LEVEL-      ,CELL-     )`}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>10.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Basic Pay fixed at (as per serial no. 9)
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    {`: Rs.                    (LEVEL-      ,CELL-     )`}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>11.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Date of Effect
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : {teacher?.doj?.slice(0, 2)}-{teacher?.doj?.slice(3, 5)}-
+                      {parseInt(teacher?.doj?.slice(6, 10)) + teacherYear}
+                    </Text>
+                  ) : (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : 01-07-{currentYear}
+                    </Text>
+                  )}
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  width: "100%",
+                }}
+              >
+                <View style={{ width: "5%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>12.</Text>
+                </View>
+                <View style={{ width: "45%" }}>
+                  <Text style={[styles.text, { textAlign: "left" }]}>
+                    Date of Next Increment
+                  </Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : 01-07-{currentYear + 1}
+                    </Text>
+                  ) : (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : 01-07-{currentYear}
+                    </Text>
+                  )}
+                </View>
+              </View>
+              <Text style={[styles.text, { textAlign: "left" }]}>
                 Checked and verified with service Book and other relevant
                 records and found in order & forwarded to the DPSC, Howrah for
                 its approval.
               </Text>
-
-              <View style={styles.signatureSection}>
-                <Text style={styles.signatureLine}>
+              <View
+                style={{
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  marginVertical: 10,
+                  marginLeft: 350,
+                }}
+              >
+                <Text style={[styles.text, { textAlign: "right" }]}>
                   ............................................
                 </Text>
-                <Text style={styles.signatureLabel}>Signature of the SI/S</Text>
+                <Text style={[styles.text, { textAlign: "right" }]}>
+                  Signature of the SI/S
+                </Text>
               </View>
-
-              <View style={styles.memoDate}>
-                <Text style={styles.text}>Memo No-</Text>
-                <Text style={styles.text}>Date</Text>
+              <View
+                style={{
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  marginLeft: 50,
+                }}
+              >
+                <Text style={[styles.text, { textAlign: "center" }]}>
+                  Memo No-
+                </Text>
+                <Text
+                  style={[
+                    styles.text,
+                    { textAlign: "center", marginLeft: 280 },
+                  ]}
+                >
+                  Date
+                </Text>
               </View>
-
-              <View style={styles.dividerLine}>
-                <Text style={styles.text}>
+              <View>
+                <Text style={[styles.text, { textAlign: "center" }]}>
                   ===================================================================================
                 </Text>
               </View>
-
-              <View style={styles.officialsContainer}>
-                <OfficialSection label="DA" />
-                <OfficialSection label="HC" />
-                <OfficialSection label="COF" />
-                <OfficialSection label="Secretary" />
-                <OfficialSection label="Chairman" />
+              <View
+                style={{
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  marginTop: 10,
+                }}
+              >
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={[styles.text, { textAlign: "center" }]}>DA</Text>
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    DPSC. Howrah
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={[styles.text, { textAlign: "center" }]}>HC</Text>
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    DPSC. Howrah
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    COF
+                  </Text>
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    DPSC. Howrah
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    Secretary
+                  </Text>
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    DPSC. Howrah
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    Chairman
+                  </Text>
+                  <Text style={[styles.text, { textAlign: "center" }]}>
+                    DPSC. Howrah
+                  </Text>
+                </View>
               </View>
             </View>
           </Page>
@@ -302,23 +674,6 @@ export default function BenefitProforma({ data, year }) {
     </Document>
   );
 }
-
-// Sub-components for better organization
-const DetailRow = ({ index, label, value }) => (
-  <View style={styles.detailRow}>
-    <Text style={styles.indexCell}>{index}.</Text>
-    <Text style={styles.labelCell}>{label}</Text>
-    <Text style={styles.valueCell}>: {value}</Text>
-  </View>
-);
-
-const OfficialSection = ({ label }) => (
-  <View style={styles.officialSection}>
-    <Text style={styles.text}>{label}</Text>
-    <Text style={styles.text}>DPSC. Howrah</Text>
-  </View>
-);
-
 const styles = StyleSheet.create({
   page: {
     padding: 5,
@@ -326,6 +681,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
     width: width,
     height: height,
   },
@@ -333,13 +689,14 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     margin: 5,
     backgroundColor: "#FFFFFF",
+    alignSelf: "center",
     width: "100%",
     height: "98%",
   },
   title: {
     fontSize: 18,
     fontFamily: "AgencyBold",
-    fontWeight: "bold",
+    fontWeight: "heavy",
     textAlign: "center",
   },
   title2: {
@@ -350,145 +707,167 @@ const styles = StyleSheet.create({
   },
   titleMain: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "heavy",
     fontFamily: "AgencyBold",
     textAlign: "center",
+    textDecoration: "underline",
+  },
+  titleTab: {
+    fontSize: 14,
+    fontWeight: "heavy",
+    fontFamily: "Arial",
+    textAlign: "left",
+    textDecoration: "underline",
   },
   text: {
     fontSize: 12,
     fontFamily: "Arial",
-    textAlign: "left",
-    fontWeight: "bold",
+    textAlign: "center",
+    fontWeight: "heavy",
     padding: 2,
     lineHeight: 1.3,
   },
-  smallText: {
-    fontSize: 10,
+  text2: {
+    fontSize: 14,
     fontFamily: "Arial",
-    textAlign: "left",
-    fontWeight: "bold",
+    textAlign: "center",
   },
-  sectionHeader: {
-    marginVertical: 10,
-  },
-  optionText: {
-    fontSize: 12,
-    fontFamily: "Arial",
-    textAlign: "justify",
-    fontWeight: "bold",
-    padding: 2,
-    lineHeight: 1.3,
-    textIndent: 30,
-  },
-  declarationSection: {
-    marginVertical: 10,
-  },
-  signatureContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 5,
-  },
-  datePlace: {
-    width: "40%",
-  },
-  teacherDetails: {
-    width: "60%",
-  },
-  divider: {
-    marginBottom: 5,
-    height: 3,
-    backgroundColor: "black",
-  },
-  detailRow: {
-    flexDirection: "row",
+
+  tableStartView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: 1,
+    borderRightWidth: "0px",
+    borderBottomWidth: 1,
     width: "100%",
-    marginBottom: 3,
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
   },
-  indexCell: {
+  tableStartBorderView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: "0px",
+    borderBottomWidth: 1,
+    width: "100%",
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  secondTableStartView: {
+    borderWidth: 1,
+    width: "100%",
+    height: "auto",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+
+  view5: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    paddingRight: 1,
     width: "5%",
-    fontSize: 12,
-    fontFamily: "Arial",
-    fontWeight: "bold",
-  },
-  labelCell: {
-    width: "45%",
-    fontSize: 12,
-    fontFamily: "Arial",
-    fontWeight: "bold",
-    position: "relative",
-  },
-  valueCell: {
-    width: "50%",
-    fontSize: 12,
-    fontFamily: "Arial",
-    fontWeight: "bold",
-  },
-  verificationText: {
-    marginTop: 10,
-    textAlign: "left",
-  },
-  signatureSection: {
-    alignItems: "flex-end",
-    marginVertical: 10,
-    marginLeft: 350,
-  },
-  signatureLine: {
-    fontSize: 12,
-    fontFamily: "Arial",
-    fontWeight: "bold",
-  },
-  signatureLabel: {
-    fontSize: 12,
-    fontFamily: "Arial",
-    fontWeight: "bold",
-  },
-  memoDate: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginLeft: 50,
-    marginBottom: 5,
-  },
-  dividerLine: {
-    marginBottom: 10,
-  },
-  officialsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 10,
-  },
-  officialSection: {
+    height: 73,
+    justifyContent: "center",
     alignItems: "center",
   },
-  underline: {
-    textDecoration: "underline",
+  view25: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    width: "25%",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  dottedUnderline: {
-    textDecoration: "underline",
-    textDecorationStyle: "dotted",
+  view50: {
+    width: "50%",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
   },
-  strikethrough: {
-    textDecoration: "line-through",
+  view50Center: {
+    width: "50%",
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    borderRightWidth: 1,
   },
-  underlineBold: {
-    textDecoration: "underline",
-    fontWeight: "bold",
+
+  rowStartView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: "0px",
+    borderBottomWidth: 1,
+    width: "100%",
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
   },
-  dotPlaceholder: {
-    position: "absolute",
-    marginTop: 21,
-    left: 348,
+  rowStartBorderView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: "0px",
+    borderBottomWidth: 1,
+    width: "100%",
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    alignContent: "center",
   },
-  checkImage: {
-    width: 10,
-    height: 10,
-    position: "absolute",
-    top: 0,
+  rowWrapView: {
+    paddingRight: 1,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
   },
-  smallCheck: {
-    width: 10,
-    height: 10,
-    position: "absolute",
-    top: -5,
+  rowFlexView: {
+    paddingRight: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  columnFlexView: {
+    paddingRight: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  rowFlexViewEvenly: {
+    paddingRight: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  break: {
+    borderBottomWidth: 1,
+    width: "100%",
+    height: 5,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  secondRowView: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    alignContent: "center",
+    paddingHorizontal: 5,
   },
 });
 
@@ -501,7 +880,6 @@ Font.register({
   family: "AgencyBold",
   src: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/AgencyBold.ttf",
 });
-
 Font.register({
   family: "Agency",
   src: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/AGENCYR.TTF",

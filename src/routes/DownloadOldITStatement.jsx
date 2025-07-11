@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
+  CalculateIncomeTax,
   ptaxCalc,
   randBetween,
   readCSVFile,
@@ -11,11 +12,12 @@ import { collection, getDocs, query } from "firebase/firestore";
 import { firestore } from "../context/FirbaseContext";
 import Loader from "../components/Loader";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import IncomeTaxNew2025 from "../pdfs/IncomeTaxNew2025";
+import IncomeTaxOld2025 from "../pdfs/IncomeTaxOld2025";
 
 export default function DownloadOldITStatement() {
   const navigate = useNavigate();
-  const { teachersState, setTeachersState } = useGlobalContext();
+  const { teachersState, setTeachersState, deductionState, setDeductionState } =
+    useGlobalContext();
   const [searchParams] = useSearchParams();
   const data = JSON.parse(searchParams.get("data"));
   const { pan } = data;
@@ -24,15 +26,38 @@ export default function DownloadOldITStatement() {
   const nextYear = parseInt(finYear?.split("-")[1]);
 
   const [loader, setLoader] = useState(false);
-  const [newITData, setNewITDa] = useState({
+  const [oldITData, setOldITDa] = useState({
     tname: "",
     school: "",
     pan: "",
+    disability: "",
     desig: "",
     gender: "",
     thisYear: "",
     nextYear: "",
     finYear: "",
+    BankInterest: "",
+    teacherDeduction: "",
+    hbLoanPrincipal: "",
+    hbLoanInterest: "",
+    lic: "",
+    ulip: "",
+    ppf: "",
+    nsc: "",
+    nscInterest: "",
+    tutionFee: "",
+    sukanya: "",
+    stampDuty: "",
+    mediclaim: "",
+    terminalDisease: "",
+    handicapTreatment: "",
+    educationLoan: "",
+    charity: "",
+    disabilityDeduction: "",
+    rgSaving: "",
+    otherIncome: "",
+    fd: "",
+    tds: "",
     marchSalary: "",
     marchBasic: "",
     marchAddl: "",
@@ -166,24 +191,17 @@ export default function DownloadOldITStatement() {
     grossPTax: "",
     AllGross: "",
     GrossTotalIncome: "",
+    deductionVIA: "",
+    limitVIA: "",
+    OtherVIA: "",
+    TotalIncome: "",
     TotalRoundOffIncome: "",
     CalculatedIT: "",
+    isUnderRebate: "",
     eduCess: "",
     AddedEduCess: "",
-    BankInterest: "",
-    tds: "",
-    GrossRelief: "",
-    IncomeTaxAfterRelief: "",
-    ThirtyIT: "",
-    ThirtyITTax: "",
-    TwentyIT: "",
-    TwentyITTax: "",
-    FifteenIT: "",
-    FifteenITTax: "",
-    TenIT: "",
-    TenITTax: "",
-    FiveIT: "",
-    FiveITTax: "",
+    TotalGross: "",
+    GrossArrear: "",
     marchNetpay: "",
     aprilNetpay: "",
     mayNetpay: "",
@@ -197,8 +215,6 @@ export default function DownloadOldITStatement() {
     januaryNetpay: "",
     februaryNetpay: "",
     grossNetpay: "",
-    TotalGross: "",
-    GrossArrear: "",
   });
 
   const getSalary = async () => {
@@ -242,9 +258,10 @@ export default function DownloadOldITStatement() {
       } else {
         tData = teachersState.filter((item) => item.pan == pan)[0];
       }
-
+      const deductionData = await getDeduction();
+      setDeductionState(deductionData);
       !tData?.id && navigate("/");
-      await calCulateNewIT(
+      await calCulateOldIT(
         tData,
         thisYear,
         january,
@@ -258,7 +275,8 @@ export default function DownloadOldITStatement() {
         september,
         october,
         november,
-        december
+        december,
+        deductionData
       );
 
       setLoader(false);
@@ -267,7 +285,25 @@ export default function DownloadOldITStatement() {
       setLoader(false);
     }
   };
-  const calCulateNewIT = async (
+
+  const getDeduction = async () => {
+    if (deductionState.length === 0) {
+      setLoader(true);
+      const q = query(collection(firestore, "deduction"));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => ({
+        // doc.data() is never undefined for query doc snapshots
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setLoader(false);
+      return data;
+    } else {
+      return deductionState;
+    }
+  };
+
+  const calCulateOldIT = async (
     data,
     thisYear,
     january,
@@ -281,7 +317,8 @@ export default function DownloadOldITStatement() {
     september,
     october,
     november,
-    december
+    december,
+    deductionState
   ) => {
     const { id, tname, school, pan, disability, desig, gender } = data;
     try {
@@ -660,6 +697,27 @@ export default function DownloadOldITStatement() {
         bonus;
       const BankInterest = randBetween(500, 2000);
 
+      const teacherDeduction = deductionState?.filter((el) => el.id === id)[0];
+      const hbLoanPrincipal = teacherDeduction?.hbLoanPrincipal;
+      const hbLoanInterest = teacherDeduction?.hbLoanInterest;
+      const lic = teacherDeduction?.lic;
+      const ulip = teacherDeduction?.ulip;
+      const ppf = teacherDeduction?.ppf;
+      const nsc = teacherDeduction?.nsc;
+      const nscInterest = teacherDeduction?.nscInterest;
+      const tutionFee = teacherDeduction?.tutionFee;
+      const sukanya = teacherDeduction?.sukanya;
+      const stampDuty = teacherDeduction?.stampDuty;
+      const mediclaim = teacherDeduction?.mediclaim;
+      const terminalDisease = teacherDeduction?.terminalDisease;
+      const handicapTreatment = teacherDeduction?.handicapTreatment;
+      const educationLoan = teacherDeduction?.educationLoan;
+      const charity = teacherDeduction?.charity;
+      const disabilityDeduction = teacherDeduction?.disability;
+      const rgSaving = teacherDeduction?.rgSaving;
+      const otherIncome = teacherDeduction?.otherIncome;
+      const fd = teacherDeduction?.fd;
+      const tds = teacherDeduction?.tds;
       const AllGross =
         GrossPAY +
         marchArrear +
@@ -673,134 +731,72 @@ export default function DownloadOldITStatement() {
         novemberArrear +
         decemberArrear +
         januaryArrear +
-        februaryArrear;
-      const GrossTotalIncome = AllGross - 75000 + BankInterest; //H36
-      const TotalRoundOffIncome = roundSo(GrossTotalIncome, 10);
-      let ThirtyIT = 0;
-      let ThirtyITTax = 0;
-      let TwentyIT = 0;
-      let TwentyITTax = 0;
-      let FifteenIT = 0;
-      let FifteenITTax = 0;
-      let TenIT = 0;
-      let TenITTax = 0;
-      let FiveIT = 0;
-      let FiveITTax = 0;
-      let CalculatedIT = 0;
-      let GrossRelief = 0;
-      let IncomeTaxAfterRelief = 0;
-      let eduCess = 0;
-      let AddedEduCess = 0;
-      let TwentyFiveIT = 0;
-      let TwentyFiveITTax = 0;
-      if (thisYear == 2024) {
-        ThirtyIT = GrossTotalIncome > 1500000 ? GrossTotalIncome - 1500000 : 0;
-        ThirtyITTax = ThirtyIT * 0.3;
-        TwentyIT =
-          GrossTotalIncome > 1200000
-            ? GrossTotalIncome - 1200000 - ThirtyIT
-            : 0;
-        TwentyITTax = TwentyIT * 0.2;
-        FifteenIT =
-          GrossTotalIncome > 1000000
-            ? GrossTotalIncome - 1000000 - ThirtyIT - TwentyIT
-            : 0;
-        FifteenITTax = FifteenIT * 0.15;
-        TenIT =
-          GrossTotalIncome > 700000
-            ? GrossTotalIncome - 700000 - ThirtyIT - TwentyIT - FifteenIT
-            : 0;
-        TenITTax = TenIT * 0.1;
-        FiveIT =
-          GrossTotalIncome > 300000
-            ? GrossTotalIncome -
-              300000 -
-              ThirtyIT -
-              TwentyIT -
-              FifteenIT -
-              TenIT
-            : 0;
-        FiveITTax = FiveIT * 0.05;
-        CalculatedIT = Math.floor(
-          ThirtyITTax + TwentyITTax + FifteenITTax + TenITTax + FiveITTax
-        ); //H46
-        const cal1 = GrossTotalIncome > 700000 ? GrossTotalIncome : 0; //G67
-        const cal2 = GrossTotalIncome > 700000 ? cal1 - 700000 : 0; //G68
-        const cal3 =
-          GrossTotalIncome < 700001 ? Math.min(CalculatedIT, 25000) : 0; //G66
-        const cal4 = GrossTotalIncome > 700000 ? CalculatedIT - cal2 : 0; //H67
-        const cal5 = cal4 > 0 ? true : false; //H68
-        const cal6 = cal5 ? cal4 : 0; //H66
-        GrossRelief = cal3 + cal6; //J66
-        IncomeTaxAfterRelief = Math.floor(CalculatedIT - GrossRelief);
-        eduCess = Math.floor(IncomeTaxAfterRelief * 0.04);
-        AddedEduCess = IncomeTaxAfterRelief + eduCess;
-      } else if (thisYear == 2025) {
-        ThirtyIT = GrossTotalIncome > 2400000 ? GrossTotalIncome - 2400000 : 0;
-        ThirtyITTax = ThirtyIT * 0.3;
-        TwentyFiveIT =
-          GrossTotalIncome > 2000000 ? GrossTotalIncome - 2000000 : 0;
-        TwentyFiveITTax = TwentyFiveIT * 0.25;
-        TwentyIT =
-          GrossTotalIncome > 1600000
-            ? GrossTotalIncome - 1600000 - ThirtyIT - TwentyFiveIT
-            : 0;
-        TwentyITTax = TwentyIT * 0.2;
-        FifteenIT =
-          GrossTotalIncome > 1200000
-            ? GrossTotalIncome - 1200000 - ThirtyIT - TwentyFiveIT - TwentyIT
-            : 0;
-        FifteenITTax = FifteenIT * 0.15;
-        TenIT =
-          GrossTotalIncome > 800000
-            ? GrossTotalIncome -
-              800000 -
-              ThirtyIT -
-              TwentyFiveIT -
-              TwentyIT -
-              FifteenIT
-            : 0;
-        TenITTax = TenIT * 0.1;
-        FiveIT =
-          GrossTotalIncome > 400000
-            ? GrossTotalIncome -
-              400000 -
-              ThirtyIT -
-              TwentyFiveIT -
-              TwentyIT -
-              FifteenIT -
-              TenIT
-            : 0;
-        FiveITTax = FiveIT * 0.05;
-        CalculatedIT = Math.floor(
-          ThirtyITTax +
-            TwentyFiveITTax +
-            TwentyITTax +
-            FifteenITTax +
-            TenITTax +
-            FiveITTax
-        ); //H46
-        const cal1 = GrossTotalIncome > 1200000 ? GrossTotalIncome : 0; //G67
-        const cal2 = GrossTotalIncome > 1200000 ? cal1 - 700000 : 0; //G68
-        const cal3 =
-          GrossTotalIncome < 1200001 ? Math.min(CalculatedIT, 60000) : 0; //G66
-        const cal4 = GrossTotalIncome > 1200000 ? CalculatedIT - cal2 : 0; //H67
-        const cal5 = cal4 > 0 ? true : false; //H68
-        const cal6 = cal5 ? cal4 : 0; //H66
-        GrossRelief = cal3 + cal6; //J66
-        IncomeTaxAfterRelief = Math.floor(CalculatedIT - GrossRelief);
-        eduCess = Math.floor(IncomeTaxAfterRelief * 0.04);
-        AddedEduCess = IncomeTaxAfterRelief + eduCess;
-      }
-      setNewITDa({
+        februaryArrear +
+        otherIncome;
+
+      const GrossTotalIncome =
+        AllGross - grossPTax - 50000 + BankInterest - hbLoanInterest;
+      const deductionVIA =
+        grossGPF +
+        sukanya +
+        nsc +
+        ulip +
+        hbLoanPrincipal +
+        nsc +
+        ppf +
+        lic +
+        tutionFee +
+        fd +
+        grossGSLI +
+        nscInterest;
+      const limitVIA = deductionVIA >= 150000 ? 150000 : deductionVIA;
+      const OtherVIA =
+        BankInterest +
+        mediclaim +
+        disabilityDeduction +
+        terminalDisease +
+        educationLoan +
+        charity +
+        handicapTreatment;
+      const TotalIncome = GrossTotalIncome - limitVIA - OtherVIA;
+      const TotalRoundOffIncome = roundSo(TotalIncome, 10);
+      const CalculatedIT = CalculateIncomeTax(TotalRoundOffIncome);
+      const isUnderRebate = CalculatedIT >= 12500 ? false : true;
+      const eduCess = CalculatedIT * 0.04;
+      const AddedEduCess = CalculatedIT + CalculatedIT * 0.04;
+      setOldITDa({
+        id,
         tname,
         school,
         pan,
+        disability,
         desig,
         gender,
         thisYear,
         nextYear,
         finYear,
+        BankInterest,
+        teacherDeduction,
+        hbLoanPrincipal,
+        hbLoanInterest,
+        lic,
+        ulip,
+        ppf,
+        nsc,
+        nscInterest,
+        tutionFee,
+        sukanya,
+        stampDuty,
+        mediclaim,
+        terminalDisease,
+        handicapTreatment,
+        educationLoan,
+        charity,
+        disabilityDeduction,
+        rgSaving,
+        otherIncome,
+        fd,
+        tds,
         marchSalary,
         marchBasic,
         marchAddl,
@@ -934,26 +930,17 @@ export default function DownloadOldITStatement() {
         grossPTax,
         AllGross,
         GrossTotalIncome,
+        deductionVIA,
+        limitVIA,
+        OtherVIA,
+        TotalIncome,
         TotalRoundOffIncome,
         CalculatedIT,
+        isUnderRebate,
         eduCess,
         AddedEduCess,
-        BankInterest,
-
-        GrossRelief,
-        IncomeTaxAfterRelief,
-        ThirtyIT,
-        ThirtyITTax,
-        TwentyFiveIT,
-        TwentyFiveITTax,
-        TwentyIT,
-        TwentyITTax,
-        FifteenIT,
-        FifteenITTax,
-        TenIT,
-        TenITTax,
-        FiveIT,
-        FiveITTax,
+        TotalGross,
+        GrossArrear,
         marchNetpay,
         aprilNetpay,
         mayNetpay,
@@ -967,8 +954,6 @@ export default function DownloadOldITStatement() {
         januaryNetpay,
         februaryNetpay,
         grossNetpay,
-        TotalGross,
-        GrossArrear,
       });
     } catch (error) {
       console.log(error);
@@ -980,17 +965,17 @@ export default function DownloadOldITStatement() {
     !pan && navigate("/");
     getSalary();
   }, []);
-  useEffect(() => {}, [newITData]);
+  useEffect(() => {}, [oldITData]);
 
   return (
     <div className="container">
       <button className="btn btn-success m-2" onClick={() => navigate("/")}>
         Back
       </button>
-      {newITData.tname && (
+      {oldITData.tname && (
         <PDFDownloadLink
-          document={<IncomeTaxNew2025 data={newITData} />}
-          fileName={`IT Statement of ${newITData.tname} NEW TAX REGIME 2025.pdf`}
+          document={<IncomeTaxOld2025 data={oldITData} />}
+          fileName={`IT Statement of ${oldITData.tname} Old TAX REGIME ${thisYear}.pdf`}
           style={{
             textDecoration: "none",
             padding: "10px",

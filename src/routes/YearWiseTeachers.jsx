@@ -13,12 +13,16 @@ import NewTeacherArrear from "../pdfs/NewTeacherArrear";
 import { useNavigate } from "react-router-dom";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import AppServiceConfirmation from "../pdfs/AppServiceConfirmation";
+import { collection, getDocs, query } from "firebase/firestore";
+import Loader from "../components/Loader";
+import { firestore } from "../context/FirbaseContext";
 const YearWiseTeachers = () => {
   const navigate = useNavigate();
-  const { teachersState } = useGlobalContext();
+  const { teachersState, setTeachersState } = useGlobalContext();
 
   // const data = teachersState.filter((el) => el.association === "WBTPTA");
-  const [data, setData] = useState(teachersState);
+  const [data, setData] = useState([]);
+  const [loader, setLoader] = useState(false);
   const [showTeacherSelection, setShowTeacherSelection] = useState(true);
   const [isWBTPTA, setIsWBTPTA] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
@@ -79,16 +83,50 @@ const YearWiseTeachers = () => {
     setFilteredData(x);
     setMonthText(month.monthName);
   };
-  const getData = () => {
-    let x = [];
-    data.map((teacher) => {
-      const joiningYear = teacher.doj.split("-")[2];
-      x.push(joiningYear);
-      x = uniqArray(x);
-      x = x.sort((a, b) => a - b);
-    });
+  const getData = async () => {
+    setLoader(true);
+    try {
+      let data = [];
+      if (teachersState.length === 0) {
+        const q = query(collection(firestore, "teachers"));
+        const querySnapshot = await getDocs(q);
+        const newData = querySnapshot.docs.map((doc) => ({
+          // doc.data() is never undefined for query doc snapshots
+          ...doc.data(),
+          id: doc.id,
+        }));
+        data = newData.sort((a, b) => {
+          // First, compare the "school" keys
+          if (a.school < b.school) {
+            return -1;
+          }
+          if (a.school > b.school) {
+            return 1;
+          }
+          // If "school" keys are equal, compare the "rank" keys
+          return a.rank - b.rank;
+        });
+        setTeachersState(data);
+        setData(data);
+      } else {
+        setData(teachersState);
+        data = teachersState;
+      }
+      let x = [];
+      data.map((teacher) => {
+        const joiningYear = teacher.doj.split("-")[2];
+        x.push(joiningYear);
+        x = uniqArray(x);
+        x = x.sort((a, b) => a - b);
+      });
 
-    setServiceArray(x);
+      setServiceArray(x);
+
+      setLoader(false);
+    } catch (error) {
+      console.log(error);
+      setLoader(false);
+    }
   };
 
   const getArrayLength = (year) => {
@@ -112,6 +150,7 @@ const YearWiseTeachers = () => {
   }, [data]);
   return (
     <div className="container-fluid my-3">
+      {loader && <Loader />}
       {showTeacherSelection ? (
         <div
           className="modal fade show"
@@ -385,6 +424,24 @@ const YearWiseTeachers = () => {
                               Mobile: {el.phone}
                             </a>
                           </h6>
+                          <div
+                            className={`d-flex flex-${
+                              filteredData.length !== 1 ? "row" : "column"
+                            } justify-content-evenly align-items-center`}
+                          >
+                            <h6 className={`text-center text-black`}>
+                              Association:{" "}
+                            </h6>
+                            <h6
+                              className={`text-center ${
+                                el.association === "WBTPTA"
+                                  ? "text-success"
+                                  : "text-danger"
+                              }`}
+                            >
+                              {el.association}
+                            </h6>
+                          </div>
                           <h6 className="text-center text-black">
                             Service Life:
                             <br /> {getServiceLife(el.doj)}

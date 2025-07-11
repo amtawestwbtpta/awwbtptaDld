@@ -193,7 +193,7 @@ export default function IncomeTaxNew2025({ data }) {
   return (
     <Document
       style={{ margin: 5, padding: 5 }}
-      title={`IT Statement of ${tname} of ${school} NEW 2025`}
+      title={`IT Statement of ${tname} of ${school} NEW ${thisYear}`}
     >
       <Page size="A4" orientation="portrait" style={styles.page}>
         <View

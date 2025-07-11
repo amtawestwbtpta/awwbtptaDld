@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Page,
   Text,
@@ -8,18 +7,16 @@ import {
   Font,
 } from "@react-pdf/renderer";
 import { IndianFormat, roundSo } from "../modules/calculatefunctions";
+const width = 2480;
+const height = 3508;
 export default function IncomeTaxOld2025({ data }) {
   const {
-    id,
     tname,
     school,
     pan,
-    phone,
-    disability,
     desig,
     thisYear,
     nextYear,
-    prevYear,
     finYear,
     marchSalary,
     marchBasic,
@@ -201,10 +198,11 @@ export default function IncomeTaxOld2025({ data }) {
     februaryNetpay,
     grossNetpay,
   } = data;
+
   return (
     <Document
       style={{ margin: 5, padding: 5 }}
-      title={`IT Statement of ${tname} of ${school} OLD 2025`}
+      title={`IT Statement of ${tname} of ${school} OLD ${thisYear}`}
     >
       <Page size="A4" orientation="portrait" style={styles.page}>
         <View
@@ -228,7 +226,7 @@ export default function IncomeTaxOld2025({ data }) {
               >
                 <Text style={styles.text3}>
                   FINANCIAL YEAR {finYear} (RELEVANT TO ASSESMENT YEAR{" "}
-                  {`${thisYear}-${nextYear}`})
+                  {`${nextYear}-${nextYear + 1}`})
                 </Text>
               </View>
               <View
@@ -382,8 +380,8 @@ export default function IncomeTaxOld2025({ data }) {
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
-                        Grass Pay & Allowances from March'{prevYear - 2000} to
-                        February, {thisYear}
+                        Grass Pay & Allowances from March'{thisYear} to
+                        February, {nextYear}
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
@@ -411,8 +409,7 @@ export default function IncomeTaxOld2025({ data }) {
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
-                        Arrear Salary if any during the Financial year{" "}
-                        {`${prevYear} - ${thisYear}`}
+                        Arrear Salary if any during the Financial year {finYear}
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
@@ -3818,7 +3815,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        March, {prevYear}
+                        March, {thisYear}
                       </Text>
                     </View>
 
@@ -3851,7 +3848,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        April, {prevYear}
+                        April, {thisYear}
                       </Text>
                     </View>
 
@@ -3884,7 +3881,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        May, {prevYear}
+                        May, {thisYear}
                       </Text>
                     </View>
 
@@ -3917,7 +3914,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        June, {prevYear}
+                        June, {thisYear}
                       </Text>
                     </View>
 
@@ -3950,7 +3947,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        July, {prevYear}
+                        July, {thisYear}
                       </Text>
                     </View>
 
@@ -3983,7 +3980,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        August, {prevYear}
+                        August, {thisYear}
                       </Text>
                     </View>
 
@@ -4016,7 +4013,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        September, {prevYear}
+                        September, {thisYear}
                       </Text>
                     </View>
 
@@ -4049,7 +4046,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        October, {prevYear}
+                        October, {thisYear}
                       </Text>
                     </View>
 
@@ -4082,7 +4079,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        November, {prevYear}
+                        November, {thisYear}
                       </Text>
                     </View>
 
@@ -4115,7 +4112,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        December, {prevYear}
+                        December, {thisYear}
                       </Text>
                     </View>
 
@@ -4148,7 +4145,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        January, {thisYear}
+                        January, {nextYear}
                       </Text>
                     </View>
 
@@ -4183,7 +4180,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text style={[styles.text, { textAlign: "center" }]}>
-                        February, {thisYear}
+                        February, {nextYear}
                       </Text>
                     </View>
 
@@ -4458,7 +4455,7 @@ export default function IncomeTaxOld2025({ data }) {
                 </View>
                 <View style={{ width: "40%", borderWidth: 1, marginBottom: 5 }}>
                   <Text style={[styles.text]}>
-                    LAST DATE OF SUBMISSION:- 13/01/{thisYear}
+                    LAST DATE OF SUBMISSION:- 13/01/{nextYear}
                   </Text>
                 </View>
               </View>
@@ -4833,7 +4830,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5087,7 +5084,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5341,7 +5338,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5579,7 +5576,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5825,7 +5822,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5940,7 +5937,7 @@ export default function IncomeTaxOld2025({ data }) {
                   style={{
                     width: "10%",
                     flexDirection: "row",
-                    justifyContent: "space-evenly",
+                    justifyContent: "center",
                     alignItems: "center",
                     borderRightWidth: 1,
                   }}
@@ -6075,7 +6072,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -6329,7 +6326,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -6583,7 +6580,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -6837,7 +6834,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -7091,7 +7088,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{prevYear}</Text>
+                      <Text style={styles.text}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -7345,7 +7342,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text}>{nextYear}</Text>
                     </View>
                   </View>
                   <View
@@ -7599,7 +7596,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text}>{nextYear}</Text>
                     </View>
                   </View>
                   <View

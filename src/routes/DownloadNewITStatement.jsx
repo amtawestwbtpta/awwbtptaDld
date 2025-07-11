@@ -990,7 +990,7 @@ export default function DownloadNewITStatement() {
       {newITData.tname && (
         <PDFDownloadLink
           document={<IncomeTaxNew2025 data={newITData} />}
-          fileName={`IT Statement of ${newITData.tname} NEW TAX REGIME 2025.pdf`}
+          fileName={`IT Statement of ${newITData.tname} NEW TAX REGIME ${thisYear}.pdf`}
           style={{
             textDecoration: "none",
             padding: "10px",
