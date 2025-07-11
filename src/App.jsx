@@ -10,6 +10,8 @@ import DownloadOSMSPayslip from "./routes/DownloadOSMSPayslip";
 import LeaveProposal from "./routes/LeaveProposal";
 import YearWiseTeachers from "./routes/YearWiseTeachers";
 import HRA from "./routes/HRA";
+import DownloadNewITStatement from "./routes/DownloadNewITStatement";
+import DownloadOldITStatement from "./routes/DownloadOldITStatement";
 const Routing = () => {
   return (
     <Routes>
@@ -27,6 +29,16 @@ const Routing = () => {
       <Route exact path="/LeaveProposal" element={<LeaveProposal />} />
       <Route exact path="/YearWiseTeachers" element={<YearWiseTeachers />} />
       <Route exact path="/HRA" element={<HRA />} />
+      <Route
+        exact
+        path="/DownloadNewITStatement"
+        element={<DownloadNewITStatement />}
+      />
+      <Route
+        exact
+        path="/DownloadOldITStatement"
+        element={<DownloadOldITStatement />}
+      />
     </Routes>
   );
 };

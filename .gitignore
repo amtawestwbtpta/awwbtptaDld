@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 encryption.js
 Sample.jsx
+databases
+files

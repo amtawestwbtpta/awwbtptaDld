@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Page,
   Text,
@@ -12,129 +12,15 @@ import { IndianFormat, roundSo } from "../modules/calculatefunctions";
 const width = 2480;
 const height = 3508;
 
-// Reusable components
-const HeaderSection = ({ title, children }) => (
-  <View style={[styles.sectionContainer, { marginTop: 5 }]}>
-    <Text style={styles.sectionTitle}>{title}</Text>
-    {children}
-  </View>
-);
-
-const RowItem = ({ label, value, showIfPositive = false }) => (
-  <View style={styles.rowItem}>
-    <Text style={styles.rowLabel}>{label}</Text>
-    <Text style={styles.rowValue}>
-      {showIfPositive
-        ? value > 0
-          ? `Rs. ${IndianFormat(value)}`
-          : "NIL"
-        : `Rs. ${IndianFormat(value)}`}
-    </Text>
-  </View>
-);
-
-const TaxSlabRow = ({ slab, rate, amount }) => (
-  <View style={styles.taxSlabRow}>
-    <Text style={styles.taxText}>{slab}</Text>
-    <Text style={styles.taxText}>{rate}</Text>
-    <Text style={styles.taxText}>
-      {amount > 0 ? IndianFormat(Math.floor(amount * rate)) : "NIL"}
-    </Text>
-  </View>
-);
-
-const MonthlyRow = ({
-  month,
-  year,
-  basic,
-  addl,
-  da,
-  hra,
-  ma,
-  gross,
-  gpf,
-  gsli,
-  ptax,
-  netpay,
-}) => (
-  <View style={styles.monthlyRow}>
-    <View style={styles.monthCell}>
-      <Text>{month}</Text>
-      <Text>{year}</Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text>{basic ? Math.round((da * 100) / basic) + "%" : ""}</Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text>{basic || ""}</Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text>{addl > 0 ? addl : "NIL"}</Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text>{da || ""}</Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text>{hra || ""}</Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text>{ma > 0 ? ma : "NIL"}</Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text> </Text>
-    </View>
-    <View style={styles.dataCell}>
-      <Text> </Text>
-    </View>
-    <View style={styles.grossCell}>
-      <Text>{gross || ""}</Text>
-    </View>
-    <View style={styles.deductionCell}>
-      <Text>{gpf > 0 ? gpf : "NIL"}</Text>
-      <Text>{gsli > 0 ? gsli : "NIL"}</Text>
-      <Text>{ptax > 0 ? ptax : "NIL"}</Text>
-      <Text>NIL</Text>
-    </View>
-    <View style={styles.netCell}>
-      <Text>{netpay || ""}</Text>
-    </View>
-  </View>
-);
-
 export default function IncomeTaxNew2025({ data }) {
   const {
     tname,
     school,
     pan,
     desig,
-    prevYear,
     thisYear,
     nextYear,
     finYear,
-    bonus,
-    BankInterest,
-    TotalGross,
-    GrossArrear,
-    AllGross,
-    GrossTotalIncome,
-    TotalRoundOffIncome,
-    CalculatedIT,
-    eduCess,
-    GrossRelief,
-    IncomeTaxAfterRelief,
-    AddedEduCess,
-    year,
-    FiveIT,
-    FiveITTax,
-    TenIT,
-    TenITTax,
-    FifteenIT,
-    FifteenITTax,
-    TwentyIT,
-    TwentyITTax,
-    TwentyFiveIT,
-    TwentyFiveITTax,
-    // Monthly data
     marchSalary,
     marchBasic,
     marchAddl,
@@ -144,8 +30,8 @@ export default function IncomeTaxNew2025({ data }) {
     marchGross,
     marchGPF,
     marchGSLI,
+    bonus,
     marchPTax,
-    marchNetpay,
     aprilSalary,
     aprilBasic,
     aprilAddl,
@@ -156,7 +42,6 @@ export default function IncomeTaxNew2025({ data }) {
     aprilGPF,
     aprilGSLI,
     aprilPTax,
-    aprilNetpay,
     maySalary,
     mayBasic,
     mayAddl,
@@ -167,7 +52,6 @@ export default function IncomeTaxNew2025({ data }) {
     mayGPF,
     mayGSLI,
     mayPTax,
-    mayNetpay,
     juneSalary,
     juneBasic,
     juneAddl,
@@ -178,18 +62,17 @@ export default function IncomeTaxNew2025({ data }) {
     juneGPF,
     juneGSLI,
     junePTax,
-    juneNetpay,
     julySalary,
     julyBasic,
     julyAddl,
     julyDA,
+    aprilIR,
     julyHRA,
     julyMA,
     julyGross,
     julyGPF,
     julyGSLI,
     julyPTax,
-    julyNetpay,
     augustSalary,
     augustBasic,
     augustAddl,
@@ -200,7 +83,6 @@ export default function IncomeTaxNew2025({ data }) {
     augustGPF,
     augustGSLI,
     augustPTax,
-    augustNetpay,
     septemberSalary,
     septemberBasic,
     septemberAddl,
@@ -211,7 +93,6 @@ export default function IncomeTaxNew2025({ data }) {
     septemberGPF,
     septemberGSLI,
     septemberPTax,
-    septemberNetpay,
     octoberSalary,
     octoberBasic,
     octoberAddl,
@@ -222,7 +103,6 @@ export default function IncomeTaxNew2025({ data }) {
     octoberGPF,
     octoberGSLI,
     octoberPTax,
-    octoberNetpay,
     novemberSalary,
     novemberBasic,
     novemberAddl,
@@ -233,7 +113,6 @@ export default function IncomeTaxNew2025({ data }) {
     novemberGPF,
     novemberGSLI,
     novemberPTax,
-    novemberNetpay,
     decemberSalary,
     decemberBasic,
     decemberAddl,
@@ -244,7 +123,6 @@ export default function IncomeTaxNew2025({ data }) {
     decemberGPF,
     decemberGSLI,
     decemberPTax,
-    decemberNetpay,
     januarySalary,
     januaryBasic,
     januaryAddl,
@@ -255,7 +133,6 @@ export default function IncomeTaxNew2025({ data }) {
     januaryGPF,
     januaryGSLI,
     januaryPTax,
-    januaryNetpay,
     februarySalary,
     februaryBasic,
     februaryAddl,
@@ -266,7 +143,6 @@ export default function IncomeTaxNew2025({ data }) {
     februaryGPF,
     februaryGSLI,
     februaryPTax,
-    februaryNetpay,
     grossBasic,
     grossAddl,
     grossDA,
@@ -276,653 +152,6763 @@ export default function IncomeTaxNew2025({ data }) {
     grossGPF,
     grossGSLI,
     grossPTax,
+    AllGross,
+    GrossTotalIncome,
+    TotalRoundOffIncome,
+    CalculatedIT,
+    eduCess,
+    AddedEduCess,
+    BankInterest,
+    tds,
+    GrossRelief,
+    IncomeTaxAfterRelief,
+    ThirtyIT,
+    ThirtyITTax,
+    TwentyFiveIT,
+    TwentyFiveITTax,
+    TwentyIT,
+    TwentyITTax,
+    FifteenIT,
+    FifteenITTax,
+    TenIT,
+    TenITTax,
+    FiveIT,
+    FiveITTax,
+    marchNetpay,
+    aprilNetpay,
+    mayNetpay,
+    juneNetpay,
+    julyNetpay,
+    augustNetpay,
+    septemberNetpay,
+    octoberNetpay,
+    novemberNetpay,
+    decemberNetpay,
+    januaryNetpay,
+    februaryNetpay,
     grossNetpay,
+    TotalGross,
+    GrossArrear,
   } = data;
-
   return (
-    <Document title={`IT Statement of ${tname} of ${school} NEW 2025`}>
-      {/* Page 1 - Main IT Statement */}
+    <Document
+      style={{ margin: 5, padding: 5 }}
+      title={`IT Statement of ${tname} of ${school} NEW 2025`}
+    >
       <Page size="A4" orientation="portrait" style={styles.page}>
-        <View style={styles.container}>
-          <View style={styles.mainBorderView}>
-            <Text style={styles.mainTitle}>
-              STATEMENT OF INCOME TAX (NEW TAX REGIME)
-            </Text>
-
-            <HeaderSection
-              title={`FINANCIAL YEAR ${finYear} (RELEVANT TO ASSESMENT YEAR ${thisYear}-${nextYear})`}
-            />
-            <HeaderSection title="Howrah District Primary School Council" />
-
-            <View style={styles.detailsRow}>
-              <View style={styles.nameColumn}>
-                <Text style={styles.detailLabel}>NAME:-</Text>
-                <Text style={styles.detailValue}>{tname}</Text>
-              </View>
-              <View style={styles.designationColumn}>
-                <Text style={styles.detailLabel}>DESIGNATION:-</Text>
-                <Text style={styles.detailValue}>{desig}</Text>
-              </View>
-            </View>
-
-            <View style={styles.panRow}>
-              <Text style={styles.detailLabel}>PAN NO:- {pan}</Text>
-            </View>
-
-            <View style={styles.schoolRow}>
-              <Text style={styles.detailLabel}>NAME OF SCHOOL:- {school}</Text>
-            </View>
-
-            <HeaderSection title="INCOME FROM THE SALARY HEAD">
-              <RowItem
-                label="a) Grass Pay & Allowances from March'XX to February, XX"
-                value={TotalGross}
-              />
-              <RowItem
-                label={`b) Arrear Salary if any during the Financial year ${prevYear} - ${thisYear}`}
-                value={GrossArrear}
-                showIfPositive
-              />
-              <RowItem
-                label="c) Bonus received, if any"
-                value={bonus}
-                showIfPositive
-              />
-              <RowItem
-                label="d) Honararium / Fees / Commission, if any"
-                value={0}
-              />
-              <RowItem
-                label="e) Total Income ( a + b + c + d )"
-                value={AllGross}
-              />
-              <RowItem label="f) Less: any overdrawal" value={0} />
-              <RowItem
-                label="g) TOTAL INCOML FROM SALARY HEAD ( e - f )"
-                value={AllGross}
-              />
-            </HeaderSection>
-
-            <HeaderSection title="INCOME FROM OTHER SOURCES">
-              <RowItem label="a) Pension received, if any" value={0} />
-              <RowItem label="b) Interest on NSC" value={0} />
-              <RowItem label="c) Interest of KVP / MIS etc" value={0} />
-              <RowItem
-                label="d) Bank's Interest, if any (Savings)"
-                value={BankInterest}
-              />
-              <RowItem
-                label="e) Bank's Interest, if any (Not from Savings)"
-                value={0}
-              />
-              <RowItem label="f) Medical Reimbursement" value={0} />
-              <RowItem label="g) Transport Allowances" value={0} />
-              <RowItem label="h) Others, if any (Please Specify)" value={0} />
-              <RowItem
-                label="TOTAL INCOME FROM OTHER SOURCES"
-                value={BankInterest}
-              />
-            </HeaderSection>
-
-            <View style={styles.summaryRow}>
-              <Text style={styles.summaryLabel}>GROSS INCOME</Text>
-              <Text style={styles.summaryValue}>
-                Rs. {IndianFormat(AllGross + BankInterest)}
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            alignSelf: "center",
+            width: "95%",
+          }}
+        >
+          <View style={styles.pageMainView}>
+            <View style={styles.mainBorderView}>
+              <Text style={[styles.titleMain, { textDecoration: "underline" }]}>
+                STATEMENT OF INCOME TAX (NEW TAX REGIME)
               </Text>
-            </View>
-
-            <HeaderSection title="LESS:- HOUSE RENT EXEMPTION U/S 10 ( 13 A ) OF I.T. ACT, 1961">
-              <Text style={styles.notApplicable}>NOT APPLICABLE</Text>
-            </HeaderSection>
-
-            <View style={styles.balanceRow}>
-              <Text style={styles.balanceLabel}>BALANCE</Text>
-              <Text style={styles.balanceValue}>
-                Rs. {IndianFormat(AllGross + BankInterest)}
-              </Text>
-            </View>
-
-            <View style={styles.deductionRow}>
-              <Text style={styles.deductionLabel}>
-                Less:- Standard Deduction for Salaried
-              </Text>
-              <Text style={styles.deductionValue}>
-                Rs. {IndianFormat(75000)}
-              </Text>
-            </View>
-
-            <View style={styles.balanceRow}>
-              <Text style={styles.balanceLabel}>BALANCE (5-6)</Text>
-              <Text style={styles.balanceValue}>
-                Rs. {IndianFormat(GrossTotalIncome)}
-              </Text>
-            </View>
-
-            <View style={styles.totalIncomeRow}>
-              <Text style={styles.totalLabel}>TOTAL INCOME</Text>
-              <Text style={styles.totalValue}>
-                Rs. {IndianFormat(GrossTotalIncome)}
-              </Text>
-            </View>
-
-            <View style={styles.roundedIncomeRow}>
-              <Text style={styles.roundedLabel}>
-                Total Income Rounded off U/S 288A
-              </Text>
-              <Text style={styles.roundedValue}>
-                Rs. {IndianFormat(TotalRoundOffIncome)}
-              </Text>
-            </View>
-
-            <HeaderSection title="Calculation of Tax">
-              <View style={styles.taxHeader}>
-                <Text style={styles.taxHeaderText}>Sl. No.</Text>
-                <Text style={styles.taxHeaderText}>
-                  Male / Female below 50 Years
-                </Text>
-                <Text style={styles.taxHeaderText}>Amount</Text>
-              </View>
-
-              {year === 2024 ? (
-                <>
-                  <TaxSlabRow
-                    slab="1"
-                    rate="Up to Rs. 3,00,000 = Nil"
-                    amount={0}
-                  />
-                  <TaxSlabRow
-                    slab="2"
-                    rate="Rs. 3,00,001 - 7,00,000 = 5%"
-                    amount={FiveIT}
-                  />
-                  <TaxSlabRow
-                    slab="3"
-                    rate="Rs. 7,00,001/- to Rs. 10,00,000 = 10%"
-                    amount={TenIT}
-                  />
-                  <TaxSlabRow
-                    slab="4"
-                    rate="Rs. 10,00,001/- to Rs. 12,00,000 = 15%"
-                    amount={FifteenIT}
-                  />
-                  <TaxSlabRow
-                    slab="5"
-                    rate="Rs. 12,00,001/- to Rs. 15,00,000 = 20%"
-                    amount={TwentyIT}
-                  />
-                  <TaxSlabRow
-                    slab="6"
-                    rate="Above Rs. 15,00,000 = 30%"
-                    amount={0}
-                  />
-                </>
-              ) : year === 2025 ? (
-                <>
-                  <TaxSlabRow
-                    slab="1"
-                    rate="Up to Rs. 4,00,000 = Nil"
-                    amount={0}
-                  />
-                  <TaxSlabRow
-                    slab="2"
-                    rate="Rs. 4,00,001 - 8,00,000 = 5%"
-                    amount={FiveIT}
-                  />
-                  <TaxSlabRow
-                    slab="3"
-                    rate="Rs. 8,00,001/- to Rs. 12,00,000 = 10%"
-                    amount={TenIT}
-                  />
-                  <TaxSlabRow
-                    slab="4"
-                    rate="Rs. 12,00,001/- to Rs. 16,00,000 = 15%"
-                    amount={FifteenIT}
-                  />
-                  <TaxSlabRow
-                    slab="5"
-                    rate="Rs. 16,00,001/- to Rs. 20,00,000 = 20%"
-                    amount={TwentyIT}
-                  />
-                  <TaxSlabRow
-                    slab="6"
-                    rate="Rs. 20,00,001/- to Rs. 24,00,000 = 25%"
-                    amount={TwentyFiveIT}
-                  />
-                  <TaxSlabRow
-                    slab="7"
-                    rate="Above Rs. 24,00,001 = 30%"
-                    amount={0}
-                  />
-                </>
-              ) : null}
-            </HeaderSection>
-
-            <View style={styles.taxCalculationRow}>
-              <Text style={styles.calculationLabel}>Tax on Total Income</Text>
-              <Text style={styles.calculationValue}>
-                Rs. {IndianFormat(CalculatedIT)}
-              </Text>
-            </View>
-
-            <View style={styles.deductionRow}>
-              <Text style={styles.deductionLabel}>
-                Less:- Deduction U/S 87A (REBATE U/S 87A UPTO RS. 7 LAKH OVER
-                GROSS INCOME ONLY FOR NEW TAX REGIME)
-              </Text>
-              <Text style={styles.deductionValue}>
-                {GrossRelief > 0 ? `Rs. ${IndianFormat(GrossRelief)}` : "NIL"}
-              </Text>
-            </View>
-
-            <View style={styles.taxPayableRow}>
-              <Text style={styles.payableLabel}>Tax payable</Text>
-              <Text style={styles.payableValue}>
-                {IncomeTaxAfterRelief > 0
-                  ? `Rs. ${IndianFormat(IncomeTaxAfterRelief)}`
-                  : "NIL"}
-              </Text>
-            </View>
-
-            <View style={styles.cessRow}>
-              <Text style={styles.cessLabel}>
-                Add Educdtion Cess + Health Cess @ 4% on Col no.24
-              </Text>
-              <Text style={styles.cessValue}>
-                {IncomeTaxAfterRelief > 0
-                  ? `Rs. ${IndianFormat(eduCess)}`
-                  : "NIL"}
-              </Text>
-            </View>
-
-            <View style={styles.surchargeRow}>
-              <Text style={styles.surchargeLabel}>
-                Add surcharge on col. No.24 (for taxable income over Rs.
-                10000000/-)
-              </Text>
-              <Text style={styles.surchargeValue}>N/A</Text>
-            </View>
-
-            <View style={styles.finalTaxRow}>
-              <Text style={styles.finalTaxLabel}>Tax Payable</Text>
-              <Text style={styles.finalTaxValue}>
-                {AddedEduCess > 0 ? `Rs. ${IndianFormat(AddedEduCess)}` : "NIL"}
-              </Text>
-            </View>
-
-            <View style={styles.roundedTaxRow}>
-              <Text style={styles.roundedTaxLabel}>
-                Tax Payable Rounded off U/S 288B
-              </Text>
-              <Text style={styles.roundedTaxValue}>
-                {AddedEduCess > 0
-                  ? `Rs. ${IndianFormat(roundSo(AddedEduCess, 10))}`
-                  : "NIL"}
-              </Text>
-            </View>
-
-            <View style={styles.reliefRow}>
-              <Text style={styles.reliefLabel}>
-                Less:- Relief U/S 89 (1) [Attach Form 10 E]
-              </Text>
-              <Text style={styles.reliefValue}>NIL</Text>
-            </View>
-
-            <View style={styles.finalBalanceRow}>
-              <Text style={styles.finalBalanceLabel}>
-                Balance Tax + Cess after relief U/S 89 (1) [16 - 17]
-              </Text>
-              <Text style={styles.finalBalanceValue}>
-                {AddedEduCess > 0
-                  ? `Rs. ${IndianFormat(roundSo(AddedEduCess, 10))}`
-                  : "NIL"}
-              </Text>
-            </View>
-
-            <View style={styles.continuedFooter}>
-              <Text style={styles.continuedText}>Contd...2</Text>
-            </View>
-          </View>
-        </View>
-      </Page>
-
-      {/* Page 2 - Continuation and Signatures */}
-      <Page size="A4" orientation="portrait" style={styles.page}>
-        <View style={styles.container}>
-          <View style={styles.mainBorderView}>
-            <HeaderSection title="TAX DEDUCT FROM SALARY AS FOLLOWS">
-              {/* Tax deduction table would go here */}
-            </HeaderSection>
-
-            <View style={styles.taxRefundRow}>
-              <Text style={styles.refundLabel}>TAX REFUNDABLE IF ANY</Text>
-              <Text style={styles.refundValue}>NIL</Text>
-            </View>
-
-            <View style={styles.dateRow}>
-              <Text style={styles.dateLabel}>Date:-</Text>
-            </View>
-
-            <View style={styles.signatureContainer}>
-              <View style={styles.signatureBox}>
-                <Text style={styles.signatureLabel}>
-                  Signature of the Employee
-                </Text>
-                <Text style={styles.signatureDesignation}>Designation:-</Text>
-                <Text style={styles.signatureSection}>Section:-</Text>
-              </View>
-              <View style={styles.signatureBox}>
-                <Text style={styles.signatureLabel}>Signature of the DDO</Text>
-              </View>
-            </View>
-
-            <View style={styles.verificationContainer}>
-              <View style={styles.verifiedBox}>
-                <Text style={styles.verifiedText}>Verified</Text>
-                <View style={styles.signatureLine} />
-                <Text style={styles.verifierTitle}>
-                  SUB INSPECTOR OF SCHOOLS
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  { flexDirection: "column", marginTop: 5, borderWidth: 1 },
+                ]}
+              >
+                <Text style={styles.text3}>
+                  FINANCIAL YEAR {finYear} (RELEVANT TO ASSESMENT YEAR{" "}
+                  {`${nextYear}-${nextYear + 1}`})
                 </Text>
               </View>
-              <View style={styles.submissionBox}>
-                <Text style={styles.submissionText}>
-                  LAST DATE OF SUBMISSION:- 13/01/{thisYear}
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  { flexDirection: "column", marginTop: 5, borderWidth: 1 },
+                ]}
+              >
+                <Text style={styles.text3}>
+                  Howrah District Primary School Council
                 </Text>
               </View>
-            </View>
-          </View>
-        </View>
-      </Page>
-
-      {/* Page 3 - Monthly Salary Details (Landscape) */}
-      <Page size="A4" orientation="landscape" style={styles.page}>
-        <View style={styles.landscapeContainer}>
-          <View style={styles.landscapeMainView}>
-            <View style={styles.landscapeBorderView}>
-              <Text style={styles.landscapeTitle}>
-                DISTRICT PRIMARY SCHOOL COUNCIL, HOWRAH
-              </Text>
-
-              <View style={styles.employeeDetails}>
-                <View style={styles.employeeColumn}>
-                  <Text style={styles.employeeLabel}>NAME OF THE EMPLOYEE</Text>
-                  <Text style={styles.employeeLabel}>NAME OF THE SCHOOL</Text>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    marginTop: 5,
+                    borderWidth: 1,
+                    marginBottom: 0,
+                  },
+                ]}
+              >
+                <View style={{ width: "10%", borderRightWidth: 1 }}>
+                  <Text style={styles.text3}>NAME:-</Text>
                 </View>
-                <View style={styles.employeeValueColumn}>
-                  <Text style={styles.employeeValue}>{tname}</Text>
-                  <Text style={styles.employeeValue}>{school}</Text>
+                <View style={{ width: "50%", borderRightWidth: 1 }}>
+                  <Text style={styles.text3}>{tname}</Text>
                 </View>
-                <View style={styles.designationColumn}>
-                  <Text style={styles.employeeLabel}>DESIGNATION</Text>
-                  <Text style={styles.employeeLabel}>PAN NO.</Text>
+                <View style={{ width: "20%", borderRightWidth: 1 }}>
+                  <Text style={styles.text3}>DESIGNATION:-</Text>
                 </View>
-                <View style={styles.designationValueColumn}>
-                  <Text style={styles.employeeValue}>{desig}</Text>
-                  <Text style={styles.employeeValue}>{pan}</Text>
+                <View style={{ width: "20%" }}>
+                  <Text style={styles.text3}>{desig}</Text>
                 </View>
               </View>
-
-              <View style={styles.salaryHeader}>
-                <View style={styles.monthHeader}>
-                  <Text style={styles.headerText}>MONTH</Text>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-end",
+                    alignItems: "center",
+                    borderWidth: "0px",
+                    margin: 0,
+                  },
+                ]}
+              >
+                <View style={{ width: "50%" }}>
+                  <Text style={styles.text3}> </Text>
                 </View>
-                <View style={styles.payHeader}>
-                  <Text style={styles.headerText}>PAY & ALLOWANCES</Text>
-                  <View style={styles.subHeader}>
-                    <Text style={styles.subHeaderText}>% D.A</Text>
-                    <Text style={styles.subHeaderText}>Basic Pay</Text>
-                    <Text style={styles.subHeaderText}>HT Allowance</Text>
-                    <Text style={styles.subHeaderText}>D.A.</Text>
-                    <Text style={styles.subHeaderText}>H.R.A.</Text>
-                    <Text style={styles.subHeaderText}>M.A.</Text>
-                    <Text style={styles.subHeaderText}>
-                      Conveyance Allowance
+                <View
+                  style={{
+                    width: "50%",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text
+                    style={[
+                      styles.text3,
+                      { textAlign: "left", paddingLeft: 10 },
+                    ]}
+                  >
+                    PAN NO:- {pan}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    margin: 0,
+                    borderWidth: 1,
+                  },
+                ]}
+              >
+                <Text
+                  style={[styles.text3, { textAlign: "left", paddingLeft: 10 }]}
+                >
+                  NAME OF SCHOOL:- {school}
+                </Text>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    marginTop: 2,
+                    borderWidth: 1,
+                    borderBottomWidth: "0px",
+                  },
+                ]}
+              >
+                <Text style={[styles.text3]}>INCOME FROM THE SALARY HEAD</Text>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    height: 80,
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>1</Text>
+                </View>
+                <View
+                  style={{
+                    width: "70%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: "0px",
+                    height: 80,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>a)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Grass Pay & Allowances from March'{thisYear} to
+                        February, {nextYear}
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(TotalGross)}
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>b)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Arrear Salary if any during the Financial year {finYear}
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      {GrossArrear > 0 ? (
+                        <Text style={styles.text}>Rs. {GrossArrear}</Text>
+                      ) : (
+                        <Text style={styles.text}>NIL</Text>
+                      )}
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>c)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Bonus received, if any
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      {bonus > 0 ? (
+                        <Text style={styles.text}>Rs. {bonus}</Text>
+                      ) : (
+                        <Text style={styles.text}>NIL</Text>
+                      )}
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>d)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Honararium / Fees / Commission, if any
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>e)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Total Income ( a + b + c + d )
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(AllGross)}
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>f)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Less: any overdrawal
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: "0px",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "10%",
+                        borderRightWidth: 1,
+                        height: 12,
+                      }}
+                    >
+                      <Text style={styles.text}>g)</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "70%",
+                        borderRightWidth: 1,
+                        height: 12,
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        TOTAL INCOML FROM SALARY HEAD ( e - f )
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%", height: 12 }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(AllGross)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+
+                <View style={{ width: "25%", height: 80 }}>
+                  <View
+                    style={{
+                      width: "100%",
+                      height: 68,
+                      borderBottomWidth: 1,
+                    }}
+                  ></View>
+                  <Text style={styles.text}>Rs. {IndianFormat(AllGross)}</Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    marginTop: 2,
+                    borderWidth: 1,
+                    borderBottomWidth: "0px",
+                  },
+                ]}
+              >
+                <Text style={[styles.text3]}>INCOME FROM OTHER SOURCES</Text>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    height: 105,
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>2</Text>
+                </View>
+                <View
+                  style={{
+                    width: "70%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: "0px",
+                    height: 105,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>a)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Pension received , if any
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>b)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Interest on NSC
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>c)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Interest of KVP / MIS etc
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>d)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Bank's Interest , if any ( Savings )
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(BankInterest)}
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>e)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Bank's Interest , if any ( Not from Savings )
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>f)</Text>
+                    </View>
+                    <View style={{ width: "70%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Medical Reimbursement
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "10%",
+                        borderRightWidth: 1,
+                        height: 12,
+                      }}
+                    >
+                      <Text style={styles.text}>g)</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "70%",
+                        borderRightWidth: 1,
+                        height: 12,
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Transport Allowances
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%", height: 12 }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "10%",
+                        borderRightWidth: 1,
+                        height: 12,
+                      }}
+                    >
+                      <Text style={styles.text}>h)</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "70%",
+                        borderRightWidth: 1,
+                        height: 12,
+                      }}
+                    >
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Others, if any( Please Specify )
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%", height: 12 }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: "0px",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text
+                      style={[
+                        styles.text,
+                        { textAlign: "left", paddingLeft: 2 },
+                      ]}
+                    >
+                      TOTAL INCOME FROM OTHER SOURCES
                     </Text>
-                    <Text style={styles.subHeaderText}>BONUS</Text>
                   </View>
                 </View>
-                <View style={styles.grossHeader}>
-                  <Text style={styles.headerText}>GROSS</Text>
+
+                <View style={{ width: "25%", height: 105 }}>
+                  <View
+                    style={{
+                      width: "100%",
+                      height: 94,
+                      borderBottomWidth: 1,
+                    }}
+                  ></View>
+                  <Text style={styles.text}>
+                    Rs. {IndianFormat(BankInterest)}
+                  </Text>
                 </View>
-                <View style={styles.deductionHeader}>
-                  <Text style={styles.headerText}>DEDUCTION</Text>
-                  <View style={styles.deductionSubHeader}>
-                    <Text style={styles.deductionSubText}>GPF</Text>
-                    <Text style={styles.deductionSubText}>GSLI</Text>
-                    <Text style={styles.deductionSubText}>P.TAX</Text>
-                    <Text style={styles.deductionSubText}>I.TAX</Text>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>3</Text>
+                </View>
+                <View
+                  style={{
+                    width: "70%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: "0px",
+                  }}
+                >
+                  <Text
+                    style={[styles.text, { textAlign: "left", paddingLeft: 2 }]}
+                  >
+                    GROSS INCOME
+                  </Text>
+                </View>
+
+                <View style={{ width: "25%" }}>
+                  <Text style={styles.text}>
+                    Rs. {IndianFormat(AllGross + BankInterest)}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    marginTop: 2,
+                    borderWidth: 1,
+                    borderBottomWidth: "0px",
+                    justifyContent: "center",
+                    paddingLeft: 5,
+                  },
+                ]}
+              >
+                <Text style={[styles.text3]}>
+                  LESS:- HOUSE RENT EXEMPTION U/S 10 ( 13 A ) OF I.T. ACT, 1961
+                </Text>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    height: 65,
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>4</Text>
+                </View>
+                <View
+                  style={{
+                    width: "70%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: "0px",
+                    height: 65,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "80%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        H. R. A Received from Employer
+                      </Text>
+                    </View>
+                    <View style={{ width: "12.5%" }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>a)</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Actual House Rent Allowance
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View style={{ width: "15%" }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>b)</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        40% of Salary ( For Non Metro City )
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "10%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>c)</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Rent Paid over 10% of sotary
+                      </Text>
+                    </View>
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View style={{ width: "20%" }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      borderBottomWidth: 1,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "80%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Less :- Lower of the above ( a / b / c ) exempted U/S.10
+                        ( 13 A )
+                      </Text>
+                    </View>
+                    <View style={{ width: "12.5%" }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text
+                      style={[
+                        styles.text,
+                        { textAlign: "left", paddingLeft: 2 },
+                      ]}
+                    >
+                      House Rent Allowance Exempted / Taxable House Rent
+                      Allowance
+                    </Text>
                   </View>
                 </View>
-                <View style={styles.netHeader}>
-                  <Text style={styles.headerText}>NET</Text>
+
+                <View style={{ width: "25%", height: 65 }}>
+                  <View
+                    style={{
+                      width: "100%",
+                      height: 56,
+                      borderBottomWidth: 1,
+                    }}
+                  ></View>
+                  <Text style={styles.text}>NOT APPLICABLE</Text>
+                </View>
+                <View
+                  style={{
+                    width: 85,
+                    height: 1,
+                    backgroundColor: "black",
+                    transform: "rotate(-30deg)",
+                    left: 315,
+                    top: 32,
+                    position: "absolute",
+                  }}
+                ></View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>5</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        BALANCE ( 3 - 4 )
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(AllGross + BankInterest)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>6</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Less :- Standard Deduction for Salaried
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>Rs. {IndianFormat(75000)}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>7</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        BALANCE (5-6)
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(GrossTotalIncome)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>8</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        TOTAL INCOME
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(GrossTotalIncome)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>9</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Total Income Rounded off U/S 288A
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(TotalRoundOffIncome)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: "0px",
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "60%",
+                    borderRightWidth: 1,
+                    borderBottomWidth: 1,
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <Text style={[styles.text3]}>Calculation of Tax</Text>
+                </View>
+                <View style={{ width: "40%" }}>
+                  <Text style={[styles.text3]}> </Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    // borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Sl. No.</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        Male / Female below 50 Years
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "30%" }}>
+                      <Text style={styles.text}>Amount</Text>
+                    </View>
+                  </View>
+                </View>
+                {thisYear === 2024 ? (
+                  <View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>1</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Up to Rs. 3,00,000 = Nil
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>NIL</Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>2</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 3,00,001 - 7,00,000 = 5%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {FiveITTax > 0
+                              ? IndianFormat(Math.floor(FiveIT * 0.05))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>3</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 7,00,001/- to Rs. 10,00,000 = 10%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {TenITTax > 0
+                              ? IndianFormat(Math.floor(TenIT * 0.1))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                        borderBottomWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>4</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 10,00,001/- to Rs. 12,00,000 = 15%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {FifteenITTax > 0
+                              ? IndianFormat(Math.floor(FifteenIT * 0.15))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                        borderBottomWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>5</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 12,00,001/- to Rs. 15,00,000 = 20%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {TwentyITTax > 0
+                              ? IndianFormat(Math.floor(TwentyIT * 0.2))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                        borderBottomWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>6</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Above Rs. 15,00,000 = 30%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>NIL</Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                ) : thisYear == 2025 ? (
+                  <View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>1</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Up to Rs. 4,00,000 = Nil
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>NIL</Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>2</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 4,00,001 - 8,00,000 = 5%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {FiveITTax > 0
+                              ? IndianFormat(Math.floor(FiveIT * 0.05))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>3</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 8,00,001/- to Rs. 12,00,000 = 10%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {TenITTax > 0
+                              ? IndianFormat(Math.floor(TenIT * 0.1))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                        borderBottomWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>4</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 12,00,001/- to Rs. 16,00,000 = 15%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {FifteenITTax > 0
+                              ? IndianFormat(Math.floor(FifteenIT * 0.15))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                        borderBottomWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>5</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 16,00,001/- to Rs. 20,00,000 = 20%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {TwentyITTax > 0
+                              ? IndianFormat(Math.floor(TwentyIT * 0.2))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                        borderBottomWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>6</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Rs. 20,00,001/- to Rs. 24,00,000 = 25%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>
+                            {TwentyFiveITTax > 0
+                              ? IndianFormat(Math.floor(TwentyFiveIT * 0.25))
+                              : "NIL"}
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        width: "60%",
+                        borderWidth: 1,
+                        borderTopWidth: "0px",
+                        borderLeftWidth: "0px",
+                        borderBottomWidth: "0px",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "100%",
+                          flexDirection: "row",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <View style={{ width: "20%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>7</Text>
+                        </View>
+                        <View style={{ width: "50%", borderRightWidth: 1 }}>
+                          <Text style={[styles.text, { textAlign: "center" }]}>
+                            Above Rs. 24,00,001 = 30%
+                          </Text>
+                        </View>
+
+                        <View style={{ width: "5%", borderRightWidth: 1 }}>
+                          <Text style={styles.text}>Rs.</Text>
+                        </View>
+                        <View style={{ width: "25%" }}>
+                          <Text style={styles.text}>NIL</Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                ) : null}
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>10</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Tax on Total Income
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        Rs. {IndianFormat(CalculatedIT)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>11</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Less:- Deduction U/S 87A (REBATE U/S 87A UPTO RS. 7 LAKH
+                        OVER GROSS INCOME ONLY FOR NEW TAX REGIME)
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {GrossRelief > 0
+                          ? `Rs. ${IndianFormat(GrossRelief)}`
+                          : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>12</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Tax payable
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {IncomeTaxAfterRelief > 0
+                          ? `Rs. ${IndianFormat(IncomeTaxAfterRelief)}`
+                          : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>13</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Add Educdtion Cess + Health Cess @ 4% on Col no.24
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {IncomeTaxAfterRelief > 0
+                          ? `Rs. ${IndianFormat(eduCess)}`
+                          : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>14</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Add surcharge on col. No.24 ( for taxable income over
+                        Rs. 10000000/-)
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>N/A</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>15</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Tax Payable
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {AddedEduCess > 0
+                          ? `Rs. ${IndianFormat(AddedEduCess)}`
+                          : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>16</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Tax Payable Rounded off U/S 288B
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {AddedEduCess > 0
+                          ? `Rs. ${IndianFormat(roundSo(AddedEduCess, 10))}`
+                          : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>17</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Less:- Relief U/S 89 ( 1 ) [ Attach Form 10 E ]
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>18</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        Balance Tax + Cess after relief U/S 89 ( 1 ) [ 16 - 17]
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {AddedEduCess > 0
+                          ? `Rs. ${IndianFormat(roundSo(AddedEduCess, 10))}`
+                          : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "flex-end",
+                  width: "100%",
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}
+              >
+                <Text
+                  style={[
+                    styles.text,
+                    { textAlign: "right", paddingRight: 20 },
+                  ]}
+                >
+                  Contd...2
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Page>
+      <Page size="A4" orientation="portrait" style={styles.page}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            alignSelf: "center",
+            width: "95%",
+          }}
+        >
+          <View style={styles.pageMainView}>
+            <View style={styles.mainBorderView}>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                    borderTopWidth: 1,
+                    borderBottomWidth: "0px",
+                    marginTop: 10,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "60%",
+                    borderRightWidth: 1,
+                    borderBottomWidth: 1,
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <Text style={[styles.text3]}>
+                    TAX DEDUCT FROM SALARY AS FOLLOWS
+                  </Text>
+                </View>
+                <View style={{ width: "40%" }}>
+                  <Text style={[styles.text3]}> </Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "column",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    // borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Sl. No.</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        Month
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "30%" }}>
+                      <Text style={styles.text}>Amount</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>1</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        March, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>2</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        April, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>3</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        May, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>4</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        June, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>5</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        July, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>6</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        August, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>7</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        September, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>8</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        October, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>9</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        November, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>10</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        December, {thisYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>11</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        January, {nextYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {IncomeTaxAfterRelief > 0 ? " " : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>12</Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        February, {nextYear}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {IncomeTaxAfterRelief > 0 ? " " : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "60%",
+                    borderWidth: 1,
+                    borderTopWidth: "0px",
+                    borderLeftWidth: "0px",
+                    borderBottomWidth: "0px",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "20%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View style={{ width: "50%", borderRightWidth: 1 }}>
+                      <Text style={[styles.text, { textAlign: "center" }]}>
+                        TOTAL
+                      </Text>
+                    </View>
+                    <View style={{ width: "5%", borderRightWidth: 1 }}>
+                      <Text style={styles.text}>Rs.</Text>
+                    </View>
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>
+                        {IncomeTaxAfterRelief > 0 ? " " : "NIL"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderLeftWidth: 1,
+                    borderRightWidth: 1,
+                    borderTopWidth: "0px",
+                    borderBottomWidth: 1,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "5%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>31</Text>
+                </View>
+                <View
+                  style={{
+                    width: "95%",
+                    borderLeftWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%", borderRightWidth: 1 }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        TAX REFUNDABLE IF ANY
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    borderWidth: 1,
+                    marginTop: 10,
+                    height: 20,
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    width: "12%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>Date:-</Text>
+                </View>
+                <View
+                  style={{
+                    width: "88%",
+                    borderLeftWidth: 1,
+                    height: 20,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "73.7%" }}>
+                      <Text
+                        style={[
+                          styles.text,
+                          { textAlign: "left", paddingLeft: 2 },
+                        ]}
+                      >
+                        {" "}
+                      </Text>
+                    </View>
+
+                    <View style={{ width: "25%" }}>
+                      <Text style={styles.text}></Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    borderWidth: "0px",
+                    marginTop: 50,
+                  },
+                ]}
+              >
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text]}>Signature of the Employee</Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text]}>Signature of the DDO</Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    borderWidth: "0px",
+                    marginTop: 5,
+                  },
+                ]}
+              >
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text]}>Designation:-</Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text]}> </Text>
+                </View>
+              </View>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    borderWidth: "0px",
+                    marginTop: 5,
+                  },
+                ]}
+              >
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text]}>Section:-</Text>
+                </View>
+                <View style={{ width: "50%" }}>
+                  <Text style={[styles.text]}> </Text>
                 </View>
               </View>
 
-              {/* Monthly Rows */}
-              <MonthlyRow
-                month="MAR"
-                year={prevYear}
-                basic={marchBasic}
-                addl={marchAddl}
-                da={marchDA}
-                hra={marchHRA}
-                ma={marchMA}
-                gross={marchGross}
-                gpf={marchGPF}
-                gsli={marchGSLI}
-                ptax={marchPTax}
-                netpay={marchNetpay}
-              />
-
-              <MonthlyRow
-                month="APR"
-                year={prevYear}
-                basic={aprilBasic}
-                addl={aprilAddl}
-                da={aprilDA}
-                hra={aprilHRA}
-                ma={aprilMA}
-                gross={aprilGross}
-                gpf={aprilGPF}
-                gsli={aprilGSLI}
-                ptax={aprilPTax}
-                netpay={aprilNetpay}
-              />
-              <MonthlyRow
-                month="MAY"
-                year={prevYear}
-                basic={mayBasic}
-                addl={mayAddl}
-                da={mayDA}
-                hra={mayHRA}
-                ma={mayMA}
-                gross={mayGross}
-                gpf={mayGPF}
-                gsli={mayGSLI}
-                ptax={mayPTax}
-                netpay={mayNetpay}
-              />
-              <MonthlyRow
-                month="JUN"
-                year={prevYear}
-                basic={juneBasic}
-                addl={juneAddl}
-                da={juneDA}
-                hra={juneHRA}
-                ma={juneMA}
-                gross={juneGross}
-                gpf={juneGPF}
-                gsli={juneGSLI}
-                ptax={junePTax}
-                netpay={juneNetpay}
-              />
-              <MonthlyRow
-                month="JUL"
-                year={prevYear}
-                basic={julyBasic}
-                addl={julyAddl}
-                da={julyDA}
-                hra={julyHRA}
-                ma={julyMA}
-                gross={julyGross}
-                gpf={julyGPF}
-                gsli={julyGSLI}
-                ptax={julyPTax}
-                netpay={julyNetpay}
-              />
-              <MonthlyRow
-                month="AUG"
-                year={prevYear}
-                basic={augustBasic}
-                addl={augustAddl}
-                da={augustDA}
-                hra={augustHRA}
-                ma={augustMA}
-                gross={augustGross}
-                gpf={augustGPF}
-                gsli={augustGSLI}
-                ptax={augustPTax}
-                netpay={augustNetpay}
-              />
-              <MonthlyRow
-                month="SEP"
-                year={prevYear}
-                basic={septemberBasic}
-                addl={septemberAddl}
-                da={septemberDA}
-                hra={septemberHRA}
-                ma={septemberMA}
-                gross={septemberGross}
-                gpf={septemberGPF}
-                gsli={septemberGSLI}
-                ptax={septemberPTax}
-                netpay={septemberNetpay}
-              />
-              <MonthlyRow
-                month="OCT"
-                year={prevYear}
-                basic={octoberBasic}
-                addl={octoberAddl}
-                da={octoberDA}
-                hra={octoberHRA}
-                ma={octoberMA}
-                gross={octoberGross}
-                gpf={octoberGPF}
-                gsli={octoberGSLI}
-                ptax={octoberPTax}
-                netpay={octoberNetpay}
-              />
-              <MonthlyRow
-                month="NOV"
-                year={prevYear}
-                basic={novemberBasic}
-                addl={novemberAddl}
-                da={novemberDA}
-                hra={novemberHRA}
-                ma={novemberMA}
-                gross={novemberGross}
-                gpf={novemberGPF}
-                gsli={novemberGSLI}
-                ptax={novemberPTax}
-                netpay={novemberNetpay}
-              />
-              <MonthlyRow
-                month="DEC"
-                year={prevYear}
-                basic={decemberBasic}
-                addl={decemberAddl}
-                da={decemberDA}
-                hra={decemberHRA}
-                ma={decemberMA}
-                gross={decemberGross}
-                gpf={decemberGPF}
-                gsli={decemberGSLI}
-                ptax={decemberPTax}
-                netpay={decemberNetpay}
-              />
-              <MonthlyRow
-                month="JAN"
-                year={thisYear}
-                basic={januaryBasic}
-                addl={januaryAddl}
-                da={januaryDA}
-                hra={januaryHRA}
-                ma={januaryMA}
-                gross={januaryGross}
-                gpf={januaryGPF}
-                gsli={januaryGSLI}
-                ptax={januaryPTax}
-                netpay={januaryNetpay}
-              />
-              <MonthlyRow
-                month="FEB"
-                year={thisYear}
-                basic={februaryBasic}
-                addl={februaryAddl}
-                da={februaryDA}
-                hra={februaryHRA}
-                ma={februaryMA}
-                gross={februaryGross}
-                gpf={februaryGPF}
-                gsli={februaryGSLI}
-                ptax={februaryPTax}
-                netpay={februaryNetpay}
-              />
-
-              {/* Total Row */}
-              <View style={styles.totalRow}>
-                <View style={styles.totalMonthCell}>
-                  <Text>TOTAL</Text>
+              <View
+                style={[
+                  styles.tableStartBorderView2,
+                  {
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    alignItems: "flex-end",
+                    borderWidth: "0px",
+                    marginTop: 50,
+                    marginBottom: 30,
+                  },
+                ]}
+              >
+                <View style={{ width: "50%" }}>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "flex-end",
+                      marginBottom: 20,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "100%",
+                        borderWidth: 1,
+                        padding: 5,
+                        height: 90,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginLeft: 50,
+                      }}
+                    >
+                      <Text style={styles.text}>Verified</Text>
+                      <View
+                        style={{
+                          marginTop: 40,
+                          paddingVertical: 5,
+                          width: "100%",
+                        }}
+                      >
+                        <View
+                          style={{
+                            height: 3,
+                            borderTopWidth: 1,
+                            borderBottomWidth: 1,
+                            borderStyle: "dashed",
+                          }}
+                        ></View>
+                        <Text style={[styles.text, { marginTop: 5 }]}></Text>
+                        <Text style={styles.text}>
+                          SUB INSPECTOR OF SCHOOLS
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.totalDataCell} />
-                <View style={styles.totalDataCell}>
-                  <Text>{grossBasic}</Text>
-                </View>
-                <View style={styles.totalDataCell}>
-                  <Text>{grossAddl > 0 ? grossAddl : "NIL"}</Text>
-                </View>
-                <View style={styles.totalDataCell}>
-                  <Text>{grossDA}</Text>
-                </View>
-                <View style={styles.totalDataCell}>
-                  <Text>{grossHRA}</Text>
-                </View>
-                <View style={styles.totalDataCell}>
-                  <Text>{grossMA > 0 ? grossMA : "NIL"}</Text>
-                </View>
-                <View style={styles.totalDataCell}>
-                  <Text>NIL</Text>
-                </View>
-                <View style={styles.totalDataCell}>
-                  <Text>{bonus > 0 ? bonus : "NIL"}</Text>
-                </View>
-                <View style={styles.totalGrossCell}>
-                  <Text>{GrossPAY}</Text>
-                </View>
-                <View style={styles.totalDeductionCell}>
-                  <Text>{grossGPF > 0 ? grossGPF : "NIL"}</Text>
-                  <Text>{grossGSLI > 0 ? grossGSLI : "NIL"}</Text>
-                  <Text>{grossPTax > 0 ? grossPTax : "NIL"}</Text>
-                  <Text> </Text>
-                </View>
-                <View style={styles.totalNetCell}>
-                  <Text>{grossNetpay}</Text>
+                <View
+                  style={{ width: "40%", borderWidth: 1, marginBottom: 20 }}
+                >
+                  <Text style={[styles.text]}>
+                    LAST DATE OF SUBMISSION:- 13/01/{nextYear}
+                  </Text>
                 </View>
               </View>
             </View>
-
-            <View style={styles.verificationFooter}>
-              <View style={styles.verificationBox}>
-                <Text style={styles.verificationLabel}>
-                  Verified and Counter Signature
+          </View>
+        </View>
+      </Page>
+      <Page size="A4" orientation="landscape" style={styles.page}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            alignSelf: "center",
+            width: "95%",
+            marginTop: 50,
+          }}
+        >
+          <View style={styles.pageMainView}>
+            <View style={styles.mainBorderView}>
+              <View style={styles.tableStartBorderView}>
+                <Text style={styles.titleMain}>
+                  DISTRICT PRIMARY SCHOOL COUNCIL, HOWRAH
                 </Text>
-                <View style={styles.footerSignatureLine} />
-                <Text style={styles.footerTitle}>SUB INSPECTOR OF SCHOOLS</Text>
               </View>
-              <View style={styles.incumbentBox}>
-                <View style={styles.incumbentSignatureLine} />
-                <Text style={styles.incumbentLabel}>
-                  SIGNATURE OF THE INCUMBENT
-                </Text>
+              <View style={styles.tableStartBorderView}>
+                <View
+                  style={{
+                    width: "100%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {/* 20 */}
+                  <View
+                    style={{
+                      width: "20%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
+                      <Text style={styles.text}>NAME OF THE EMPLOYEE</Text>
+                    </View>
+                    <View style={{ width: "100%" }}>
+                      <Text style={styles.text}>NAME OF THE SCHOOL</Text>
+                    </View>
+                  </View>
+                  {/* 30 */}
+                  <View
+                    style={{
+                      width: "30%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
+                      <Text style={styles.text}>{tname}</Text>
+                    </View>
+                    <View style={{ width: "100%" }}>
+                      <Text style={styles.text}>{school}</Text>
+                    </View>
+                  </View>
+                  {/* 10 Gross */}
+                  <View
+                    style={{
+                      width: "10%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  ></View>
+                  {/* 10 */}
+                  <View
+                    style={{
+                      width: "10%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                      borderLeftWidth: 1,
+                    }}
+                  >
+                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
+                      <Text style={styles.text}>DESIGNATION</Text>
+                    </View>
+                    <View style={{ width: "100%" }}>
+                      <Text style={styles.text}>PAN NO.</Text>
+                    </View>
+                  </View>
+                  {/* 20 */}
+                  <View
+                    style={{
+                      width: "30%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
+                      <Text style={styles.text}>{desig}</Text>
+                    </View>
+                    <View style={{ width: "100%" }}>
+                      <Text style={styles.text}>{pan}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                      height: 50,
+                    }}
+                  >
+                    <Text style={styles.text}>MONTH</Text>
+                  </View>
+                  <View
+                    style={{ width: "86%", borderRightWidth: 1, height: 50 }}
+                  >
+                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
+                      <Text style={styles.text}>PAY & ALLOWANCES</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "100%",
+                        flexDirection: "row",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                      }}
+                    >
+                      <View
+                        style={{
+                          width: "12.5%",
+                          borderRightWidth: 1,
+                          height: 40,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={styles.text}>% D.A</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: "12.5%",
+                          borderRightWidth: 1,
+                          height: 40,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={styles.text}>Basic{"\n"}Pay</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: "12.5%",
+                          borderRightWidth: 1,
+                          height: 40,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={[styles.text, { fontSize: 8 }]}>
+                          HT{"\n"}Allowance
+                        </Text>
+                      </View>
+                      <View
+                        style={{
+                          width: "12.5%",
+                          borderRightWidth: 1,
+                          height: 40,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={styles.text}>D.A.</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: "12.5%",
+                          borderRightWidth: 1,
+                          height: 40,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={styles.text}>H.R.A.</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: "12.5%",
+                          borderRightWidth: 1,
+                          height: 40,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={styles.text}>M.A.</Text>
+                      </View>
+                      <View
+                        style={{
+                          width: "12.5%",
+                          borderRightWidth: 1,
+                          height: 40,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text style={[styles.text, { fontSize: 7 }]}>
+                          Conveyance{"\n"}Allowance
+                        </Text>
+                      </View>
+                      <View style={{ width: "12.5%" }}>
+                        <Text style={styles.text}>BONUS</Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    borderRightWidth: 1,
+                    height: 50,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>GROSS</Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    borderRightWidth: 1,
+                    height: 50,
+                  }}
+                >
+                  <View style={{ width: "100%", borderBottomWidth: 1 }}>
+                    <Text style={styles.text}>DEDUCTION</Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "25%",
+                        borderRightWidth: 1,
+                        height: 40,
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>GPF</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "25%",
+                        borderRightWidth: 1,
+                        height: 40,
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>GSLI</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "25%",
+                        borderRightWidth: 1,
+                        height: 40,
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>P.TAX</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "25%",
+                        height: 40,
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>I.TAX</Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    height: 50,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={styles.text}>NET</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>MAR</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {marchBasic !== 0
+                          ? `${Math.round(marchSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {marchBasic !== 0 ? marchBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {marchBasic !== 0
+                          ? marchAddl !== 0
+                            ? marchAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {marchBasic !== 0 ? marchDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {marchBasic !== 0 ? marchHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {marchBasic !== 0
+                          ? marchMA !== 0
+                            ? marchMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {marchBasic !== 0 ? marchGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {marchBasic !== 0
+                        ? marchGPF !== 0
+                          ? marchGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {marchBasic !== 0
+                        ? marchGSLI !== 0
+                          ? marchGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {marchBasic !== 0
+                        ? marchPTax !== 0
+                          ? marchPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {marchBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {marchBasic !== 0 ? marchNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>APR</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {aprilBasic !== 0
+                          ? `${Math.round(aprilSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {aprilBasic !== 0 ? aprilBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {aprilBasic !== 0
+                          ? aprilAddl !== 0
+                            ? aprilAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {aprilBasic !== 0 ? aprilDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {aprilBasic !== 0 ? aprilHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {aprilBasic !== 0
+                          ? aprilMA !== 0
+                            ? aprilMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {aprilBasic !== 0 ? aprilGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {aprilBasic !== 0
+                        ? aprilGPF !== 0
+                          ? aprilGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {aprilBasic !== 0
+                        ? aprilGSLI !== 0
+                          ? aprilGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {aprilBasic !== 0
+                        ? aprilPTax !== 0
+                          ? aprilPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {aprilBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {aprilBasic !== 0 ? aprilNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>MAY</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {mayBasic !== 0
+                          ? `${Math.round(maySalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {mayBasic !== 0 ? mayBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {mayBasic !== 0
+                          ? mayAddl !== 0
+                            ? mayAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {mayBasic !== 0 ? mayDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {mayBasic !== 0 ? mayHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {mayBasic !== 0 ? (mayMA !== 0 ? mayMA : "NIL") : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {mayBasic !== 0 ? mayGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {mayBasic !== 0 ? (mayGPF !== 0 ? mayGPF : "NIL") : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {mayBasic !== 0 ? (mayGSLI !== 0 ? mayGSLI : "NIL") : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {mayBasic !== 0 ? (mayPTax !== 0 ? mayPTax : "NIL") : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {mayBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {mayBasic !== 0 ? mayNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>JUN</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {juneBasic !== 0
+                          ? `${Math.round(juneSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {juneBasic !== 0 ? juneBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {juneBasic !== 0
+                          ? juneAddl !== 0
+                            ? juneAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {juneBasic !== 0 ? juneDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {juneBasic !== 0 ? juneHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {juneBasic !== 0 ? (juneMA !== 0 ? juneMA : "NIL") : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {juneBasic !== 0 ? juneGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {juneBasic !== 0 ? (juneGPF !== 0 ? juneGPF : "NIL") : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {juneBasic !== 0
+                        ? juneGSLI !== 0
+                          ? juneGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {juneBasic !== 0
+                        ? junePTax !== 0
+                          ? junePTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {juneBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {juneBasic !== 0 ? juneNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>JUL</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {julyBasic !== 0
+                          ? `${Math.round(julySalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {julyBasic !== 0 ? julyBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {julyBasic !== 0
+                          ? julyAddl !== 0
+                            ? julyAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {julyBasic !== 0 ? julyDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {julyBasic !== 0 ? julyHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {julyBasic !== 0 ? (julyMA !== 0 ? julyMA : "NIL") : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {julyBasic !== 0 ? julyGross : ""}
+                  </Text>
+                  <Text style={styles.text}>
+                    {aprilIR !== 0 ? `(IR- ${aprilIR})` : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {julyBasic !== 0 ? (julyGPF !== 0 ? julyGPF : "NIL") : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {julyBasic !== 0
+                        ? julyGSLI !== 0
+                          ? julyGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {julyBasic !== 0
+                        ? julyPTax !== 0
+                          ? julyPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {julyBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {julyBasic !== 0 ? julyNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>AUG</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {augustBasic !== 0
+                          ? `${Math.round(augustSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {augustBasic !== 0 ? augustBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {augustBasic !== 0
+                          ? augustAddl !== 0
+                            ? augustAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {augustBasic !== 0 ? augustDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {augustBasic !== 0 ? augustHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {augustBasic !== 0
+                          ? augustMA !== 0
+                            ? augustMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {augustBasic !== 0 ? augustGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {augustBasic !== 0
+                        ? augustGPF !== 0
+                          ? augustGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {augustBasic !== 0
+                        ? augustGSLI !== 0
+                          ? augustGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {augustBasic !== 0
+                        ? augustPTax !== 0
+                          ? augustPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {augustBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {augustBasic !== 0 ? augustNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>SEP</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {septemberBasic !== 0
+                          ? `${Math.round(septemberSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {septemberBasic !== 0 ? septemberBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {septemberBasic !== 0
+                          ? septemberAddl !== 0
+                            ? septemberAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {septemberBasic !== 0 ? septemberDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {septemberBasic !== 0 ? septemberHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {septemberBasic !== 0
+                          ? septemberMA !== 0
+                            ? septemberMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {septemberBasic !== 0 ? septemberGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {septemberBasic !== 0
+                        ? septemberGPF !== 0
+                          ? septemberGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {septemberBasic !== 0
+                        ? septemberGSLI !== 0
+                          ? septemberGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {septemberBasic !== 0
+                        ? septemberPTax !== 0
+                          ? septemberPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {septemberBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {septemberBasic !== 0 ? septemberNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>OCT</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {octoberBasic !== 0
+                          ? `${Math.round(octoberSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {octoberBasic !== 0 ? octoberBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {octoberBasic !== 0
+                          ? octoberAddl !== 0
+                            ? octoberAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {octoberBasic !== 0 ? octoberDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {octoberBasic !== 0 ? octoberHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {octoberBasic !== 0
+                          ? octoberMA !== 0
+                            ? octoberMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {octoberBasic !== 0 ? octoberGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {octoberBasic !== 0
+                        ? octoberGPF !== 0
+                          ? octoberGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {octoberBasic !== 0
+                        ? octoberGSLI !== 0
+                          ? octoberGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {octoberBasic !== 0
+                        ? octoberPTax !== 0
+                          ? octoberPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {octoberBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {octoberBasic !== 0 ? octoberNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>NOV</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {novemberBasic !== 0
+                          ? `${Math.round(novemberSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {novemberBasic !== 0 ? novemberBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {novemberBasic !== 0
+                          ? novemberAddl !== 0
+                            ? novemberAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {novemberBasic !== 0 ? novemberDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {novemberBasic !== 0 ? novemberHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {novemberBasic !== 0
+                          ? novemberMA !== 0
+                            ? novemberMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {novemberBasic !== 0 ? novemberGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {novemberBasic !== 0
+                        ? novemberGPF !== 0
+                          ? novemberGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {novemberBasic !== 0
+                        ? novemberGSLI !== 0
+                          ? novemberGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {novemberBasic !== 0
+                        ? novemberPTax !== 0
+                          ? novemberPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {novemberBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {novemberBasic !== 0 ? novemberNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>DEC</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{thisYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {decemberBasic !== 0
+                          ? `${Math.round(decemberSalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {decemberBasic !== 0 ? decemberBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {decemberBasic !== 0
+                          ? decemberAddl !== 0
+                            ? decemberAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {decemberBasic !== 0 ? decemberDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {decemberBasic !== 0 ? decemberHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {decemberBasic !== 0
+                          ? decemberMA !== 0
+                            ? decemberMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {decemberBasic !== 0 ? decemberGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {decemberBasic !== 0
+                        ? decemberGPF !== 0
+                          ? decemberGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {decemberBasic !== 0
+                        ? decemberGSLI !== 0
+                          ? decemberGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {decemberBasic !== 0
+                        ? decemberPTax !== 0
+                          ? decemberPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {decemberBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {decemberBasic !== 0 ? decemberNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>JAN</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{nextYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {januaryBasic !== 0
+                          ? `${Math.round(januarySalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {januaryBasic !== 0 ? januaryBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {januaryBasic !== 0
+                          ? januaryAddl !== 0
+                            ? januaryAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {januaryBasic !== 0 ? januaryDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {januaryBasic !== 0 ? januaryHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {januaryBasic !== 0
+                          ? januaryMA !== 0
+                            ? januaryMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {januaryBasic !== 0 ? januaryGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {januaryBasic !== 0
+                        ? januaryGPF !== 0
+                          ? januaryGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {januaryBasic !== 0
+                        ? januaryGSLI !== 0
+                          ? januaryGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {januaryBasic !== 0
+                        ? januaryPTax !== 0
+                          ? januaryPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {januaryBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {januaryBasic !== 0 ? januaryNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderLeftWidth: "0px",
+                  borderRightWidth: "0px",
+                  borderTopWidth: "0px",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRightWidth: 1,
+                      }}
+                    >
+                      <Text style={styles.text}>FEB</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "50%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>{nextYear}</Text>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {februaryBasic !== 0
+                          ? `${Math.round(februarySalary?.daPercent * 100)}%`
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {februaryBasic !== 0 ? februaryBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {februaryBasic !== 0
+                          ? februaryAddl !== 0
+                            ? februaryAddl
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {februaryBasic !== 0 ? februaryDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {februaryBasic !== 0 ? februaryHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {februaryBasic !== 0
+                          ? februaryMA !== 0
+                            ? februaryMA
+                            : "NIL"
+                          : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {februaryBasic !== 0 ? februaryGross : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {februaryBasic !== 0
+                        ? februaryGPF !== 0
+                          ? februaryGPF
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {februaryBasic !== 0
+                        ? februaryGSLI !== 0
+                          ? februaryGSLI
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {februaryBasic !== 0
+                        ? februaryPTax !== 0
+                          ? februaryPTax
+                          : "NIL"
+                        : ""}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {februaryBasic !== 0 ? "NIL" : ""}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {februaryBasic !== 0 ? februaryNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                }}
+              >
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "14%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>TOTAL</Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "86%",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}> </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {grossBasic !== 0 ? grossBasic : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {grossAddl !== 0 ? grossAddl : "NIL"}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {grossDA !== 0 ? grossDA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {grossHRA !== 0 ? grossHRA : ""}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {grossMA !== 0 ? grossMA : "NIL"}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        borderRightWidth: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>NIL</Text>
+                    </View>
+                    <View
+                      style={{
+                        width: "12.5%",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text}>
+                        {bonus !== 0 ? bonus : "NIL"}{" "}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {GrossPAY !== 0 ? GrossPAY : ""}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: "30%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRightWidth: 1,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {grossGPF !== 0 ? grossGPF : "NIL"}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {grossGSLI !== 0 ? grossGSLI : "NIL"}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRightWidth: 1,
+                    }}
+                  >
+                    <Text style={styles.text}>
+                      {grossPTax !== 0 ? grossPTax : "NIL"}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={styles.text}> </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "10%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={styles.text}>
+                    {grossNetpay !== 0 ? grossNetpay : ""}
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                marginTop: 90,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 20,
+              }}
+            >
+              <View
+                style={{
+                  width: "30%",
+                  borderWidth: 1,
+                  padding: 5,
+                  height: 90,
+                  justifyContent: "flex-end",
+                }}
+              >
+                <Text style={styles.text}>Verified and Counter Signature</Text>
+                <View
+                  style={{
+                    marginTop: 40,
+                    paddingVertical: 5,
+                  }}
+                >
+                  <View
+                    style={{
+                      height: 3,
+                      borderTopWidth: 1,
+                      borderBottomWidth: 1,
+                      borderStyle: "dashed",
+                    }}
+                  ></View>
+                  <Text style={[styles.text, { marginTop: 5 }]}></Text>
+                  <Text style={styles.text}>SUB INSPECTOR OF SCHOOLS</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  width: "30%",
+                  borderWidth: 1,
+                  padding: 5,
+                  height: 90,
+                  justifyContent: "flex-end",
+                }}
+              >
+                <View
+                  style={{
+                    marginTop: 30,
+                    paddingVertical: 5,
+                  }}
+                >
+                  <View
+                    style={{
+                      height: 3,
+                      borderTopWidth: 1,
+                      borderBottomWidth: 1,
+                      borderStyle: "dashed",
+                    }}
+                  ></View>
+                  <Text style={[styles.text, { marginTop: 5 }]}>
+                    SIGNATURE OF THE INCUMBENT
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -931,347 +6917,18 @@ export default function IncomeTaxNew2025({ data }) {
     </Document>
   );
 }
-
-// Styles
 const styles = StyleSheet.create({
-  // Global
   page: {
-    padding: 5,
-    margin: 5,
+    padding: 2,
+    margin: 2,
     backgroundColor: "#FFFFFF",
-    width,
-    height,
-  },
-  container: {
     justifyContent: "center",
     alignItems: "center",
-    width: "95%",
+    alignSelf: "center",
+    width: width,
+    height: height,
   },
-  mainBorderView: {
-    borderWidth: 1,
-    borderColor: "#000",
-    width: "100%",
-    padding: 5,
-  },
-
-  // Typography
-  mainTitle: {
-    fontSize: 14,
-    textAlign: "center",
-    textDecoration: "underline",
-    marginVertical: 5,
-    fontFamily: "Arial",
-  },
-  sectionTitle: {
-    fontSize: 12,
-    textAlign: "center",
-    fontFamily: "ArialItalic",
-    padding: 2,
-  },
-  detailLabel: {
-    fontSize: 9,
-    fontFamily: "ArialItalic",
-  },
-  detailValue: {
-    fontSize: 9,
-    fontFamily: "Arial",
-  },
-  rowLabel: {
-    fontSize: 9,
-    fontFamily: "ArialItalic",
-    textAlign: "left",
-    paddingLeft: 2,
-    flex: 3,
-  },
-  rowValue: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    textAlign: "right",
-    paddingRight: 5,
-    flex: 1,
-  },
-
-  // Layout
-  sectionContainer: {
-    borderWidth: 1,
-    borderColor: "#000",
-    width: "95%",
-    padding: 3,
-    marginBottom: 5,
-  },
-  detailsRow: {
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#000",
-    marginVertical: 3,
-  },
-  nameColumn: {
-    width: "60%",
-    flexDirection: "row",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  designationColumn: {
-    width: "40%",
-    flexDirection: "row",
-    padding: 2,
-  },
-  panRow: {
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-    marginVertical: 3,
-  },
-  schoolRow: {
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-    marginVertical: 3,
-  },
-  rowItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderBottomWidth: 1,
-    borderColor: "#000",
-    paddingVertical: 2,
-  },
-  summaryRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  balanceRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  deductionRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  totalIncomeRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  roundedIncomeRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  taxHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderBottomWidth: 1,
-    borderColor: "#000",
-    padding: 3,
-  },
-  taxHeaderText: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    textAlign: "center",
-    flex: 1,
-  },
-  taxSlabRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderBottomWidth: 1,
-    borderColor: "#000",
-    padding: 3,
-  },
-  taxText: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    textAlign: "center",
-    flex: 1,
-  },
-  taxCalculationRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  taxPayableRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  cessRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  surchargeRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  finalTaxRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  roundedTaxRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  reliefRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  finalBalanceRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  continuedFooter: {
-    justifyContent: "flex-end",
-    width: "100%",
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  continuedText: {
-    fontSize: 9,
-    textAlign: "right",
-    paddingRight: 20,
-    fontFamily: "Arial",
-  },
-
-  // Page 2 styles
-  taxRefundRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    marginVertical: 3,
-  },
-  dateRow: {
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#000",
-    height: 20,
-    marginVertical: 10,
-    padding: 2,
-  },
-  signatureContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    marginTop: 50,
-  },
-  signatureBox: {
-    width: "50%",
-    alignItems: "center",
-  },
-  signatureLabel: {
-    fontSize: 9,
-    fontFamily: "Arial",
-  },
-  signatureDesignation: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    marginTop: 5,
-  },
-  signatureSection: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    marginTop: 5,
-  },
-  verificationContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "flex-end",
-    marginTop: 50,
-    marginBottom: 30,
-  },
-  verifiedBox: {
-    width: "50%",
-    borderWidth: 1,
-    padding: 5,
-    height: 90,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  verifiedText: {
-    fontSize: 9,
-    fontFamily: "Arial",
-  },
-  signatureLine: {
-    height: 3,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderStyle: "dashed",
-    width: "100%",
-    marginTop: 40,
-  },
-  verifierTitle: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    marginTop: 5,
-  },
-  submissionBox: {
-    width: "40%",
-    borderWidth: 1,
-    marginBottom: 20,
-  },
-  submissionText: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    textAlign: "center",
-    padding: 2,
-  },
-
-  // Page 3 (Landscape) styles
-  landscapeContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "95%",
-    marginTop: 50,
-  },
-  landscapeMainView: {
+  pageMainView: {
     padding: 2,
     margin: 2,
     backgroundColor: "#FFFFFF",
@@ -1279,293 +6936,311 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "98%",
   },
-  landscapeBorderView: {
-    borderWidth: 1,
-    borderColor: "#000",
-    width: "100%",
-    padding: 5,
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+    fontFamily: "TimesBold",
+    textAlign: "center",
+    padding: 2,
   },
-  landscapeTitle: {
+  textBold: {
+    fontSize: 10,
+    fontWeight: "bold",
+    fontFamily: "TimesBold",
+    textAlign: "center",
+  },
+  titleMain: {
     fontSize: 14,
     fontWeight: "normal",
     fontFamily: "Arial",
     textAlign: "center",
-    marginBottom: 10,
   },
-  employeeDetails: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#000",
-    marginBottom: 10,
-  },
-  employeeColumn: {
-    width: "20%",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  employeeValueColumn: {
-    width: "30%",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  designationColumn: {
-    width: "20%",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  designationValueColumn: {
-    width: "30%",
-    padding: 2,
-  },
-  employeeLabel: {
+  text: {
     fontSize: 9,
-    fontFamily: "Arial",
-    textAlign: "center",
-    borderBottomWidth: 1,
-    borderColor: "#000",
-  },
-  employeeValue: {
-    fontSize: 9,
-    fontFamily: "Arial",
+    fontFamily: "ArialItalic",
     textAlign: "center",
   },
-  salaryHeader: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#000",
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderTopWidth: 0,
-  },
-  monthHeader: {
-    width: "5%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    height: 50,
-  },
-  payHeader: {
-    width: "45%",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    height: 50,
-  },
-  headerText: {
-    fontSize: 9,
+  text2: {
+    fontSize: 14,
     fontFamily: "Arial",
     textAlign: "center",
+    padding: 2,
   },
-  subHeader: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    width: "100%",
-    borderTopWidth: 1,
-    borderColor: "#000",
+  text3: {
+    fontSize: 12,
+    fontFamily: "ArialItalic",
+    textAlign: "center",
+    padding: 2,
   },
-  subHeaderText: {
+  text2i: {
     fontSize: 8,
-    fontFamily: "Arial",
+    fontFamily: "ArialItalic",
     textAlign: "center",
-    width: "12.5%",
-    borderRightWidth: 1,
-    borderColor: "#000",
     padding: 2,
   },
-  grossHeader: {
-    width: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    height: 50,
+
+  text4: {
+    fontSize: 8,
+    fontFamily: "Times",
+    textAlign: "center",
   },
-  deductionHeader: {
-    width: "30%",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    height: 50,
-  },
-  deductionSubHeader: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    width: "100%",
-    borderTopWidth: 1,
-    borderColor: "#000",
-  },
-  deductionSubText: {
+  text5: {
     fontSize: 9,
-    fontFamily: "Arial",
+    fontFamily: "Times",
     textAlign: "center",
-    width: "25%",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
   },
-  netHeader: {
-    width: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    height: 50,
-  },
-  monthlyRow: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+  headingView: {
+    // border: "1px solid",
     borderWidth: 1,
-    borderColor: "#000",
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderTopWidth: 0,
+    width: "100%",
+    height: "auto",
   },
-  monthCell: {
-    width: "5%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  dataCell: {
-    width: "5.625%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  grossCell: {
-    width: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  deductionCell: {
-    width: "30%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  netCell: {
-    width: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 2,
-  },
-  totalRow: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
-  totalMonthCell: {
-    width: "5%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  totalDataCell: {
-    width: "5.625%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  totalGrossCell: {
-    width: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  totalDeductionCell: {
-    width: "30%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRightWidth: 1,
-    borderColor: "#000",
-    padding: 2,
-  },
-  totalNetCell: {
-    width: "10%",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 2,
-  },
-  verificationFooter: {
+  salaryView: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 90,
-    marginBottom: 20,
+    alignContent: "center",
+    width: "100%",
   },
-  verificationBox: {
-    width: "30%",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    height: 90,
-    justifyContent: "flex-end",
-  },
-  verificationLabel: {
-    fontSize: 9,
-    fontFamily: "Arial",
-  },
-  footerSignatureLine: {
-    height: 3,
-    borderTopWidth: 1,
+  tableStartView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: 1,
+    borderRightWidth: "0px",
     borderBottomWidth: 1,
-    borderStyle: "dashed",
-    marginTop: 40,
+    width: "100%",
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
   },
-  footerTitle: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    marginTop: 5,
-  },
-  incumbentBox: {
-    width: "30%",
-    borderWidth: 1,
-    borderColor: "#000",
-    padding: 5,
-    height: 90,
-    justifyContent: "flex-end",
-  },
-  incumbentSignatureLine: {
-    height: 3,
-    borderTopWidth: 1,
+  tableStartBorderView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: "0px",
     borderBottomWidth: 1,
-    borderStyle: "dashed",
-    marginTop: 30,
+    width: "100%",
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
   },
-  incumbentLabel: {
-    fontSize: 9,
-    fontFamily: "Arial",
-    marginTop: 5,
-    textAlign: "center",
+  tableStartBorderView2: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: "0px",
+    borderBottomWidth: 1,
+    width: "95%",
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  mainBorderView: {
+    borderWidth: 1,
+    width: "100%",
+    height: "auto",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  view88H20: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    paddingRight: 1,
+    width: "8.78%",
+    height: 20,
+  },
+  view16: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    paddingRight: 1,
+    width: "16%",
+    height: 32,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  view16H0: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    width: "16%",
+    height: 14,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  view32H0: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    width: "32%",
+    height: 14,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  view10: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    paddingRight: 1,
+    width: "10%",
+    height: 32,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  view10H0: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    paddingRight: 1,
+    width: "10%",
+    height: 14,
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  SecondView10: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    paddingRight: 1,
+    width: "10%",
+    height: 15,
+  },
+  view5: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    borderBottomWidth: "0px",
+    paddingRight: 1,
+    width: "5%",
+    height: 73,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  view25: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: 1,
+    width: "25%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  view50: {
+    width: "50%",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  view50Center: {
+    width: "50%",
+    height: 14,
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    borderRightWidth: 1,
+  },
+
+  rowStartView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: "0px",
+    borderBottomWidth: 1,
+    width: "100%",
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  rowStartBorderView: {
+    borderTopWidth: "0px",
+    borderLeftWidth: "0px",
+    borderRightWidth: "0px",
+    borderBottomWidth: 1,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    alignContent: "center",
+  },
+  rowWrapView: {
+    paddingRight: 1,
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  rowFlexView: {
+    paddingRight: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  columnFlexView: {
+    paddingRight: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  rowFlexViewEvenly: {
+    paddingRight: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  break: {
+    borderBottomWidth: 1,
+    width: "100%",
+    height: 5,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  secondRowView: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    alignContent: "center",
+    paddingHorizontal: 5,
   },
 });
-
-// Font registration
+Font.register({
+  family: "Algerian",
+  src: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/Arial.ttf",
+});
+Font.register({
+  family: "Times",
+  src: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/times.ttf",
+});
+Font.register({
+  family: "TimesBold",
+  src: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/timesBold.ttf",
+});
 Font.register({
   family: "Arial",
   src: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/arial.ttf",
