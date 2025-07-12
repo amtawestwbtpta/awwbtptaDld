@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Page,
   Text,
@@ -7,15 +6,20 @@ import {
   StyleSheet,
   Image,
   Font,
+  PDFViewer,
 } from "@react-pdf/renderer";
-
 const width = 2480;
 const height = 3508;
-
 export default function BenefitApplication({ data, year }) {
   const currentYear = new Date().getFullYear();
 
   return (
+    // <PDFViewer
+    //   style={{
+    //     width: width / 3,
+    //     height: height / 3,
+    //   }}
+    // >
     <Document title="Service Confirmation Form">
       {data.map((teacher, index) => {
         const teacherYear = currentYear - year;
@@ -162,6 +166,7 @@ export default function BenefitApplication({ data, year }) {
         );
       })}
     </Document>
+    // </PDFViewer>
   );
 }
 
@@ -200,7 +205,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     position: "absolute",
-    marginTop: -6,
+    top: -6,
   },
   subjectText: {
     fontSize: 12,

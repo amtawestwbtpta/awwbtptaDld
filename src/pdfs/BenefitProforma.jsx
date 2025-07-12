@@ -9,14 +9,11 @@ import {
 } from "@react-pdf/renderer";
 import Ropa from "../modules/Ropa";
 import { RoundTo } from "../modules/calculatefunctions";
-
 const width = 2480;
 const height = 3508;
-
 export default function BenefitProforma({ data, year }) {
   const currentYear = new Date().getFullYear();
   const teacherYear = currentYear - year;
-
   return (
     <Document
       style={{ margin: 5, padding: 5 }}
@@ -471,19 +468,27 @@ export default function BenefitProforma({ data, year }) {
                   </Text>
                 </View>
                 <View style={{ width: "50%" }}>
-                  <Text style={[styles.text, { textAlign: "left" }]}>
-                    : Rs. {RoundTo(teacher.basic + teacher.basic * 0.03, 100)} (
-                    {
-                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
-                        .lv
-                    }
-                    ,{" "}
-                    {
-                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
-                        .ce
-                    }
-                    )
-                  </Text>
+                  {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : Rs. {RoundTo(teacher.basic + teacher.basic * 0.03, 100)}{" "}
+                      (
+                      {
+                        Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                          .lv
+                      }
+                      ,{" "}
+                      {
+                        Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                          .ce
+                      }
+                      )
+                    </Text>
+                  ) : (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : Rs. {teacher.basic} ({Ropa(teacher.basic).lv},{" "}
+                      {Ropa(teacher.basic).ce})
+                    </Text>
+                  )}
                 </View>
               </View>
               <View
@@ -503,19 +508,27 @@ export default function BenefitProforma({ data, year }) {
                   </Text>
                 </View>
                 <View style={{ width: "50%" }}>
-                  <Text style={[styles.text, { textAlign: "left" }]}>
-                    : Rs. {RoundTo(teacher.basic + teacher.basic * 0.03, 100)} (
-                    {
-                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
-                        .lv
-                    }
-                    ,{" "}
-                    {
-                      Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
-                        .ce
-                    }
-                    )
-                  </Text>
+                  {parseInt(teacher?.doj?.slice(3, 5)) >= 7 ? (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : Rs. {RoundTo(teacher.basic + teacher.basic * 0.03, 100)}{" "}
+                      (
+                      {
+                        Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                          .lv
+                      }
+                      ,{" "}
+                      {
+                        Ropa(RoundTo(teacher.basic + teacher.basic * 0.03, 100))
+                          .ce
+                      }
+                      )
+                    </Text>
+                  ) : (
+                    <Text style={[styles.text, { textAlign: "left" }]}>
+                      : Rs. {teacher.basic} ({Ropa(teacher.basic).lv},{" "}
+                      {Ropa(teacher.basic).ce})
+                    </Text>
+                  )}
                 </View>
               </View>
               <View
@@ -757,10 +770,10 @@ const styles = StyleSheet.create({
   },
 
   tableStartView: {
-    borderTopWidth: "0px",
-    borderLeftWidth: 1,
-    borderRightWidth: "0px",
-    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0,
+    borderBottomWidth: 0.5,
     width: "100%",
     height: "auto",
     flexDirection: "row",
@@ -769,10 +782,10 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   tableStartBorderView: {
-    borderTopWidth: "0px",
-    borderLeftWidth: "0px",
-    borderRightWidth: "0px",
-    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderBottomWidth: 0.5,
     width: "100%",
     height: "auto",
     flexDirection: "row",
@@ -791,10 +804,10 @@ const styles = StyleSheet.create({
   },
 
   view5: {
-    borderTopWidth: "0px",
-    borderLeftWidth: "0px",
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
     borderRightWidth: 1,
-    borderBottomWidth: "0px",
+    borderBottomWidth: 0,
     paddingRight: 1,
     width: "5%",
     height: 73,
@@ -802,8 +815,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   view25: {
-    borderTopWidth: "0px",
-    borderLeftWidth: "0px",
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
     borderRightWidth: 1,
     width: "25%",
     justifyContent: "center",
@@ -824,10 +837,10 @@ const styles = StyleSheet.create({
   },
 
   rowStartView: {
-    borderTopWidth: "0px",
-    borderLeftWidth: "0px",
-    borderRightWidth: "0px",
-    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderBottomWidth: 0.5,
     width: "100%",
     height: "auto",
     flexDirection: "row",
@@ -836,10 +849,10 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   rowStartBorderView: {
-    borderTopWidth: "0px",
-    borderLeftWidth: "0px",
-    borderRightWidth: "0px",
-    borderBottomWidth: 1,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderBottomWidth: 0.5,
     width: "100%",
     height: "auto",
     flexDirection: "row",
