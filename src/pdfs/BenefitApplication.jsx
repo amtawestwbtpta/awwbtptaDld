@@ -12,7 +12,6 @@ const width = 2480;
 const height = 3508;
 export default function BenefitApplication({ data, year }) {
   const currentYear = new Date().getFullYear();
-
   return (
     // <PDFViewer
     //   style={{
@@ -130,7 +129,7 @@ export default function BenefitApplication({ data, year }) {
                   }}
                   style={[
                     styles.checkImage,
-                    { left: teacherYear === 20 ? 426 : 402, top: 244 },
+                    { left: teacherYear === 20 ? 410 : 386, top: 244 },
                   ]}
                 />
                 <Image
@@ -139,7 +138,7 @@ export default function BenefitApplication({ data, year }) {
                   }}
                   style={[
                     styles.checkImage,
-                    { left: teacherYear === 20 ? 298 : 275, top: 262 },
+                    { left: teacherYear === 20 ? 277 : 252, top: 262 },
                   ]}
                 />
 
