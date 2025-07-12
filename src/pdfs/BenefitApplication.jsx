@@ -60,7 +60,7 @@ export default function BenefitApplication({ data, year }) {
                     }}
                     style={[
                       styles.checkImage,
-                      { marginLeft: teacherYear === 20 ? 50 : 28 },
+                      { left: teacherYear === 20 ? 312 : 290 },
                     ]}
                   />
                   {teacherYear === 20 ? (
@@ -120,6 +120,24 @@ export default function BenefitApplication({ data, year }) {
                   {incrementDate} as per G.O. No. 437- SE(P&B)/SL/SS-408/19;
                   Dt.- 13/12/2019.
                 </Text>
+                <Image
+                  source={{
+                    uri: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/check.png",
+                  }}
+                  style={[
+                    styles.checkImage,
+                    { left: teacherYear === 20 ? 426 : 402, top: 244 },
+                  ]}
+                />
+                <Image
+                  source={{
+                    uri: "https://raw.githubusercontent.com/amtawestwbtpta/awwbtptadata/main/check.png",
+                  }}
+                  style={[
+                    styles.checkImage,
+                    { left: teacherYear === 20 ? 298 : 275, top: 262 },
+                  ]}
+                />
 
                 <Text style={styles.paragraph}>
                   So, sir please take necessary action for the purpose.
@@ -182,7 +200,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     position: "absolute",
-    marginTop: -7,
+    marginTop: -6,
   },
   subjectText: {
     fontSize: 12,
