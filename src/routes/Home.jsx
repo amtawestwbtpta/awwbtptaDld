@@ -62,7 +62,7 @@ export default function Home() {
       >
         Year Wise Teachers
       </button> */}
-      <button
+      {/* <button
         type="button"
         className="btn btn-success m-2"
         onClick={() => {
@@ -70,7 +70,7 @@ export default function Home() {
         }}
       >
         Download Benefit Form
-      </button>
+      </button> */}
       {/* <button
         type="button"
         className="btn btn-success m-2"
