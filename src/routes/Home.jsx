@@ -62,6 +62,15 @@ export default function Home() {
       >
         Year Wise Teachers
       </button> */}
+      <button
+        type="button"
+        className="btn btn-success m-2"
+        onClick={() => {
+          navigate(`/DownloadBenefitForm?data={"year":"2005"}`);
+        }}
+      >
+        Download Benefit Form
+      </button>
       {/* <button
         type="button"
         className="btn btn-success m-2"

@@ -12,6 +12,7 @@ import YearWiseTeachers from "./routes/YearWiseTeachers";
 import HRA from "./routes/HRA";
 import DownloadNewITStatement from "./routes/DownloadNewITStatement";
 import DownloadOldITStatement from "./routes/DownloadOldITStatement";
+import DownloadBenefitForm from "./routes/DownloadBenefitForm";
 const Routing = () => {
   return (
     <Routes>
@@ -38,6 +39,11 @@ const Routing = () => {
         exact
         path="/DownloadOldITStatement"
         element={<DownloadOldITStatement />}
+      />
+      <Route
+        exact
+        path="/DownloadBenefitForm"
+        element={<DownloadBenefitForm />}
       />
     </Routes>
   );
