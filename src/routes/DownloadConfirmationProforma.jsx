@@ -19,7 +19,7 @@ import { collection, getDocs, query } from "firebase/firestore";
 import Loader from "../components/Loader";
 import { firestore } from "../context/FirbaseContext";
 
-export default function DownloadBenefitForm() {
+export default function DownloadConfirmationProforma() {
   const navigate = useNavigate();
   const { teachersState, setTeachersState } = useGlobalContext();
   const [searchParams] = useSearchParams();
@@ -205,10 +205,8 @@ export default function DownloadBenefitForm() {
             <div className="my-5 d-flex flex-column justify-content-center align-items-center">
               <div className="m-3">
                 <PDFDownloadLink
-                  document={
-                    <BenefitProforma data={benefitData} year={parseInt(year)} />
-                  }
-                  fileName={`Benefit Proforma of Teachers.pdf`}
+                  document={<ServiceConfirmation data={benefitData} />}
+                  fileName={`Service Confirmation Form.pdf`}
                   style={{
                     textDecoration: "none",
                     padding: 11,
@@ -221,24 +219,21 @@ export default function DownloadBenefitForm() {
                   }}
                 >
                   {({ blob, url, loading, error }) =>
-                    loading ? "Please Wait..." : "Download Benefit Proforma"
+                    loading
+                      ? "Please Wait..."
+                      : "Download Confirmation Proforma"
                   }
                 </PDFDownloadLink>
               </div>
               <div className="m-3">
                 <PDFDownloadLink
-                  document={
-                    <BenefitApplication
-                      data={benefitData}
-                      year={parseInt(year)}
-                    />
-                  }
-                  fileName={`Service Confirmation Form.pdf`}
+                  document={<AppServiceConfirmation data={benefitData} />}
+                  fileName={`Service Confirmation Application Form.pdf`}
                   style={{
                     textDecoration: "none",
                     padding: 11,
                     color: "#fff",
-                    backgroundColor: "navy",
+                    backgroundColor: "blue",
                     border: "1px solid #4a4a4a",
                     width: "40%",
                     borderRadius: 10,
@@ -246,7 +241,7 @@ export default function DownloadBenefitForm() {
                   }}
                 >
                   {({ blob, url, loading, error }) =>
-                    loading ? "Please Wait..." : "Download Confirmation Form"
+                    loading ? "Please Wait..." : "Download Application Form"
                   }
                 </PDFDownloadLink>
               </div>

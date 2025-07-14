@@ -13,6 +13,7 @@ import HRA from "./routes/HRA";
 import DownloadNewITStatement from "./routes/DownloadNewITStatement";
 import DownloadOldITStatement from "./routes/DownloadOldITStatement";
 import DownloadBenefitForm from "./routes/DownloadBenefitForm";
+import DownloadConfirmationProforma from "./routes/DownloadConfirmationProforma";
 const Routing = () => {
   return (
     <Routes>
@@ -44,6 +45,11 @@ const Routing = () => {
         exact
         path="/DownloadBenefitForm"
         element={<DownloadBenefitForm />}
+      />
+      <Route
+        exact
+        path="/DownloadConfirmationProforma"
+        element={<DownloadConfirmationProforma />}
       />
     </Routes>
   );

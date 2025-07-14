@@ -75,6 +75,15 @@ export default function Home() {
         type="button"
         className="btn btn-success m-2"
         onClick={() => {
+          navigate(`/DownloadConfirmationProforma?data={"year":"2023"}`);
+        }}
+      >
+        Download Confirmation Proforma
+      </button> */}
+      {/* <button
+        type="button"
+        className="btn btn-success m-2"
+        onClick={() => {
           navigate(
             `/DownloadNewITStatement?data={"pan":"AKCPK1659F","finYear":"2024-2025"}`
           );
