@@ -202,7 +202,11 @@ const EarningsSection = ({ desig, basicpay, addl, da, hra, ma, ir }) => (
     <SalaryRow label="DA" value={da} />
     <SalaryRow label="HRA" value={hra} />
     <SalaryRow label="MA" value={ma} />
-    {ir > 0 && <SalaryRow label="IR" value={ir} />}
+    {ir > 0 ? (
+      <SalaryRow label="DA ARREAR" value={ir} />
+    ) : (
+      <SalaryRow label="IR" value={0} />
+    )}
   </View>
 );
 

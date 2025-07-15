@@ -175,10 +175,17 @@ export default function OSMSPaySLip({ data }) {
                     <Text style={styles.text2}>CPF</Text>
                     <Text style={styles.text}>{0}</Text>
                   </View>
-                  <View style={styles.salaryView}>
-                    <Text style={styles.text2}>IR</Text>
-                    <Text style={styles.text}>{ir > 0 ? ir : 0}</Text>
-                  </View>
+                  {ir > 0 ? (
+                    <View style={styles.salaryView}>
+                      <Text style={styles.text2}>DA ARREAR</Text>
+                      <Text style={styles.text}>{ir}</Text>
+                    </View>
+                  ) : (
+                    <View style={styles.salaryView}>
+                      <Text style={styles.text2}>IR</Text>
+                      <Text style={styles.text}> 0</Text>
+                    </View>
+                  )}
                 </View>
               </View>
               <View style={[styles.view25, { alignItems: "baseline" }]}>
