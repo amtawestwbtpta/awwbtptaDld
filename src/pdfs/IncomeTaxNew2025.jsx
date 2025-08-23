@@ -159,6 +159,7 @@ export default function IncomeTaxNew2025({ data }) {
     eduCess,
     AddedEduCess,
     BankInterest,
+    IntFrDeposit,
     tds,
     GrossRelief,
     IncomeTaxAfterRelief,
@@ -749,7 +750,11 @@ export default function IncomeTaxNew2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text}>
+                        {IntFrDeposit > 0
+                          ? "Rs. " + IndianFormat(IntFrDeposit)
+                          : "NIL"}
+                      </Text>
                     </View>
                   </View>
                   <View
@@ -929,7 +934,7 @@ export default function IncomeTaxNew2025({ data }) {
 
                 <View style={{ width: "25%" }}>
                   <Text style={styles.text}>
-                    Rs. {IndianFormat(AllGross + BankInterest)}
+                    Rs. {IndianFormat(AllGross + BankInterest + IntFrDeposit)}
                   </Text>
                 </View>
               </View>
@@ -1210,7 +1215,8 @@ export default function IncomeTaxNew2025({ data }) {
 
                     <View style={{ width: "25%" }}>
                       <Text style={styles.text}>
-                        Rs. {IndianFormat(AllGross + BankInterest)}
+                        Rs.{" "}
+                        {IndianFormat(AllGross + BankInterest + IntFrDeposit)}
                       </Text>
                     </View>
                   </View>

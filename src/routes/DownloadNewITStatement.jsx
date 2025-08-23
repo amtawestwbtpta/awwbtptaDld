@@ -12,6 +12,7 @@ import { firestore } from "../context/FirbaseContext";
 import Loader from "../components/Loader";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import IncomeTaxNew2025 from "../pdfs/IncomeTaxNew2025";
+import { get } from "firebase/database";
 
 export default function DownloadNewITStatement() {
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ export default function DownloadNewITStatement() {
   const nextYear = parseInt(finYear?.split("-")[1]);
 
   const [loader, setLoader] = useState(false);
+  const [showBnkInt, setShowBnkInt] = useState(true);
+  const [BankInterest, setBankInterest] = useState(randBetween(500, 2000));
+  const [IntFrDeposit, setIntFrDeposit] = useState(0);
   const [newITData, setNewITDa] = useState({
     tname: "",
     school: "",
@@ -658,7 +662,6 @@ export default function DownloadNewITStatement() {
         januaryNetpay +
         februaryNetpay +
         bonus;
-      const BankInterest = randBetween(500, 2000);
 
       const AllGross =
         GrossPAY +
@@ -674,7 +677,7 @@ export default function DownloadNewITStatement() {
         decemberArrear +
         januaryArrear +
         februaryArrear;
-      const GrossTotalIncome = AllGross - 75000 + BankInterest; //H36
+      const GrossTotalIncome = AllGross - 75000 + BankInterest + IntFrDeposit; //H36
       const TotalRoundOffIncome = roundSo(GrossTotalIncome, 10);
       let ThirtyIT = 0;
       let ThirtyITTax = 0;
@@ -939,7 +942,7 @@ export default function DownloadNewITStatement() {
         eduCess,
         AddedEduCess,
         BankInterest,
-
+        IntFrDeposit,
         GrossRelief,
         IncomeTaxAfterRelief,
         ThirtyIT,
@@ -978,34 +981,116 @@ export default function DownloadNewITStatement() {
 
   useEffect(() => {
     !pan && navigate("/");
-    getSalary();
   }, []);
   useEffect(() => {}, [newITData]);
 
   return (
     <div className="container">
-      <button className="btn btn-success m-2" onClick={() => navigate("/")}>
-        Back
-      </button>
-      {newITData.tname && (
-        <PDFDownloadLink
-          document={<IncomeTaxNew2025 data={newITData} />}
-          fileName={`IT Statement of ${newITData.tname} NEW TAX REGIME ${thisYear}.pdf`}
-          style={{
-            textDecoration: "none",
-            padding: "10px",
-            color: "#fff",
-            backgroundColor: "purple",
-            border: "1px solid #4a4a4a",
-            width: "40%",
-            borderRadius: 10,
-          }}
-          className="m-2"
+      {showBnkInt && (
+        <div
+          className="modal fade show"
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: "block" }}
+          aria-modal="true"
         >
-          {({ blob, url, loading, error }) =>
-            loading ? "Please Wait..." : "Download IT Statement"
-          }
-        </PDFDownloadLink>
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="staticBackdropLabel">
+                  Set Bank Interest Data
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  aria-label="Close"
+                  onClick={() => {
+                    setShowBnkInt(false);
+                    getSalary();
+                  }}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <div className="col-md-6  mx-auto justify-content-center align-items-baseline">
+                  <div className="mb-3 col-md-6 mx-auto">
+                    <label htmlFor="date" className="form-label">
+                      Savings Bank Interest
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control mx-auto"
+                      placeholder="Savings Bank Interest"
+                      value={BankInterest}
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setBankInterest(parseInt(e.target.value));
+                        } else {
+                          setBankInterest("");
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="mb-3 col-md-6 mx-auto">
+                    <label htmlFor="date" className="form-label">
+                      Interest from Deposit(Bank/Post Office/Cooperative
+                      Society)
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control mx-auto"
+                      placeholder="Interest from Deposit"
+                      value={IntFrDeposit}
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setIntFrDeposit(parseInt(e.target.value));
+                        } else {
+                          setIntFrDeposit("");
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-success"
+                  onClick={() => {
+                    setShowBnkInt(false);
+                    getSalary();
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {!showBnkInt && newITData.tname && (
+        <div className="my-2">
+          <button className="btn btn-success m-2" onClick={() => navigate("/")}>
+            Back
+          </button>
+          <PDFDownloadLink
+            document={<IncomeTaxNew2025 data={newITData} />}
+            fileName={`IT Statement of ${newITData.tname} NEW TAX REGIME ${thisYear}.pdf`}
+            style={{
+              textDecoration: "none",
+              padding: "10px",
+              color: "#fff",
+              backgroundColor: "purple",
+              border: "1px solid #4a4a4a",
+              width: "40%",
+              borderRadius: 10,
+            }}
+            className="m-2"
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? "Please Wait..." : "Download IT Statement"
+            }
+          </PDFDownloadLink>
+        </div>
       )}
 
       {/* {salary.basicpay > 0 && <WBTPTAPaySLip data={salary} />} */}

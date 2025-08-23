@@ -13,6 +13,7 @@ import { firestore } from "../context/FirbaseContext";
 import Loader from "../components/Loader";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import IncomeTaxOld2025 from "../pdfs/IncomeTaxOld2025";
+import Form16New from "../pdfs/Form16New";
 
 export default function DownloadOldITStatement() {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ export default function DownloadOldITStatement() {
   const nextYear = parseInt(finYear?.split("-")[1]);
 
   const [loader, setLoader] = useState(false);
+  const [showBnkInt, setShowBnkInt] = useState(true);
+  const [BankInterest, setBankInterest] = useState(randBetween(500, 2000));
+  const [IntFrDeposit, setIntFrDeposit] = useState(0);
   const [oldITData, setOldITDa] = useState({
     tname: "",
     school: "",
@@ -695,7 +699,6 @@ export default function DownloadOldITStatement() {
         januaryNetpay +
         februaryNetpay +
         bonus;
-      const BankInterest = randBetween(500, 2000);
 
       const teacherDeduction = deductionState?.filter((el) => el.id === id)[0];
       const hbLoanPrincipal = teacherDeduction?.hbLoanPrincipal;
@@ -735,7 +738,12 @@ export default function DownloadOldITStatement() {
         otherIncome;
 
       const GrossTotalIncome =
-        AllGross - grossPTax - 50000 + BankInterest - hbLoanInterest;
+        AllGross -
+        grossPTax -
+        50000 +
+        BankInterest +
+        IntFrDeposit -
+        hbLoanInterest;
       const deductionVIA =
         grossGPF +
         sukanya +
@@ -776,6 +784,7 @@ export default function DownloadOldITStatement() {
         nextYear,
         finYear,
         BankInterest,
+        IntFrDeposit,
         teacherDeduction,
         hbLoanPrincipal,
         hbLoanInterest,
@@ -963,34 +972,133 @@ export default function DownloadOldITStatement() {
 
   useEffect(() => {
     !pan && navigate("/");
-    getSalary();
   }, []);
   useEffect(() => {}, [oldITData]);
 
   return (
     <div className="container">
-      <button className="btn btn-success m-2" onClick={() => navigate("/")}>
-        Back
-      </button>
-      {oldITData.tname && (
-        <PDFDownloadLink
-          document={<IncomeTaxOld2025 data={oldITData} />}
-          fileName={`IT Statement of ${oldITData.tname} Old TAX REGIME ${thisYear}.pdf`}
-          style={{
-            textDecoration: "none",
-            padding: "10px",
-            color: "#fff",
-            backgroundColor: "purple",
-            border: "1px solid #4a4a4a",
-            width: "40%",
-            borderRadius: 10,
-          }}
-          className="m-2"
+      {showBnkInt && (
+        <div
+          className="modal fade show"
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: "block" }}
+          aria-modal="true"
         >
-          {({ blob, url, loading, error }) =>
-            loading ? "Please Wait..." : "Download IT Statement"
-          }
-        </PDFDownloadLink>
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="staticBackdropLabel">
+                  Set Bank Interest Data
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  aria-label="Close"
+                  onClick={() => {
+                    setShowBnkInt(false);
+                    getSalary();
+                  }}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <div className="col-md-6  mx-auto justify-content-center align-items-baseline">
+                  <div className="mb-3 col-md-6 mx-auto">
+                    <label htmlFor="date" className="form-label">
+                      Savings Bank Interest
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control mx-auto"
+                      placeholder="Savings Bank Interest"
+                      value={BankInterest}
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setBankInterest(parseInt(e.target.value));
+                        } else {
+                          setBankInterest("");
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="mb-3 col-md-6 mx-auto">
+                    <label htmlFor="date" className="form-label">
+                      Interest from Deposit(Bank/Post Office/Cooperative
+                      Society)
+                    </label>
+                    <input
+                      type="number"
+                      className="form-control mx-auto"
+                      placeholder="Interest from Deposit"
+                      value={IntFrDeposit}
+                      onChange={(e) => {
+                        if (e.target.value) {
+                          setIntFrDeposit(parseInt(e.target.value));
+                        } else {
+                          setIntFrDeposit("");
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-success"
+                  onClick={() => {
+                    setShowBnkInt(false);
+                    getSalary();
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {!showBnkInt && oldITData.tname && (
+        <div className="my-2">
+          <button className="btn btn-success m-2" onClick={() => navigate("/")}>
+            Back
+          </button>
+          <PDFDownloadLink
+            document={<IncomeTaxOld2025 data={oldITData} />}
+            fileName={`IT Statement of ${oldITData.tname} Old TAX REGIME ${thisYear}.pdf`}
+            style={{
+              textDecoration: "none",
+              padding: "10px",
+              color: "#fff",
+              backgroundColor: "purple",
+              border: "1px solid #4a4a4a",
+              width: "40%",
+              borderRadius: 10,
+            }}
+            className="m-2"
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? "Please Wait..." : "Download IT Statement"
+            }
+          </PDFDownloadLink>
+          <PDFDownloadLink
+            document={<Form16New data={oldITData} />}
+            fileName={`Form 16 of ${oldITData.tname} of ${oldITData.school}.pdf`}
+            style={{
+              textDecoration: "none",
+              padding: "10px",
+              color: "#fff",
+              backgroundColor: "navy",
+              border: "1px solid #4a4a4a",
+              width: "40%",
+              borderRadius: 10,
+            }}
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? "Please Wait..." : "Download Form 16"
+            }
+          </PDFDownloadLink>
+        </div>
       )}
 
       {/* {salary.basicpay > 0 && <WBTPTAPaySLip data={salary} />} */}

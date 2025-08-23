@@ -80,7 +80,7 @@ export default function Home() {
       >
         Download Confirmation Proforma
       </button> */}
-      {/* <button
+      <button
         type="button"
         className="btn btn-success m-2"
         onClick={() => {
@@ -90,18 +90,18 @@ export default function Home() {
         }}
       >
         Download NewIT Statement
-      </button> */}
-      {/* <button
+      </button>
+      <button
         type="button"
         className="btn btn-success m-2"
         onClick={() => {
           navigate(
-            `/DownloadOldITStatement?data={"pan":"AKCPK1659F","finYear":"2025-2026"}`
+            `/DownloadOldITStatement?data={"pan":"AKCPK1659F","finYear":"2024-2025"}`
           );
         }}
       >
         Download OldIT Statement
-      </button> */}
+      </button>
     </div>
   );
 }
