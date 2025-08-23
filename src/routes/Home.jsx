@@ -80,7 +80,7 @@ export default function Home() {
       >
         Download Confirmation Proforma
       </button> */}
-      <button
+      {/* <button
         type="button"
         className="btn btn-success m-2"
         onClick={() => {
@@ -90,8 +90,8 @@ export default function Home() {
         }}
       >
         Download NewIT Statement
-      </button>
-      <button
+      </button> */}
+      {/* <button
         type="button"
         className="btn btn-success m-2"
         onClick={() => {
@@ -101,7 +101,7 @@ export default function Home() {
         }}
       >
         Download OldIT Statement
-      </button>
+      </button> */}
     </div>
   );
 }
