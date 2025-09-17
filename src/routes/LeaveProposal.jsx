@@ -384,57 +384,56 @@ export default function Page() {
     const found = teacherData
       .filter((item) => item.id !== currentLeaveID)
       .find((item) => item.leaveNature === leaveNature);
-    if (currentLeaveID !== "" && found) {
-      const prevLeaves = teacherData
-        .filter(
+    const sameLeaves = teacherData.filter(
+      (item) => item.leaveNature === leaveNature
+    );
+    if (found) {
+      if (!isLastElement(sameLeaves, currentLeaveID)) {
+        const prevLeaves = teacherData.filter(
           (item) =>
             item.leaveNature === leaveNature && item.id !== currentLeaveID
-        )
-        .sort(
-          (a, b) =>
-            Date.parse(getCurrentDateInput(b.startingDate)) -
-            Date.parse(getCurrentDateInput(a.startingDate))
         )[0];
-      const { startingDate, endingDate, leaveDays, hpayLeave } = prevLeaves;
-      const endingYear = parseInt(endingDate.split("-")[2]);
-      const joiningYear = parseInt(doj.split("-")[2]);
-      const sAge = endingYear - joiningYear;
-      memoNo = prevLeaves?.memoNo ? prevLeaves?.memoNo : "";
-      setLineTwo({
-        c1:
-          leaveNature === "HPL" ||
-          leaveNature === "COMMUTED" ||
-          leaveNature === "MEDICAL" ||
-          leaveNature === "LWP"
-            ? `${doj}\nTo\n${endingDate}`
-            : startingDate.split("-")[2],
-        c2:
-          leaveNature === "MATERNITY"
-            ? leaveDays
-            : leaveNature === "CCL"
-            ? 730
-            : leaveNature === "PATERNITY"
-            ? 30
-            : leaveNature === "MEDICAL"
-            ? `${sAge} x 15\n=${sAge * 15}`
-            : `${sAge} x 30\n=${earnedLeave} HPL`,
-        c3: startingDate,
-        c4: endingDate,
-        c5: `${leaveDays} DAYS`,
-        c6: `${hpayLeave} HPL`,
-        c7: `${leaveDays} DAYS`,
-        c8:
-          leaveNature == "MATERNITY"
-            ? "NIL"
-            : leaveNature == "PATERNITY"
-            ? `(30 - ${leaveDays})\n=${30 - leaveDays} DAYS`
-            : leaveNature === "CCL"
-            ? `(730 - ${leaveDays})\n=${730 - leaveDays} DAYS`
-            : `(${earnedLeave / 2} - ${leaveDays})\n= ${
-                earnedLeave / 2 - leaveDays
-              } DAYS`,
-        c9: "",
-      });
+        const { startingDate, endingDate, leaveDays, hpayLeave } = prevLeaves;
+        const endingYear = parseInt(endingDate.split("-")[2]);
+        const joiningYear = parseInt(doj.split("-")[2]);
+        const sAge = endingYear - joiningYear;
+        memoNo = prevLeaves?.memoNo ? prevLeaves?.memoNo : "";
+        setLineTwo({
+          c1:
+            leaveNature === "HPL" ||
+            leaveNature === "COMMUTED" ||
+            leaveNature === "MEDICAL" ||
+            leaveNature === "LWP"
+              ? `${doj}\nTo\n${endingDate}`
+              : startingDate.split("-")[2],
+          c2:
+            leaveNature === "MATERNITY"
+              ? leaveDays
+              : leaveNature === "CCL"
+              ? 730
+              : leaveNature === "PATERNITY"
+              ? 30
+              : leaveNature === "MEDICAL"
+              ? `${sAge} x 15\n=${sAge * 15}`
+              : `${sAge} x 30\n=${earnedLeave} HPL`,
+          c3: startingDate,
+          c4: endingDate,
+          c5: `${leaveDays} DAYS`,
+          c6: `${hpayLeave} HPL`,
+          c7: `${leaveDays} DAYS`,
+          c8:
+            leaveNature == "MATERNITY"
+              ? "NIL"
+              : leaveNature == "PATERNITY"
+              ? `(30 - ${leaveDays})\n=${30 - leaveDays} DAYS`
+              : leaveNature === "CCL"
+              ? `(730 - ${leaveDays})\n=${730 - leaveDays} DAYS`
+              : `(${earnedLeave / 2} - ${leaveDays})\n= ${
+                  earnedLeave / 2 - leaveDays
+                } DAYS`,
+          c9: "",
+        });
+      }
     }
 
     setLineThree({
@@ -473,6 +472,14 @@ export default function Page() {
       c9: memoNo,
     });
   };
+  function isLastElement(arr, checkId) {
+    if (!Array.isArray(arr) || arr.length === 0) {
+      return false; // empty or invalid array
+    }
+
+    const lastElement = arr[arr.length - 1];
+    return lastElement.id === checkId;
+  }
   useEffect(() => {
     !pan && navigate("/");
     getData();
@@ -608,6 +615,17 @@ export default function Page() {
                                       getCurrentDateInput(item.startingDate);
                                     setEndingDate(item.endingDate);
                                     setCurrentLeaveID(item.id);
+                                    setLineTwo({
+                                      c1: "",
+                                      c2: "",
+                                      c3: "",
+                                      c4: "",
+                                      c5: "",
+                                      c6: "",
+                                      c7: "",
+                                      c8: "",
+                                      c9: "",
+                                    });
                                     endingDateRef.current.value =
                                       getCurrentDateInput(item.endingDate);
 
