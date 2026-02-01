@@ -9,7 +9,6 @@ import {
   Font,
   PDFViewer,
 } from "@react-pdf/renderer";
-import ropa from "../modules/ropa";
 const width = 2480;
 const height = 3508;
 
@@ -21,7 +20,6 @@ export default function NewTeacherArrear({ data }) {
       title={`New Teacher Arrear Form`}
     >
       {data.map((teacher, index) => {
-        const level = ropa(teacher?.basic).lv;
         return (
           <Page
             size="A4"

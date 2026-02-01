@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Page,
   Text,
@@ -351,7 +352,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>1</Text>
+                  <Text style={styles.text8}>1</Text>
                 </View>
                 <View
                   style={{
@@ -372,12 +373,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>a)</Text>
+                      <Text style={styles.text8}>a)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -386,7 +387,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(TotalGross)}
                       </Text>
                     </View>
@@ -401,12 +402,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>b)</Text>
+                      <Text style={styles.text8}>b)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -415,9 +416,9 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "20%" }}>
                       {GrossArrear > 0 ? (
-                        <Text style={styles.text}>Rs. {GrossArrear}</Text>
+                        <Text style={styles.text8}>Rs. {GrossArrear}</Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -431,12 +432,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>c)</Text>
+                      <Text style={styles.text8}>c)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -445,9 +446,9 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "20%" }}>
                       {bonus > 0 ? (
-                        <Text style={styles.text}>Rs. {bonus}</Text>
+                        <Text style={styles.text8}>Rs. {bonus}</Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -461,12 +462,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>d)</Text>
+                      <Text style={styles.text8}>d)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -474,7 +475,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -487,12 +488,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>e)</Text>
+                      <Text style={styles.text8}>e)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -500,7 +501,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(AllGross)}
                       </Text>
                     </View>
@@ -515,12 +516,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>f)</Text>
+                      <Text style={styles.text8}>f)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -528,7 +529,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -547,7 +548,7 @@ export default function IncomeTaxOld2025({ data }) {
                         height: 12,
                       }}
                     >
-                      <Text style={styles.text}>g)</Text>
+                      <Text style={styles.text8}>g)</Text>
                     </View>
                     <View
                       style={{
@@ -558,7 +559,7 @@ export default function IncomeTaxOld2025({ data }) {
                     >
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -566,7 +567,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%", height: 12 }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(AllGross)}
                       </Text>
                     </View>
@@ -581,7 +582,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderBottomWidth: 1,
                     }}
                   ></View>
-                  <Text style={styles.text}>Rs. {IndianFormat(AllGross)}</Text>
+                  <Text style={styles.text8}>Rs. {IndianFormat(AllGross)}</Text>
                 </View>
               </View>
               <View
@@ -619,7 +620,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>2</Text>
+                  <Text style={styles.text8}>2</Text>
                 </View>
                 <View
                   style={{
@@ -640,12 +641,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>a)</Text>
+                      <Text style={styles.text8}>a)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -653,7 +654,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -666,12 +667,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>b)</Text>
+                      <Text style={styles.text8}>b)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -680,9 +681,9 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
                     <View style={{ width: "20%" }}>
                       {nscInterest > 0 ? (
-                        <Text style={styles.text}>Rs. {nscInterest}</Text>
+                        <Text style={styles.text8}>Rs. {nscInterest}</Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -696,12 +697,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>c)</Text>
+                      <Text style={styles.text8}>c)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -709,7 +710,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -722,12 +723,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>d)</Text>
+                      <Text style={styles.text8}>d)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -735,7 +736,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(BankInterest)}
                       </Text>
                     </View>
@@ -750,12 +751,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>e)</Text>
+                      <Text style={styles.text8}>e)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -763,7 +764,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {IntFrDeposit > 0
                           ? "Rs. " + IndianFormat(IntFrDeposit)
                           : "NIL"}
@@ -780,12 +781,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>f)</Text>
+                      <Text style={styles.text8}>f)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -793,7 +794,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -812,7 +813,7 @@ export default function IncomeTaxOld2025({ data }) {
                         height: 12,
                       }}
                     >
-                      <Text style={styles.text}>g)</Text>
+                      <Text style={styles.text8}>g)</Text>
                     </View>
                     <View
                       style={{
@@ -823,7 +824,7 @@ export default function IncomeTaxOld2025({ data }) {
                     >
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -831,7 +832,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%", height: 12 }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -850,7 +851,7 @@ export default function IncomeTaxOld2025({ data }) {
                         height: 12,
                       }}
                     >
-                      <Text style={styles.text}>h)</Text>
+                      <Text style={styles.text8}>h)</Text>
                     </View>
                     <View
                       style={{
@@ -861,7 +862,7 @@ export default function IncomeTaxOld2025({ data }) {
                     >
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -869,7 +870,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%", height: 12 }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -883,7 +884,7 @@ export default function IncomeTaxOld2025({ data }) {
                   >
                     <Text
                       style={[
-                        styles.text,
+                        styles.text8,
                         { textAlign: "left", paddingLeft: 2 },
                       ]}
                     >
@@ -900,7 +901,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderBottomWidth: 1,
                     }}
                   ></View>
-                  <Text style={styles.text}>
+                  <Text style={styles.text8}>
                     Rs. {IndianFormat(BankInterest + IntFrDeposit)}
                   </Text>
                 </View>
@@ -928,7 +929,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>3</Text>
+                  <Text style={styles.text8}>3</Text>
                 </View>
                 <View
                   style={{
@@ -939,14 +940,17 @@ export default function IncomeTaxOld2025({ data }) {
                   }}
                 >
                   <Text
-                    style={[styles.text, { textAlign: "left", paddingLeft: 2 }]}
+                    style={[
+                      styles.text8,
+                      { textAlign: "left", paddingLeft: 2 },
+                    ]}
                   >
                     GROSS INCOME
                   </Text>
                 </View>
 
                 <View style={{ width: "25%" }}>
-                  <Text style={styles.text}>
+                  <Text style={styles.text8}>
                     Rs. {IndianFormat(AllGross + BankInterest + IntFrDeposit)}
                   </Text>
                 </View>
@@ -990,7 +994,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>4</Text>
+                  <Text style={styles.text8}>4</Text>
                 </View>
                 <View
                   style={{
@@ -1013,7 +1017,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "80%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1021,7 +1025,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "12.5%" }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                   </View>
                   <View
@@ -1034,12 +1038,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>a)</Text>
+                      <Text style={styles.text8}>a)</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1047,10 +1051,10 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                     <View style={{ width: "15%" }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                   </View>
                   <View
@@ -1063,12 +1067,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>b)</Text>
+                      <Text style={styles.text8}>b)</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1076,10 +1080,10 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                   </View>
                   <View
@@ -1092,23 +1096,23 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>c)</Text>
+                      <Text style={styles.text8}>c)</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
-                        Rent Paid over 10% of sotary
+                        Rent Paid over 10% of Salary
                       </Text>
                     </View>
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                   </View>
                   <View
@@ -1123,7 +1127,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "80%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1132,7 +1136,7 @@ export default function IncomeTaxOld2025({ data }) {
                       </Text>
                     </View>
                     <View style={{ width: "12.5%" }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                   </View>
                   <View
@@ -1145,7 +1149,7 @@ export default function IncomeTaxOld2025({ data }) {
                   >
                     <Text
                       style={[
-                        styles.text,
+                        styles.text8,
                         { textAlign: "left", paddingLeft: 2 },
                       ]}
                     >
@@ -1163,7 +1167,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderBottomWidth: 1,
                     }}
                   ></View>
-                  <Text style={styles.text}>NOT APPLICABLE</Text>
+                  <Text style={styles.text8}>NOT APPLICABLE</Text>
                 </View>
                 <View
                   style={{
@@ -1199,7 +1203,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>5</Text>
+                  <Text style={styles.text8}>5</Text>
                 </View>
                 <View
                   style={{
@@ -1218,7 +1222,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1227,7 +1231,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs.{" "}
                         {IndianFormat(AllGross + BankInterest + IntFrDeposit)}
                       </Text>
@@ -1257,7 +1261,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>6</Text>
+                  <Text style={styles.text8}>6</Text>
                 </View>
                 <View
                   style={{
@@ -1276,7 +1280,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1286,7 +1290,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -1313,7 +1317,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>7</Text>
+                  <Text style={styles.text8}>7</Text>
                 </View>
                 <View
                   style={{
@@ -1332,7 +1336,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1341,7 +1345,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs.{" "}
                         {IndianFormat(AllGross + BankInterest + IntFrDeposit)}
                       </Text>
@@ -1371,7 +1375,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>8</Text>
+                  <Text style={styles.text8}>8</Text>
                 </View>
                 <View
                   style={{
@@ -1390,7 +1394,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1399,7 +1403,9 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>Rs. {IndianFormat(50000)}</Text>
+                      <Text style={styles.text8}>
+                        Rs. {IndianFormat(50000)}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -1426,7 +1432,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>9</Text>
+                  <Text style={styles.text8}>9</Text>
                 </View>
                 <View
                   style={{
@@ -1445,7 +1451,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1454,10 +1460,10 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs.{" "}
                         {IndianFormat(
-                          AllGross + BankInterest + IntFrDeposit - 50000
+                          AllGross + BankInterest + IntFrDeposit - 50000,
                         )}
                       </Text>
                     </View>
@@ -1501,7 +1507,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>10</Text>
+                  <Text style={styles.text8}>10</Text>
                 </View>
                 <View
                   style={{
@@ -1522,12 +1528,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>a)</Text>
+                      <Text style={styles.text8}>a)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1537,11 +1543,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {grossPTax !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(grossPTax)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -1555,12 +1561,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>b)</Text>
+                      <Text style={styles.text8}>b)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1569,7 +1575,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -1582,12 +1588,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>c)</Text>
+                      <Text style={styles.text8}>c)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1596,7 +1602,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                   <View
@@ -1609,7 +1615,7 @@ export default function IncomeTaxOld2025({ data }) {
                   >
                     <Text
                       style={[
-                        styles.text,
+                        styles.text8,
                         { textAlign: "left", paddingLeft: 2 },
                       ]}
                     >
@@ -1627,11 +1633,11 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   ></View>
                   {grossPTax !== 0 ? (
-                    <Text style={styles.text}>
+                    <Text style={styles.text8}>
                       Rs. {IndianFormat(grossPTax)}
                     </Text>
                   ) : (
-                    <Text style={styles.text}>NIL</Text>
+                    <Text style={styles.text8}>NIL</Text>
                   )}
                 </View>
               </View>
@@ -1657,7 +1663,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>11</Text>
+                  <Text style={styles.text8}>11</Text>
                 </View>
                 <View
                   style={{
@@ -1676,7 +1682,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1685,14 +1691,14 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs.{" "}
                         {IndianFormat(
                           AllGross +
                             BankInterest +
                             IntFrDeposit -
                             50000 -
-                            grossPTax
+                            grossPTax,
                         )}
                       </Text>
                     </View>
@@ -1721,7 +1727,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>12</Text>
+                  <Text style={styles.text8}>12</Text>
                 </View>
                 <View
                   style={{
@@ -1740,7 +1746,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1749,7 +1755,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(hbLoanInterest)}
                       </Text>
                     </View>
@@ -1778,7 +1784,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>13</Text>
+                  <Text style={styles.text8}>13</Text>
                 </View>
                 <View
                   style={{
@@ -1797,7 +1803,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1806,7 +1812,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -1833,7 +1839,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>14</Text>
+                  <Text style={styles.text8}>14</Text>
                 </View>
                 <View
                   style={{
@@ -1852,7 +1858,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1861,15 +1867,14 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs.{" "}
                         {IndianFormat(
                           AllGross +
-                            BankInterest +
-                            IntFrDeposit -
+                            BankInterest -
                             50000 -
                             grossPTax -
-                            hbLoanInterest
+                            hbLoanInterest,
                         )}
                       </Text>
                     </View>
@@ -1916,7 +1921,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>15</Text>
+                  <Text style={styles.text8}>15</Text>
                 </View>
                 <View
                   style={{
@@ -1937,12 +1942,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>a)</Text>
+                      <Text style={styles.text8}>a)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1951,7 +1956,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(grossGPF)}
                       </Text>
                     </View>
@@ -1966,12 +1971,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>b)</Text>
+                      <Text style={styles.text8}>b)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -1981,11 +1986,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {grossGSLI !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(grossGSLI)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -1999,12 +2004,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>c)</Text>
+                      <Text style={styles.text8}>c)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2014,11 +2019,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {hbLoanInterest !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(hbLoanInterest)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2032,12 +2037,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>d)</Text>
+                      <Text style={styles.text8}>d)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2047,9 +2052,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {lic !== 0 ? (
-                        <Text style={styles.text}>Rs. {IndianFormat(lic)}</Text>
+                        <Text style={styles.text8}>
+                          Rs. {IndianFormat(lic)}
+                        </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2063,12 +2070,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>e)</Text>
+                      <Text style={styles.text8}>e)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2078,11 +2085,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {ulip !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(ulip)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2096,12 +2103,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>f)</Text>
+                      <Text style={styles.text8}>f)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2111,9 +2118,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {ppf !== 0 ? (
-                        <Text style={styles.text}>Rs. {IndianFormat(ppf)}</Text>
+                        <Text style={styles.text8}>
+                          Rs. {IndianFormat(ppf)}
+                        </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2127,12 +2136,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>g)</Text>
+                      <Text style={styles.text8}>g)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2142,9 +2151,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {nsc !== 0 ? (
-                        <Text style={styles.text}>Rs. {IndianFormat(nsc)}</Text>
+                        <Text style={styles.text8}>
+                          Rs. {IndianFormat(nsc)}
+                        </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2158,12 +2169,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>h)</Text>
+                      <Text style={styles.text8}>h)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2173,11 +2184,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {nscInterest !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(nscInterest)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2191,12 +2202,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>h)</Text>
+                      <Text style={styles.text8}>h)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2206,11 +2217,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {tutionFee !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(tutionFee)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2224,12 +2235,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>i)</Text>
+                      <Text style={styles.text8}>i)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2239,11 +2250,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {stampDuty !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(stampDuty)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2258,12 +2269,12 @@ export default function IncomeTaxOld2025({ data }) {
                       }}
                     >
                       <View style={{ width: "10%", borderRightWidth: 1 }}>
-                        <Text style={styles.text}>j)</Text>
+                        <Text style={styles.text8}>j)</Text>
                       </View>
                       <View style={{ width: "70%", borderRightWidth: 1 }}>
                         <Text
                           style={[
-                            styles.text,
+                            styles.text8,
                             { textAlign: "left", paddingLeft: 2 },
                           ]}
                         >
@@ -2273,11 +2284,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                       <View style={{ width: "20%" }}>
                         {sukanya !== 0 ? (
-                          <Text style={styles.text}>
+                          <Text style={styles.text8}>
                             Rs. {IndianFormat(sukanya)}
                           </Text>
                         ) : (
-                          <Text style={styles.text}>NIL</Text>
+                          <Text style={styles.text8}>NIL</Text>
                         )}
                       </View>
                     </View>
@@ -2292,7 +2303,7 @@ export default function IncomeTaxOld2025({ data }) {
                   >
                     <Text
                       style={[
-                        styles.text,
+                        styles.text8,
                         { textAlign: "left", paddingLeft: 2 },
                       ]}
                     >
@@ -2309,7 +2320,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderBottomWidth: 1,
                     }}
                   ></View>
-                  <Text style={styles.text}>Rs. {IndianFormat(limitVIA)}</Text>
+                  <Text style={styles.text8}>Rs. {IndianFormat(limitVIA)}</Text>
                 </View>
               </View>
               <View
@@ -2322,7 +2333,7 @@ export default function IncomeTaxOld2025({ data }) {
               >
                 <Text
                   style={[
-                    styles.text,
+                    styles.text8,
                     { textAlign: "right", paddingRight: 20 },
                   ]}
                 >
@@ -2344,7 +2355,7 @@ export default function IncomeTaxOld2025({ data }) {
         >
           <View style={styles.pageMainView}>
             <View style={styles.mainBorderView}>
-              <Text style={[styles.text, { marginTop: 5 }]}>PAGE. 2</Text>
+              <Text style={[styles.text8, { marginTop: 5 }]}>PAGE. 2</Text>
 
               <View
                 style={[
@@ -2365,7 +2376,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>16</Text>
+                  <Text style={styles.text8}>16</Text>
                 </View>
                 <View
                   style={{
@@ -2384,7 +2395,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2393,7 +2404,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs.{" "}
                         {IndianFormat(
                           AllGross +
@@ -2402,7 +2413,7 @@ export default function IncomeTaxOld2025({ data }) {
                             50000 -
                             grossPTax -
                             hbLoanInterest -
-                            limitVIA
+                            limitVIA,
                         )}
                       </Text>
                     </View>
@@ -2431,7 +2442,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>17</Text>
+                  <Text style={styles.text8}>17</Text>
                 </View>
                 <View
                   style={{
@@ -2450,7 +2461,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2460,7 +2471,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -2487,7 +2498,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>18</Text>
+                  <Text style={styles.text8}>18</Text>
                 </View>
                 <View
                   style={{
@@ -2506,7 +2517,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2515,7 +2526,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs.{" "}
                         {IndianFormat(
                           AllGross +
@@ -2524,7 +2535,7 @@ export default function IncomeTaxOld2025({ data }) {
                             50000 -
                             grossPTax -
                             hbLoanInterest -
-                            limitVIA
+                            limitVIA,
                         )}
                       </Text>
                     </View>
@@ -2570,7 +2581,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>19</Text>
+                  <Text style={styles.text8}>19</Text>
                 </View>
                 <View
                   style={{
@@ -2591,12 +2602,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>a)</Text>
+                      <Text style={styles.text8}>a)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2606,11 +2617,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {mediclaim !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(mediclaim)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2624,12 +2635,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>b)</Text>
+                      <Text style={styles.text8}>b)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2639,11 +2650,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {handicapTreatment !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(handicapTreatment)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2657,12 +2668,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>c)</Text>
+                      <Text style={styles.text8}>c)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2672,11 +2683,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {terminalDisease !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(terminalDisease)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2690,12 +2701,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>d)</Text>
+                      <Text style={styles.text8}>d)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2705,11 +2716,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {educationLoan !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(educationLoan)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2723,12 +2734,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>e)</Text>
+                      <Text style={styles.text8}>e)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2738,11 +2749,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {charity !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(charity)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2756,12 +2767,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>f)</Text>
+                      <Text style={styles.text8}>f)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2771,11 +2782,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {disabilityDeduction !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(disabilityDeduction)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2789,12 +2800,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>g)</Text>
+                      <Text style={styles.text8}>g)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2804,11 +2815,11 @@ export default function IncomeTaxOld2025({ data }) {
 
                     <View style={{ width: "20%" }}>
                       {rgSaving !== 0 ? (
-                        <Text style={styles.text}>
+                        <Text style={styles.text8}>
                           Rs. {IndianFormat(rgSaving)}
                         </Text>
                       ) : (
-                        <Text style={styles.text}>NIL</Text>
+                        <Text style={styles.text8}>NIL</Text>
                       )}
                     </View>
                   </View>
@@ -2822,12 +2833,12 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "10%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>h)</Text>
+                      <Text style={styles.text8}>h)</Text>
                     </View>
                     <View style={{ width: "70%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2, fontSize: 8 },
                         ]}
                       >
@@ -2837,7 +2848,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "20%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(BankInterest)}
                       </Text>
                     </View>
@@ -2853,7 +2864,7 @@ export default function IncomeTaxOld2025({ data }) {
                   >
                     <Text
                       style={[
-                        styles.text,
+                        styles.text8,
                         { textAlign: "left", paddingLeft: 2 },
                       ]}
                     >
@@ -2870,7 +2881,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderBottomWidth: 1,
                     }}
                   ></View>
-                  <Text style={styles.text}>Rs. {IndianFormat(OtherVIA)}</Text>
+                  <Text style={styles.text8}>Rs. {IndianFormat(OtherVIA)}</Text>
                 </View>
               </View>
               <View
@@ -2895,7 +2906,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>20</Text>
+                  <Text style={styles.text8}>20</Text>
                 </View>
                 <View
                   style={{
@@ -2914,7 +2925,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2923,7 +2934,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(TotalIncome)}
                       </Text>
                     </View>
@@ -2952,7 +2963,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>21</Text>
+                  <Text style={styles.text8}>21</Text>
                 </View>
                 <View
                   style={{
@@ -2971,7 +2982,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -2980,7 +2991,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(TotalRoundOffIncome)}
                       </Text>
                     </View>
@@ -3046,16 +3057,16 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Sl. No.</Text>
+                      <Text style={styles.text8}>Sl. No.</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         Male / Female below 50 Years
                       </Text>
                     </View>
 
                     <View style={{ width: "30%" }}>
-                      <Text style={styles.text}>Amount</Text>
+                      <Text style={styles.text8}>Amount</Text>
                     </View>
                   </View>
                 </View>
@@ -3076,19 +3087,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>1</Text>
+                      <Text style={styles.text8}>1</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         Up to Rs. 2,50,000 = Nil
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -3109,19 +3120,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>2</Text>
+                      <Text style={styles.text8}>2</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         Rs. 2,50,001 - 5,00,000 = 5%
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {TotalRoundOffIncome > 250000 &&
                         TotalRoundOffIncome > 500000
                           ? IndianFormat(Math.round(12500))
@@ -3147,25 +3158,25 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>3</Text>
+                      <Text style={styles.text8}>3</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         Rs. 5,00,001 - 10,00,000 = 20%
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {TotalRoundOffIncome > 500000 &&
                         TotalRoundOffIncome < 1000000
                           ? IndianFormat(
                               Math.round(
-                                ((TotalRoundOffIncome - 500000) * 20) / 100
-                              )
+                                ((TotalRoundOffIncome - 500000) * 20) / 100,
+                              ),
                             )
                           : "NIL"}
                       </Text>
@@ -3190,24 +3201,24 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>4</Text>
+                      <Text style={styles.text8}>4</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         Rs. 10,00,001 and above = 30%
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {TotalRoundOffIncome > 1000000
                           ? IndianFormat(
                               Math.round(
-                                ((TotalRoundOffIncome - 1000000) * 30) / 100
-                              )
+                                ((TotalRoundOffIncome - 1000000) * 30) / 100,
+                              ),
                             )
                           : "NIL"}
                       </Text>
@@ -3237,7 +3248,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>22</Text>
+                  <Text style={styles.text8}>22</Text>
                 </View>
                 <View
                   style={{
@@ -3256,7 +3267,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3265,7 +3276,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         Rs. {IndianFormat(CalculatedIT)}
                       </Text>
                     </View>
@@ -3294,7 +3305,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>23</Text>
+                  <Text style={styles.text8}>23</Text>
                 </View>
                 <View
                   style={{
@@ -3313,7 +3324,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3323,7 +3334,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {isUnderRebate
                           ? `Rs. ${IndianFormat(CalculatedIT)}`
                           : "NIL"}
@@ -3354,7 +3365,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>24</Text>
+                  <Text style={styles.text8}>24</Text>
                 </View>
                 <View
                   style={{
@@ -3373,7 +3384,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3382,7 +3393,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate
                           ? `Rs. ${IndianFormat(CalculatedIT)}`
                           : "NIL"}
@@ -3413,7 +3424,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>25</Text>
+                  <Text style={styles.text8}>25</Text>
                 </View>
                 <View
                   style={{
@@ -3432,7 +3443,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3441,7 +3452,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate
                           ? `Rs. ${IndianFormat(eduCess)}`
                           : "N/A"}
@@ -3472,7 +3483,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>26</Text>
+                  <Text style={styles.text8}>26</Text>
                 </View>
                 <View
                   style={{
@@ -3491,7 +3502,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3501,7 +3512,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>N/A</Text>
+                      <Text style={styles.text8}>N/A</Text>
                     </View>
                   </View>
                 </View>
@@ -3528,7 +3539,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>27</Text>
+                  <Text style={styles.text8}>27</Text>
                 </View>
                 <View
                   style={{
@@ -3547,7 +3558,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3556,7 +3567,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate
                           ? `Rs. ${IndianFormat(AddedEduCess)}`
                           : "NIL"}
@@ -3587,7 +3598,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>28</Text>
+                  <Text style={styles.text8}>28</Text>
                 </View>
                 <View
                   style={{
@@ -3606,7 +3617,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3615,7 +3626,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate
                           ? `Rs. ${IndianFormat(roundSo(AddedEduCess, 10))}`
                           : "NIL"}
@@ -3646,7 +3657,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>29</Text>
+                  <Text style={styles.text8}>29</Text>
                 </View>
                 <View
                   style={{
@@ -3665,7 +3676,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3674,7 +3685,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -3701,7 +3712,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>30</Text>
+                  <Text style={styles.text8}>30</Text>
                 </View>
                 <View
                   style={{
@@ -3720,7 +3731,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -3729,7 +3740,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate
                           ? `Rs. ${IndianFormat(roundSo(AddedEduCess, 10))}`
                           : "NIL"}
@@ -3798,16 +3809,16 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Sl. No.</Text>
+                      <Text style={styles.text8}>Sl. No.</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         Month
                       </Text>
                     </View>
 
                     <View style={{ width: "30%" }}>
-                      <Text style={styles.text}>Amount</Text>
+                      <Text style={styles.text8}>Amount</Text>
                     </View>
                   </View>
                 </View>
@@ -3828,19 +3839,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>1</Text>
+                      <Text style={styles.text8}>1</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         March, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -3861,19 +3872,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>2</Text>
+                      <Text style={styles.text8}>2</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         April, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -3894,19 +3905,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>3</Text>
+                      <Text style={styles.text8}>3</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         May, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -3927,19 +3938,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>4</Text>
+                      <Text style={styles.text8}>4</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         June, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -3960,19 +3971,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>5</Text>
+                      <Text style={styles.text8}>5</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         July, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -3993,19 +4004,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>6</Text>
+                      <Text style={styles.text8}>6</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         August, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -4026,19 +4037,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>7</Text>
+                      <Text style={styles.text8}>7</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         September, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -4059,19 +4070,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>8</Text>
+                      <Text style={styles.text8}>8</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         October, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -4092,19 +4103,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>9</Text>
+                      <Text style={styles.text8}>9</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         November, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -4125,19 +4136,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>10</Text>
+                      <Text style={styles.text8}>10</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         December, {thisYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -4158,19 +4169,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>11</Text>
+                      <Text style={styles.text8}>11</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         January, {nextYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate > 0 ? " " : "NIL"}
                       </Text>
                     </View>
@@ -4193,19 +4204,19 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>12</Text>
+                      <Text style={styles.text8}>12</Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         February, {nextYear}
                       </Text>
                     </View>
 
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate > 0 ? " " : "NIL"}
                       </Text>
                     </View>
@@ -4229,18 +4240,18 @@ export default function IncomeTaxOld2025({ data }) {
                     }}
                   >
                     <View style={{ width: "20%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text8}> </Text>
                     </View>
                     <View style={{ width: "50%", borderRightWidth: 1 }}>
-                      <Text style={[styles.text, { textAlign: "center" }]}>
+                      <Text style={[styles.text8, { textAlign: "center" }]}>
                         TOTAL
                       </Text>
                     </View>
                     <View style={{ width: "5%", borderRightWidth: 1 }}>
-                      <Text style={styles.text}>Rs.</Text>
+                      <Text style={styles.text8}>Rs.</Text>
                     </View>
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>
+                      <Text style={styles.text8}>
                         {!isUnderRebate > 0 ? " " : "NIL"}
                       </Text>
                     </View>
@@ -4269,7 +4280,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>31</Text>
+                  <Text style={styles.text8}>31</Text>
                 </View>
                 <View
                   style={{
@@ -4288,7 +4299,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%", borderRightWidth: 1 }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -4297,7 +4308,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text8}>NIL</Text>
                     </View>
                   </View>
                 </View>
@@ -4323,7 +4334,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>Date:-</Text>
+                  <Text style={styles.text8}>Date:-</Text>
                 </View>
                 <View
                   style={{
@@ -4343,7 +4354,7 @@ export default function IncomeTaxOld2025({ data }) {
                     <View style={{ width: "73.7%" }}>
                       <Text
                         style={[
-                          styles.text,
+                          styles.text8,
                           { textAlign: "left", paddingLeft: 2 },
                         ]}
                       >
@@ -4352,7 +4363,7 @@ export default function IncomeTaxOld2025({ data }) {
                     </View>
 
                     <View style={{ width: "25%" }}>
-                      <Text style={styles.text}></Text>
+                      <Text style={styles.text8}></Text>
                     </View>
                   </View>
                 </View>
@@ -4446,7 +4457,7 @@ export default function IncomeTaxOld2025({ data }) {
                         marginLeft: 50,
                       }}
                     >
-                      <Text style={styles.text}>Verified</Text>
+                      <Text style={styles.text8}>Verified</Text>
                       <View
                         style={{
                           marginTop: 40,
@@ -4462,8 +4473,8 @@ export default function IncomeTaxOld2025({ data }) {
                             borderStyle: "dashed",
                           }}
                         ></View>
-                        <Text style={[styles.text, { marginTop: 5 }]}></Text>
-                        <Text style={styles.text}>
+                        <Text style={[styles.text8, { marginTop: 5 }]}></Text>
+                        <Text style={styles.text8}>
                           SUB INSPECTOR OF SCHOOLS
                         </Text>
                       </View>
@@ -4471,9 +4482,10 @@ export default function IncomeTaxOld2025({ data }) {
                   </View>
                 </View>
                 <View style={{ width: "40%", borderWidth: 1, marginBottom: 5 }}>
-                  <Text style={[styles.text]}>
+                  {/* <Text style={[styles.text]}>
                     LAST DATE OF SUBMISSION:- 13/01/{nextYear}
-                  </Text>
+                  </Text> */}
+                  <Text style={[styles.text]}>LAST DATE OF SUBMISSION:-</Text>
                 </View>
               </View>
             </View>
@@ -4494,7 +4506,7 @@ export default function IncomeTaxOld2025({ data }) {
           <View style={styles.pageMainView}>
             <View style={styles.mainBorderView}>
               <View style={styles.tableStartBorderView}>
-                <Text style={styles.titleMain}>
+                <Text style={styles.titleSalary}>
                   DISTRICT PRIMARY SCHOOL COUNCIL, HOWRAH
                 </Text>
               </View>
@@ -4515,13 +4527,29 @@ export default function IncomeTaxOld2025({ data }) {
                       justifyContent: "center",
                       alignItems: "center",
                       borderRightWidth: 1,
+                      height: 50,
                     }}
                   >
-                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
-                      <Text style={styles.text}>NAME OF THE EMPLOYEE</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        borderBottomWidth: 1,
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text6}>NAME OF THE EMPLOYEE</Text>
                     </View>
-                    <View style={{ width: "100%" }}>
-                      <Text style={styles.text}>NAME OF THE SCHOOL</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text6}>NAME OF THE SCHOOL</Text>
                     </View>
                   </View>
                   {/* 30 */}
@@ -4531,13 +4559,29 @@ export default function IncomeTaxOld2025({ data }) {
                       justifyContent: "center",
                       alignItems: "center",
                       borderRightWidth: 1,
+                      height: 50,
                     }}
                   >
-                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
-                      <Text style={styles.text}>{tname}</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        borderBottomWidth: 1,
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text7}>{tname}</Text>
                     </View>
-                    <View style={{ width: "100%" }}>
-                      <Text style={styles.text}>{school}</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text7}>{school}</Text>
                     </View>
                   </View>
                   {/* 10 Gross */}
@@ -4557,13 +4601,29 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                       borderRightWidth: 1,
                       borderLeftWidth: 1,
+                      height: 50,
                     }}
                   >
-                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
-                      <Text style={styles.text}>DESIGNATION</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        borderBottomWidth: 1,
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text7}>DESIGNATION</Text>
                     </View>
-                    <View style={{ width: "100%" }}>
-                      <Text style={styles.text}>PAN NO.</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text6}>PAN NO.</Text>
                     </View>
                   </View>
                   {/* 20 */}
@@ -4572,13 +4632,29 @@ export default function IncomeTaxOld2025({ data }) {
                       width: "30%",
                       justifyContent: "center",
                       alignItems: "center",
+                      height: 50,
                     }}
                   >
-                    <View style={{ width: "100%", borderBottomWidth: 1 }}>
-                      <Text style={styles.text}>{desig}</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        borderBottomWidth: 1,
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text6}>{desig}</Text>
                     </View>
-                    <View style={{ width: "100%" }}>
-                      <Text style={styles.text}>{pan}</Text>
+                    <View
+                      style={{
+                        width: "100%",
+                        height: 25,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={styles.text6}>{pan}</Text>
                     </View>
                   </View>
                 </View>
@@ -4613,13 +4689,13 @@ export default function IncomeTaxOld2025({ data }) {
                       height: 50,
                     }}
                   >
-                    <Text style={styles.text}>MONTH</Text>
+                    <Text style={styles.text6}>MONTH</Text>
                   </View>
                   <View
                     style={{ width: "86%", borderRightWidth: 1, height: 50 }}
                   >
                     <View style={{ width: "100%", borderBottomWidth: 1 }}>
-                      <Text style={styles.text}>PAY & ALLOWANCES</Text>
+                      <Text style={styles.text6}>PAY & ALLOWANCES</Text>
                     </View>
                     <View
                       style={{
@@ -4638,7 +4714,7 @@ export default function IncomeTaxOld2025({ data }) {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={styles.text}>% D.A</Text>
+                        <Text style={styles.text6}>% D.A</Text>
                       </View>
                       <View
                         style={{
@@ -4649,7 +4725,7 @@ export default function IncomeTaxOld2025({ data }) {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={styles.text}>Basic{"\n"}Pay</Text>
+                        <Text style={styles.text6}>Basic{"\n"}Pay</Text>
                       </View>
                       <View
                         style={{
@@ -4660,7 +4736,7 @@ export default function IncomeTaxOld2025({ data }) {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={[styles.text, { fontSize: 8 }]}>
+                        <Text style={[styles.text6, { fontSize: 8 }]}>
                           HT{"\n"}Allowance
                         </Text>
                       </View>
@@ -4673,7 +4749,7 @@ export default function IncomeTaxOld2025({ data }) {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={styles.text}>D.A.</Text>
+                        <Text style={styles.text6}>D.A.</Text>
                       </View>
                       <View
                         style={{
@@ -4684,7 +4760,7 @@ export default function IncomeTaxOld2025({ data }) {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={styles.text}>H.R.A.</Text>
+                        <Text style={styles.text6}>H.R.A.</Text>
                       </View>
                       <View
                         style={{
@@ -4695,7 +4771,7 @@ export default function IncomeTaxOld2025({ data }) {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={styles.text}>M.A.</Text>
+                        <Text style={styles.text6}>M.A.</Text>
                       </View>
                       <View
                         style={{
@@ -4706,12 +4782,12 @@ export default function IncomeTaxOld2025({ data }) {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={[styles.text, { fontSize: 7 }]}>
+                        <Text style={[styles.text6, { fontSize: 7 }]}>
                           Conveyance{"\n"}Allowance
                         </Text>
                       </View>
                       <View style={{ width: "12.5%" }}>
-                        <Text style={styles.text}>BONUS</Text>
+                        <Text style={styles.text6}>BONUS</Text>
                       </View>
                     </View>
                   </View>
@@ -4725,7 +4801,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>GROSS</Text>
+                  <Text style={styles.text6}>GROSS</Text>
                 </View>
                 <View
                   style={{
@@ -4735,7 +4811,7 @@ export default function IncomeTaxOld2025({ data }) {
                   }}
                 >
                   <View style={{ width: "100%", borderBottomWidth: 1 }}>
-                    <Text style={styles.text}>DEDUCTION</Text>
+                    <Text style={styles.text6}>DEDUCTION</Text>
                   </View>
                   <View
                     style={{
@@ -4754,7 +4830,7 @@ export default function IncomeTaxOld2025({ data }) {
                         justifyContent: "center",
                       }}
                     >
-                      <Text style={styles.text}>GPF</Text>
+                      <Text style={styles.text6}>GPF</Text>
                     </View>
                     <View
                       style={{
@@ -4765,7 +4841,7 @@ export default function IncomeTaxOld2025({ data }) {
                         justifyContent: "center",
                       }}
                     >
-                      <Text style={styles.text}>GSLI</Text>
+                      <Text style={styles.text6}>GSLI</Text>
                     </View>
                     <View
                       style={{
@@ -4776,7 +4852,7 @@ export default function IncomeTaxOld2025({ data }) {
                         justifyContent: "center",
                       }}
                     >
-                      <Text style={styles.text}>P.TAX</Text>
+                      <Text style={styles.text6}>P.TAX</Text>
                     </View>
                     <View
                       style={{
@@ -4786,7 +4862,7 @@ export default function IncomeTaxOld2025({ data }) {
                         justifyContent: "center",
                       }}
                     >
-                      <Text style={styles.text}>I.TAX</Text>
+                      <Text style={styles.text6}>I.TAX</Text>
                     </View>
                   </View>
                 </View>
@@ -4798,7 +4874,7 @@ export default function IncomeTaxOld2025({ data }) {
                     justifyContent: "center",
                   }}
                 >
-                  <Text style={styles.text}>NET</Text>
+                  <Text style={styles.text6}>NET</Text>
                 </View>
               </View>
               <View
@@ -4838,7 +4914,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>MAR</Text>
+                      <Text style={styles.text7}>MAR</Text>
                     </View>
                     <View
                       style={{
@@ -4847,7 +4923,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -4867,7 +4943,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {marchBasic !== 0
                           ? `${Math.round(marchSalary?.daPercent * 100)}%`
                           : ""}
@@ -4881,7 +4957,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {marchBasic !== 0 ? marchBasic : ""}
                       </Text>
                     </View>
@@ -4893,7 +4969,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {marchBasic !== 0
                           ? marchAddl !== 0
                             ? marchAddl
@@ -4909,7 +4985,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {marchBasic !== 0 ? marchDA : ""}
                       </Text>
                     </View>
@@ -4921,7 +4997,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {marchBasic !== 0 ? marchHRA : ""}
                       </Text>
                     </View>
@@ -4933,7 +5009,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {marchBasic !== 0
                           ? marchMA !== 0
                             ? marchMA
@@ -4949,7 +5025,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -4958,7 +5034,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -4970,7 +5046,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {marchBasic !== 0 ? marchGross : ""}
                   </Text>
                 </View>
@@ -4991,7 +5067,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {marchBasic !== 0
                         ? marchGPF !== 0
                           ? marchGPF
@@ -5007,7 +5083,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {marchBasic !== 0
                         ? marchGSLI !== 0
                           ? marchGSLI
@@ -5023,7 +5099,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {marchBasic !== 0
                         ? marchPTax !== 0
                           ? marchPTax
@@ -5038,7 +5114,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {marchBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -5050,7 +5126,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {marchBasic !== 0 ? marchNetpay : ""}
                   </Text>
                 </View>
@@ -5092,7 +5168,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>APR</Text>
+                      <Text style={styles.text7}>APR</Text>
                     </View>
                     <View
                       style={{
@@ -5101,7 +5177,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5121,7 +5197,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {aprilBasic !== 0
                           ? `${Math.round(aprilSalary?.daPercent * 100)}%`
                           : ""}
@@ -5135,7 +5211,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {aprilBasic !== 0 ? aprilBasic : ""}
                       </Text>
                     </View>
@@ -5147,7 +5223,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {aprilBasic !== 0
                           ? aprilAddl !== 0
                             ? aprilAddl
@@ -5163,7 +5239,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {aprilBasic !== 0 ? aprilDA : ""}
                       </Text>
                     </View>
@@ -5175,7 +5251,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {aprilBasic !== 0 ? aprilHRA : ""}
                       </Text>
                     </View>
@@ -5187,7 +5263,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {aprilBasic !== 0
                           ? aprilMA !== 0
                             ? aprilMA
@@ -5203,7 +5279,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -5212,7 +5288,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -5224,7 +5300,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {aprilBasic !== 0 ? aprilGross : ""}
                   </Text>
                 </View>
@@ -5245,7 +5321,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {aprilBasic !== 0
                         ? aprilGPF !== 0
                           ? aprilGPF
@@ -5261,7 +5337,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {aprilBasic !== 0
                         ? aprilGSLI !== 0
                           ? aprilGSLI
@@ -5277,7 +5353,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {aprilBasic !== 0
                         ? aprilPTax !== 0
                           ? aprilPTax
@@ -5292,7 +5368,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {aprilBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -5304,7 +5380,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {aprilBasic !== 0 ? aprilNetpay : ""}
                   </Text>
                 </View>
@@ -5346,7 +5422,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>MAY</Text>
+                      <Text style={styles.text7}>MAY</Text>
                     </View>
                     <View
                       style={{
@@ -5355,7 +5431,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5375,7 +5451,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {mayBasic !== 0
                           ? `${Math.round(maySalary?.daPercent * 100)}%`
                           : ""}
@@ -5389,7 +5465,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {mayBasic !== 0 ? mayBasic : ""}
                       </Text>
                     </View>
@@ -5401,7 +5477,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {mayBasic !== 0
                           ? mayAddl !== 0
                             ? mayAddl
@@ -5417,7 +5493,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {mayBasic !== 0 ? mayDA : ""}
                       </Text>
                     </View>
@@ -5429,7 +5505,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {mayBasic !== 0 ? mayHRA : ""}
                       </Text>
                     </View>
@@ -5441,7 +5517,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {mayBasic !== 0 ? (mayMA !== 0 ? mayMA : "NIL") : ""}
                       </Text>
                     </View>
@@ -5453,7 +5529,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -5462,7 +5538,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -5474,7 +5550,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {mayBasic !== 0 ? mayGross : ""}
                   </Text>
                 </View>
@@ -5495,7 +5571,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {mayBasic !== 0 ? (mayGPF !== 0 ? mayGPF : "NIL") : ""}
                     </Text>
                   </View>
@@ -5507,7 +5583,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {mayBasic !== 0 ? (mayGSLI !== 0 ? mayGSLI : "NIL") : ""}
                     </Text>
                   </View>
@@ -5519,7 +5595,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {mayBasic !== 0 ? (mayPTax !== 0 ? mayPTax : "NIL") : ""}
                     </Text>
                   </View>
@@ -5530,7 +5606,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {mayBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -5542,7 +5618,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {mayBasic !== 0 ? mayNetpay : ""}
                   </Text>
                 </View>
@@ -5584,7 +5660,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>JUN</Text>
+                      <Text style={styles.text7}>JUN</Text>
                     </View>
                     <View
                       style={{
@@ -5593,7 +5669,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5613,7 +5689,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {juneBasic !== 0
                           ? `${Math.round(juneSalary?.daPercent * 100)}%`
                           : ""}
@@ -5627,7 +5703,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {juneBasic !== 0 ? juneBasic : ""}
                       </Text>
                     </View>
@@ -5639,7 +5715,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {juneBasic !== 0
                           ? juneAddl !== 0
                             ? juneAddl
@@ -5655,7 +5731,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {juneBasic !== 0 ? juneDA : ""}
                       </Text>
                     </View>
@@ -5667,7 +5743,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {juneBasic !== 0 ? juneHRA : ""}
                       </Text>
                     </View>
@@ -5679,7 +5755,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {juneBasic !== 0 ? (juneMA !== 0 ? juneMA : "NIL") : ""}
                       </Text>
                     </View>
@@ -5691,7 +5767,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -5700,7 +5776,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -5712,7 +5788,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {juneBasic !== 0 ? juneGross : ""}
                   </Text>
                 </View>
@@ -5733,7 +5809,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {juneBasic !== 0 ? (juneGPF !== 0 ? juneGPF : "NIL") : ""}
                     </Text>
                   </View>
@@ -5745,7 +5821,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {juneBasic !== 0
                         ? juneGSLI !== 0
                           ? juneGSLI
@@ -5761,7 +5837,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {juneBasic !== 0
                         ? junePTax !== 0
                           ? junePTax
@@ -5776,7 +5852,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {juneBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -5788,7 +5864,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {juneBasic !== 0 ? juneNetpay : ""}
                   </Text>
                 </View>
@@ -5830,7 +5906,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>JUL</Text>
+                      <Text style={styles.text7}>JUL</Text>
                     </View>
                     <View
                       style={{
@@ -5839,7 +5915,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -5859,7 +5935,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {julyBasic !== 0
                           ? `${Math.round(julySalary?.daPercent * 100)}%`
                           : ""}
@@ -5873,7 +5949,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {julyBasic !== 0 ? julyBasic : ""}
                       </Text>
                     </View>
@@ -5885,7 +5961,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {julyBasic !== 0
                           ? julyAddl !== 0
                             ? julyAddl
@@ -5901,7 +5977,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {julyBasic !== 0 ? julyDA : ""}
                       </Text>
                     </View>
@@ -5913,7 +5989,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {julyBasic !== 0 ? julyHRA : ""}
                       </Text>
                     </View>
@@ -5925,7 +6001,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {julyBasic !== 0 ? (julyMA !== 0 ? julyMA : "NIL") : ""}
                       </Text>
                     </View>
@@ -5937,7 +6013,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -5946,7 +6022,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -5959,10 +6035,10 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {julyBasic !== 0 ? julyGross : ""}
                   </Text>
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {aprilIR !== 0 ? `(IR- ${aprilIR})` : ""}
                   </Text>
                 </View>
@@ -5983,7 +6059,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {julyBasic !== 0 ? (julyGPF !== 0 ? julyGPF : "NIL") : ""}
                     </Text>
                   </View>
@@ -5995,7 +6071,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {julyBasic !== 0
                         ? julyGSLI !== 0
                           ? julyGSLI
@@ -6011,7 +6087,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {julyBasic !== 0
                         ? julyPTax !== 0
                           ? julyPTax
@@ -6026,7 +6102,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {julyBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -6038,7 +6114,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {julyBasic !== 0 ? julyNetpay : ""}
                   </Text>
                 </View>
@@ -6080,7 +6156,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>AUG</Text>
+                      <Text style={styles.text7}>AUG</Text>
                     </View>
                     <View
                       style={{
@@ -6089,7 +6165,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -6109,7 +6185,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {augustBasic !== 0
                           ? `${Math.round(augustSalary?.daPercent * 100)}%`
                           : ""}
@@ -6123,7 +6199,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {augustBasic !== 0 ? augustBasic : ""}
                       </Text>
                     </View>
@@ -6135,7 +6211,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {augustBasic !== 0
                           ? augustAddl !== 0
                             ? augustAddl
@@ -6151,7 +6227,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {augustBasic !== 0 ? augustDA : ""}
                       </Text>
                     </View>
@@ -6163,7 +6239,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {augustBasic !== 0 ? augustHRA : ""}
                       </Text>
                     </View>
@@ -6175,7 +6251,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {augustBasic !== 0
                           ? augustMA !== 0
                             ? augustMA
@@ -6191,7 +6267,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -6200,7 +6276,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -6212,7 +6288,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {augustBasic !== 0 ? augustGross : ""}
                   </Text>
                 </View>
@@ -6233,7 +6309,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {augustBasic !== 0
                         ? augustGPF !== 0
                           ? augustGPF
@@ -6249,7 +6325,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {augustBasic !== 0
                         ? augustGSLI !== 0
                           ? augustGSLI
@@ -6265,7 +6341,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {augustBasic !== 0
                         ? augustPTax !== 0
                           ? augustPTax
@@ -6280,7 +6356,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {augustBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -6292,7 +6368,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {augustBasic !== 0 ? augustNetpay : ""}
                   </Text>
                 </View>
@@ -6334,7 +6410,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>SEP</Text>
+                      <Text style={styles.text7}>SEP</Text>
                     </View>
                     <View
                       style={{
@@ -6343,7 +6419,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -6363,7 +6439,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {septemberBasic !== 0
                           ? `${Math.round(septemberSalary?.daPercent * 100)}%`
                           : ""}
@@ -6377,7 +6453,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {septemberBasic !== 0 ? septemberBasic : ""}
                       </Text>
                     </View>
@@ -6389,7 +6465,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {septemberBasic !== 0
                           ? septemberAddl !== 0
                             ? septemberAddl
@@ -6405,7 +6481,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {septemberBasic !== 0 ? septemberDA : ""}
                       </Text>
                     </View>
@@ -6417,7 +6493,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {septemberBasic !== 0 ? septemberHRA : ""}
                       </Text>
                     </View>
@@ -6429,7 +6505,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {septemberBasic !== 0
                           ? septemberMA !== 0
                             ? septemberMA
@@ -6445,7 +6521,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -6454,7 +6530,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -6466,7 +6542,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {septemberBasic !== 0 ? septemberGross : ""}
                   </Text>
                 </View>
@@ -6487,7 +6563,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {septemberBasic !== 0
                         ? septemberGPF !== 0
                           ? septemberGPF
@@ -6503,7 +6579,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {septemberBasic !== 0
                         ? septemberGSLI !== 0
                           ? septemberGSLI
@@ -6519,7 +6595,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {septemberBasic !== 0
                         ? septemberPTax !== 0
                           ? septemberPTax
@@ -6534,7 +6610,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {septemberBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -6546,7 +6622,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {septemberBasic !== 0 ? septemberNetpay : ""}
                   </Text>
                 </View>
@@ -6588,7 +6664,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>OCT</Text>
+                      <Text style={styles.text7}>OCT</Text>
                     </View>
                     <View
                       style={{
@@ -6597,7 +6673,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -6617,7 +6693,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {octoberBasic !== 0
                           ? `${Math.round(octoberSalary?.daPercent * 100)}%`
                           : ""}
@@ -6631,7 +6707,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {octoberBasic !== 0 ? octoberBasic : ""}
                       </Text>
                     </View>
@@ -6643,7 +6719,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {octoberBasic !== 0
                           ? octoberAddl !== 0
                             ? octoberAddl
@@ -6659,7 +6735,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {octoberBasic !== 0 ? octoberDA : ""}
                       </Text>
                     </View>
@@ -6671,7 +6747,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {octoberBasic !== 0 ? octoberHRA : ""}
                       </Text>
                     </View>
@@ -6683,7 +6759,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {octoberBasic !== 0
                           ? octoberMA !== 0
                             ? octoberMA
@@ -6699,7 +6775,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -6708,7 +6784,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -6720,7 +6796,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {octoberBasic !== 0 ? octoberGross : ""}
                   </Text>
                 </View>
@@ -6741,7 +6817,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {octoberBasic !== 0
                         ? octoberGPF !== 0
                           ? octoberGPF
@@ -6757,7 +6833,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {octoberBasic !== 0
                         ? octoberGSLI !== 0
                           ? octoberGSLI
@@ -6773,7 +6849,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {octoberBasic !== 0
                         ? octoberPTax !== 0
                           ? octoberPTax
@@ -6788,7 +6864,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {octoberBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -6800,7 +6876,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {octoberBasic !== 0 ? octoberNetpay : ""}
                   </Text>
                 </View>
@@ -6842,7 +6918,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>NOV</Text>
+                      <Text style={styles.text7}>NOV</Text>
                     </View>
                     <View
                       style={{
@@ -6851,7 +6927,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -6871,7 +6947,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {novemberBasic !== 0
                           ? `${Math.round(novemberSalary?.daPercent * 100)}%`
                           : ""}
@@ -6885,7 +6961,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {novemberBasic !== 0 ? novemberBasic : ""}
                       </Text>
                     </View>
@@ -6897,7 +6973,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {novemberBasic !== 0
                           ? novemberAddl !== 0
                             ? novemberAddl
@@ -6913,7 +6989,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {novemberBasic !== 0 ? novemberDA : ""}
                       </Text>
                     </View>
@@ -6925,7 +7001,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {novemberBasic !== 0 ? novemberHRA : ""}
                       </Text>
                     </View>
@@ -6937,7 +7013,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {novemberBasic !== 0
                           ? novemberMA !== 0
                             ? novemberMA
@@ -6953,7 +7029,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -6962,7 +7038,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -6974,7 +7050,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {novemberBasic !== 0 ? novemberGross : ""}
                   </Text>
                 </View>
@@ -6995,7 +7071,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {novemberBasic !== 0
                         ? novemberGPF !== 0
                           ? novemberGPF
@@ -7011,7 +7087,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {novemberBasic !== 0
                         ? novemberGSLI !== 0
                           ? novemberGSLI
@@ -7027,7 +7103,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {novemberBasic !== 0
                         ? novemberPTax !== 0
                           ? novemberPTax
@@ -7042,7 +7118,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {novemberBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -7054,7 +7130,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {novemberBasic !== 0 ? novemberNetpay : ""}
                   </Text>
                 </View>
@@ -7096,7 +7172,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>DEC</Text>
+                      <Text style={styles.text7}>DEC</Text>
                     </View>
                     <View
                       style={{
@@ -7105,7 +7181,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{thisYear}</Text>
+                      <Text style={styles.text6}>{thisYear}</Text>
                     </View>
                   </View>
                   <View
@@ -7125,7 +7201,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {decemberBasic !== 0
                           ? `${Math.round(decemberSalary?.daPercent * 100)}%`
                           : ""}
@@ -7139,7 +7215,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {decemberBasic !== 0 ? decemberBasic : ""}
                       </Text>
                     </View>
@@ -7151,7 +7227,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {decemberBasic !== 0
                           ? decemberAddl !== 0
                             ? decemberAddl
@@ -7167,7 +7243,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {decemberBasic !== 0 ? decemberDA : ""}
                       </Text>
                     </View>
@@ -7179,7 +7255,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {decemberBasic !== 0 ? decemberHRA : ""}
                       </Text>
                     </View>
@@ -7191,7 +7267,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {decemberBasic !== 0
                           ? decemberMA !== 0
                             ? decemberMA
@@ -7207,7 +7283,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -7216,7 +7292,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -7228,7 +7304,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {decemberBasic !== 0 ? decemberGross : ""}
                   </Text>
                 </View>
@@ -7249,7 +7325,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {decemberBasic !== 0
                         ? decemberGPF !== 0
                           ? decemberGPF
@@ -7265,7 +7341,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {decemberBasic !== 0
                         ? decemberGSLI !== 0
                           ? decemberGSLI
@@ -7281,7 +7357,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {decemberBasic !== 0
                         ? decemberPTax !== 0
                           ? decemberPTax
@@ -7296,7 +7372,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {decemberBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -7308,7 +7384,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {decemberBasic !== 0 ? decemberNetpay : ""}
                   </Text>
                 </View>
@@ -7350,7 +7426,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>JAN</Text>
+                      <Text style={styles.text6}>JAN</Text>
                     </View>
                     <View
                       style={{
@@ -7359,7 +7435,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{nextYear}</Text>
+                      <Text style={styles.text6}>{nextYear}</Text>
                     </View>
                   </View>
                   <View
@@ -7379,7 +7455,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {januaryBasic !== 0
                           ? `${Math.round(januarySalary?.daPercent * 100)}%`
                           : ""}
@@ -7393,7 +7469,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {januaryBasic !== 0 ? januaryBasic : ""}
                       </Text>
                     </View>
@@ -7405,7 +7481,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {januaryBasic !== 0
                           ? januaryAddl !== 0
                             ? januaryAddl
@@ -7421,7 +7497,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {januaryBasic !== 0 ? januaryDA : ""}
                       </Text>
                     </View>
@@ -7433,7 +7509,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {januaryBasic !== 0 ? januaryHRA : ""}
                       </Text>
                     </View>
@@ -7445,7 +7521,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {januaryBasic !== 0
                           ? januaryMA !== 0
                             ? januaryMA
@@ -7461,7 +7537,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -7470,7 +7546,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -7482,7 +7558,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {januaryBasic !== 0 ? januaryGross : ""}
                   </Text>
                 </View>
@@ -7503,7 +7579,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {januaryBasic !== 0
                         ? januaryGPF !== 0
                           ? januaryGPF
@@ -7519,7 +7595,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {januaryBasic !== 0
                         ? januaryGSLI !== 0
                           ? januaryGSLI
@@ -7535,7 +7611,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {januaryBasic !== 0
                         ? januaryPTax !== 0
                           ? januaryPTax
@@ -7550,7 +7626,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {januaryBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -7562,7 +7638,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {januaryBasic !== 0 ? januaryNetpay : ""}
                   </Text>
                 </View>
@@ -7604,7 +7680,7 @@ export default function IncomeTaxOld2025({ data }) {
                         borderRightWidth: 1,
                       }}
                     >
-                      <Text style={styles.text}>FEB</Text>
+                      <Text style={styles.text6}>FEB</Text>
                     </View>
                     <View
                       style={{
@@ -7613,7 +7689,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>{nextYear}</Text>
+                      <Text style={styles.text6}>{nextYear}</Text>
                     </View>
                   </View>
                   <View
@@ -7633,7 +7709,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {februaryBasic !== 0
                           ? `${Math.round(februarySalary?.daPercent * 100)}%`
                           : ""}
@@ -7647,7 +7723,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {februaryBasic !== 0 ? februaryBasic : ""}
                       </Text>
                     </View>
@@ -7659,7 +7735,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {februaryBasic !== 0
                           ? februaryAddl !== 0
                             ? februaryAddl
@@ -7675,7 +7751,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {februaryBasic !== 0 ? februaryDA : ""}
                       </Text>
                     </View>
@@ -7687,7 +7763,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {februaryBasic !== 0 ? februaryHRA : ""}
                       </Text>
                     </View>
@@ -7699,7 +7775,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {februaryBasic !== 0
                           ? februaryMA !== 0
                             ? februaryMA
@@ -7715,7 +7791,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -7724,7 +7800,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                   </View>
                 </View>
@@ -7736,7 +7812,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {februaryBasic !== 0 ? februaryGross : ""}
                   </Text>
                 </View>
@@ -7757,7 +7833,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {februaryBasic !== 0
                         ? februaryGPF !== 0
                           ? februaryGPF
@@ -7773,7 +7849,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {februaryBasic !== 0
                         ? februaryGSLI !== 0
                           ? februaryGSLI
@@ -7789,7 +7865,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {februaryBasic !== 0
                         ? februaryPTax !== 0
                           ? februaryPTax
@@ -7804,7 +7880,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {februaryBasic !== 0 ? "NIL" : ""}
                     </Text>
                   </View>
@@ -7816,7 +7892,7 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {februaryBasic !== 0 ? februaryNetpay : ""}
                   </Text>
                 </View>
@@ -7846,7 +7922,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>TOTAL</Text>
+                    <Text style={styles.text6}>TOTAL</Text>
                   </View>
                   <View
                     style={{
@@ -7865,7 +7941,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}> </Text>
+                      <Text style={styles.text6}> </Text>
                     </View>
                     <View
                       style={{
@@ -7875,7 +7951,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {grossBasic !== 0 ? grossBasic : ""}
                       </Text>
                     </View>
@@ -7887,7 +7963,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {grossAddl !== 0 ? grossAddl : "NIL"}
                       </Text>
                     </View>
@@ -7899,7 +7975,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {grossDA !== 0 ? grossDA : ""}
                       </Text>
                     </View>
@@ -7911,7 +7987,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {grossHRA !== 0 ? grossHRA : ""}
                       </Text>
                     </View>
@@ -7923,7 +7999,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {grossMA !== 0 ? grossMA : "NIL"}
                       </Text>
                     </View>
@@ -7935,7 +8011,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>NIL</Text>
+                      <Text style={styles.text6}>NIL</Text>
                     </View>
                     <View
                       style={{
@@ -7944,7 +8020,7 @@ export default function IncomeTaxOld2025({ data }) {
                         alignItems: "center",
                       }}
                     >
-                      <Text style={styles.text}>
+                      <Text style={styles.text6}>
                         {bonus !== 0 ? bonus : "NIL"}{" "}
                       </Text>
                     </View>
@@ -7958,7 +8034,7 @@ export default function IncomeTaxOld2025({ data }) {
                     borderRightWidth: 1,
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {GrossPAY !== 0 ? GrossPAY : ""}
                   </Text>
                 </View>
@@ -7979,7 +8055,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {grossGPF !== 0 ? grossGPF : "NIL"}
                     </Text>
                   </View>
@@ -7991,7 +8067,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {grossGSLI !== 0 ? grossGSLI : "NIL"}
                     </Text>
                   </View>
@@ -8003,7 +8079,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderRightWidth: 1,
                     }}
                   >
-                    <Text style={styles.text}>
+                    <Text style={styles.text6}>
                       {grossPTax !== 0 ? grossPTax : "NIL"}
                     </Text>
                   </View>
@@ -8014,7 +8090,7 @@ export default function IncomeTaxOld2025({ data }) {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={styles.text}> </Text>
+                    <Text style={styles.text6}> </Text>
                   </View>
                 </View>
                 <View
@@ -8024,21 +8100,12 @@ export default function IncomeTaxOld2025({ data }) {
                     alignItems: "center",
                   }}
                 >
-                  <Text style={styles.text}>
+                  <Text style={styles.text6}>
                     {grossNetpay !== 0 ? grossNetpay : ""}
                   </Text>
                 </View>
               </View>
             </View>
-            {/* <View
-                style={{
-                  marginTop: 60,
-                  justifyContent: "flex-end",
-                  alignItems: "flex-end",
-                }}
-              >
-                <Text style={styles.text}>SIGNATURE OF THE INCUMBENT</Text>
-              </View> */}
             <View
               style={{
                 marginTop: 90,
@@ -8057,7 +8124,7 @@ export default function IncomeTaxOld2025({ data }) {
                   justifyContent: "flex-end",
                 }}
               >
-                <Text style={styles.text}>Verified and Counter Signature</Text>
+                <Text style={styles.text6}>Verified and Counter Signature</Text>
                 <View
                   style={{
                     marginTop: 40,
@@ -8072,8 +8139,8 @@ export default function IncomeTaxOld2025({ data }) {
                       borderStyle: "dashed",
                     }}
                   ></View>
-                  <Text style={[styles.text, { marginTop: 5 }]}></Text>
-                  <Text style={styles.text}>SUB INSPECTOR OF SCHOOLS</Text>
+                  <Text style={[styles.text6, { marginTop: 5 }]}></Text>
+                  <Text style={styles.text6}>SUB INSPECTOR OF SCHOOLS</Text>
                 </View>
               </View>
               <View
@@ -8099,7 +8166,7 @@ export default function IncomeTaxOld2025({ data }) {
                       borderStyle: "dashed",
                     }}
                   ></View>
-                  <Text style={[styles.text, { marginTop: 5 }]}>
+                  <Text style={[styles.text6, { marginTop: 5 }]}>
                     SIGNATURE OF THE INCUMBENT
                   </Text>
                 </View>
@@ -8149,6 +8216,11 @@ const styles = StyleSheet.create({
     fontFamily: "Arial",
     textAlign: "center",
   },
+  titleSalary: {
+    fontSize: 14,
+    fontFamily: "Times",
+    textAlign: "center",
+  },
   text: {
     fontSize: 9,
     fontFamily: "ArialItalic",
@@ -8180,6 +8252,21 @@ const styles = StyleSheet.create({
   },
   text5: {
     fontSize: 9,
+    fontFamily: "Times",
+    textAlign: "center",
+  },
+  text6: {
+    fontSize: 11,
+    fontFamily: "Times",
+    textAlign: "center",
+  },
+  text7: {
+    fontSize: 11,
+    fontFamily: "Times",
+    textAlign: "center",
+  },
+  text8: {
+    fontSize: 10,
     fontFamily: "Times",
     textAlign: "center",
   },

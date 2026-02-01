@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import {
   Page,
@@ -36,7 +35,6 @@ export default function Form16New({ data }) {
     eduCess,
     AddedEduCess,
     BankInterest,
-    IntFrDeposit,
     lic,
     ppf,
     nsc,
@@ -44,7 +42,7 @@ export default function Form16New({ data }) {
     disabilityDeduction,
     tds,
   } = data;
-
+  const IntFrDeposit = data.IntFrDeposit || 0;
   return (
     <Document
       style={{ margin: 5, padding: 5 }}
@@ -787,7 +785,11 @@ export default function Form16New({ data }) {
                   <Text style={styles.textBold}>
                     Rs.{" "}
                     {IndianFormat(
-                      AllGross - 50000 + grossPTax + BankInterest + IntFrDeposit
+                      AllGross -
+                        50000 +
+                        grossPTax +
+                        BankInterest +
+                        IntFrDeposit,
                     )}
                   </Text>
                 </View>
@@ -875,7 +877,11 @@ export default function Form16New({ data }) {
                   <Text style={styles.textBold}>
                     Rs.{" "}
                     {IndianFormat(
-                      AllGross - 50000 + grossPTax + BankInterest + IntFrDeposit
+                      AllGross -
+                        50000 +
+                        grossPTax +
+                        BankInterest +
+                        IntFrDeposit,
                     )}
                   </Text>
                   <Text style={styles.textBold}> </Text>
@@ -984,7 +990,11 @@ export default function Form16New({ data }) {
                   <Text style={styles.textBold}>
                     Rs.{" "}
                     {IndianFormat(
-                      AllGross - 50000 + grossPTax + BankInterest + IntFrDeposit
+                      AllGross -
+                        50000 +
+                        grossPTax +
+                        BankInterest +
+                        IntFrDeposit,
                     )}
                   </Text>
                 </View>
@@ -1505,7 +1515,7 @@ export default function Form16New({ data }) {
                           disabilityDeduction +
                           BankInterest +
                           IntFrDeposit +
-                          mediclaim
+                          mediclaim,
                       )}
                     </Text>
                     <Text style={styles.textBold}> </Text>

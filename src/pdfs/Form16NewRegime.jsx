@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Page,
   Text,
@@ -31,11 +30,10 @@ export default function Form16NewRegime({ data }) {
     eduCess,
     AddedEduCess,
     BankInterest,
-    IntFrDeposit,
     tds,
     GrossRelief,
   } = data;
-
+  const IntFrDeposit = data.IntFrDeposit || 0;
   return (
     <Document
       style={{ margin: 5, padding: 5 }}
@@ -777,7 +775,7 @@ export default function Form16NewRegime({ data }) {
                   <Text style={styles.textBold}>
                     Rs.{" "}
                     {IndianFormat(
-                      AllGross - 75000 + BankInterest + IntFrDeposit
+                      AllGross - 75000 + BankInterest + IntFrDeposit,
                     )}
                   </Text>
                 </View>
@@ -865,7 +863,7 @@ export default function Form16NewRegime({ data }) {
                   <Text style={styles.textBold}>
                     Rs.{" "}
                     {IndianFormat(
-                      AllGross - 75000 + BankInterest + IntFrDeposit
+                      AllGross - 75000 + BankInterest + IntFrDeposit,
                     )}
                   </Text>
                   <Text style={styles.textBold}> </Text>
@@ -974,7 +972,7 @@ export default function Form16NewRegime({ data }) {
                   <Text style={styles.textBold}>
                     Rs.{" "}
                     {IndianFormat(
-                      AllGross - 75000 + BankInterest + IntFrDeposit
+                      AllGross - 75000 + BankInterest + IntFrDeposit,
                     )}
                   </Text>
                 </View>
@@ -1498,7 +1496,7 @@ export default function Form16NewRegime({ data }) {
                     <Text style={styles.textBold}>
                       Rs.{" "}
                       {IndianFormat(
-                        AllGross - 75000 + BankInterest + IntFrDeposit
+                        AllGross - 75000 + BankInterest + IntFrDeposit,
                       )}
                     </Text>
                   </View>

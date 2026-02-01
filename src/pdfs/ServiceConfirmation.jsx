@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Page,
@@ -85,17 +86,17 @@ export default function ServiceConfirmation({ data }) {
                       { borderBottomWidth: 0 },
                     ]}
                   >
-                    <View style={[styles.view25, { width: "30%", height: 40 }]}>
+                    <View style={[styles.view25, { width: "30%", height: 50 }]}>
                       <Text style={styles.text2}>{teacher?.tname}</Text>
                     </View>
-                    <View style={[styles.view25, { width: "20%", height: 40 }]}>
+                    <View style={[styles.view25, { width: "20%", height: 50 }]}>
                       <Text style={styles.text2}>
                         {teacher?.desig === "HT"
                           ? "HEAD TEACHER"
                           : "ASSISTANT TEACHER"}
                       </Text>
                     </View>
-                    <View style={[styles.view25, { width: "20%", height: 40 }]}>
+                    <View style={[styles.view25, { width: "20%", height: 50 }]}>
                       <Text
                         style={styles.text2}
                       >{`${level}\nAS PER\nROPA’ 2019`}</Text>
@@ -103,7 +104,7 @@ export default function ServiceConfirmation({ data }) {
                     <View
                       style={[
                         styles.view25,
-                        { borderRightWidth: 0, width: "30%", height: 40 },
+                        { borderRightWidth: 0, width: "30%", height: 50 },
                       ]}
                     >
                       <Text style={styles.text2}>
@@ -144,17 +145,17 @@ export default function ServiceConfirmation({ data }) {
                       { borderBottomWidth: 0 },
                     ]}
                   >
-                    <View style={[styles.view25, { width: "40%", height: 40 }]}>
+                    <View style={[styles.view25, { width: "40%", height: 50 }]}>
                       <Text style={styles.text2}>{teacher?.school}</Text>
                     </View>
 
-                    <View style={[styles.view25, { width: "25%", height: 40 }]}>
+                    <View style={[styles.view25, { width: "25%", height: 50 }]}>
                       <Text style={styles.text2}>AMTA WEST</Text>
                     </View>
                     <View
                       style={[
                         styles.view25,
-                        { borderRightWidth: 0, width: "35%", height: 40 },
+                        { borderRightWidth: 0, width: "35%", height: 50 },
                       ]}
                     >
                       <Text style={styles.text2}>

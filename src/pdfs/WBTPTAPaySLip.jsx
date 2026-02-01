@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Page,
   Text,
@@ -57,9 +57,9 @@ export default function WBTPTAPaySLip({ data }) {
             <Text style={styles.title}>
               * AMTA WEST CIRCLE * HOWRAH GRAMIN DISTRICT *
             </Text>
-            <Text style={[styles.title2, { color: "darkgreen" }]}>
+            {/* <Text style={[styles.title2, { color: "darkgreen" }]}>
               * Sikshak Bhawan, Vill.- Joypur Fakirdas, P.O.- Joypur,
-            </Text>
+            </Text> */}
             <Text style={[styles.title2, { color: "darkgreen" }]}>
               P.S.- Joypur, District- Howrah, PIN-711401. *
             </Text>
@@ -140,12 +140,22 @@ export default function WBTPTAPaySLip({ data }) {
               </View>
             </View>
 
-            <View style={[styles.tableRow, styles.noBottomBorder]}>
+            {/* <View style={[styles.tableRow, styles.noBottomBorder]}>
               <View style={styles.fullWidth}>
                 <TotalRow label="GROSS PAY:" value={gross} />
               </View>
-            </View>
+            </View> */}
 
+            <View style={styles.tableRow}>
+              <View style={styles.fullWidth}>
+                <View style={styles.netPayRow}>
+                  <Text style={styles.text2}>GROSS PAY:</Text>
+                  <Text style={[styles.text2, styles.netPayValue]}>
+                    {gross} ({INR(gross)})
+                  </Text>
+                </View>
+              </View>
+            </View>
             <View style={[styles.tableRow, styles.noBorder]}>
               <View style={styles.fullWidth}>
                 <View style={styles.netPayRow}>
