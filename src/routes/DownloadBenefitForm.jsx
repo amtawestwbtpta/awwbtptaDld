@@ -4,7 +4,7 @@ import {
   getServiceLife,
   monthNamesWithIndex,
   months,
-  readCSVFile,
+  readCSVFileV2,
   RoundTo,
   uniqArray,
 } from "../modules/calculatefunctions";
@@ -124,12 +124,12 @@ export default function DownloadBenefitForm() {
       const { doj, id } = teacher;
       const joiningMonth = parseInt(doj?.split("-")[1]);
       const year = new Date().getFullYear();
-      const q1 = await readCSVFile(`january-${year}`);
+      const q1 = await readCSVFileV2(`january-${year}`, year);
       const januaryMonthSalary = q1?.filter((el) => el.id === id)[0];
       teacher.mbasic = januaryMonthSalary.basic;
       const normalIncrement = RoundTo(
         januaryMonthSalary.basic + januaryMonthSalary.basic * 0.03,
-        100
+        100,
       );
       if (joiningMonth < 7) {
         teacher.basic = RoundTo(normalIncrement + normalIncrement * 0.03, 100);

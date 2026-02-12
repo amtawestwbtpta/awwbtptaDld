@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { readCSVFile } from "../modules/calculatefunctions";
+import { readCSVFileV2 } from "../modules/calculatefunctions";
 import { useGlobalContext } from "../context/Store";
 import { collection, getDocs, query } from "firebase/firestore";
 import { firestore } from "../context/FirbaseContext";
 import Loader from "../components/Loader";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import WBTPTAPaySLip from "../pdfs/WBTPTAPaySLip";
-import Ropa from "../modules/ropa";
+import Ropa from "../modules/Ropa";
 export default function DownloadWBTPTAPayslip() {
   const navigate = useNavigate();
   const { teachersState, setTeachersState } = useGlobalContext();
@@ -71,8 +71,8 @@ export default function DownloadWBTPTAPayslip() {
   const getSalary = async () => {
     setLoader(true);
     try {
-      const q1 = await readCSVFile(`${month.toLowerCase()}-${year}`);
-      const q2 = await readCSVFile(`april-2024`);
+      const q1 = await readCSVFileV2(`${month.toLowerCase()}-${year}`, year);
+      const q2 = await readCSVFileV2(`april-2024`, 2024);
       let tData = [];
       if (teachersState.length === 0) {
         const q = query(collection(firestore, "teachers"));

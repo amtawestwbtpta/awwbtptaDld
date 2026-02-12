@@ -6,7 +6,7 @@ import { firestore } from "../context/FirbaseContext";
 import Loader from "../components/Loader";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import HRADeclaration from "../pdfs/HRADeclaration";
-import { readCSVFile, titleCase } from "../modules/calculatefunctions";
+import { readCSVFileV2, titleCase } from "../modules/calculatefunctions";
 
 export default function HRA() {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ export default function HRA() {
   const getSalary = async () => {
     setLoader(true);
     try {
-      const q1 = await readCSVFile(`${salaryMonth}-${year}`);
+      const q1 = await readCSVFileV2(`${salaryMonth}-${year}`, year);
       let tData = [];
       if (teachersState.length === 0) {
         const q = query(collection(firestore, "teachers"));
@@ -267,7 +267,7 @@ export default function HRA() {
                               ...salary,
                               spouseBasic: parseInt(e.target.value),
                               spouseHra: Math.round(
-                                parseInt(e.target.value) * 0.12
+                                parseInt(e.target.value) * 0.12,
                               ),
                             });
                           }}

@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   ptaxCalc,
   randBetween,
-  readCSVFile,
+  readCSVFileV2,
   roundSo,
 } from "../modules/calculatefunctions";
 import { useGlobalContext } from "../context/Store";
@@ -12,7 +12,6 @@ import { firestore } from "../context/FirbaseContext";
 import Loader from "../components/Loader";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import IncomeTaxNew2025 from "../pdfs/IncomeTaxNew2025";
-import { get } from "firebase/database";
 
 export default function DownloadNewITStatement() {
   const navigate = useNavigate();
@@ -208,18 +207,18 @@ export default function DownloadNewITStatement() {
   const getSalary = async () => {
     setLoader(true);
     try {
-      const january = await readCSVFile(`january-${nextYear}`);
-      const february = await readCSVFile(`february-${nextYear}`);
-      const march = await readCSVFile(`march-${thisYear}`);
-      const april = await readCSVFile(`april-${thisYear}`);
-      const may = await readCSVFile(`may-${thisYear}`);
-      const june = await readCSVFile(`june-${thisYear}`);
-      const july = await readCSVFile(`july-${thisYear}`);
-      const august = await readCSVFile(`august-${thisYear}`);
-      const september = await readCSVFile(`september-${thisYear}`);
-      const october = await readCSVFile(`october-${thisYear}`);
-      const november = await readCSVFile(`november-${thisYear}`);
-      const december = await readCSVFile(`december-${thisYear}`);
+      const january = await readCSVFileV2(`january-${nextYear}`, nextYear);
+      const february = await readCSVFileV2(`february-${nextYear}`, nextYear);
+      const march = await readCSVFileV2(`march-${thisYear}`, thisYear);
+      const april = await readCSVFileV2(`april-${thisYear}`, thisYear);
+      const may = await readCSVFileV2(`may-${thisYear}`, thisYear);
+      const june = await readCSVFileV2(`june-${thisYear}`, thisYear);
+      const july = await readCSVFileV2(`july-${thisYear}`, thisYear);
+      const august = await readCSVFileV2(`august-${thisYear}`, thisYear);
+      const september = await readCSVFileV2(`september-${thisYear}`, thisYear);
+      const october = await readCSVFileV2(`october-${thisYear}`, thisYear);
+      const november = await readCSVFileV2(`november-${thisYear}`, thisYear);
+      const december = await readCSVFileV2(`december-${thisYear}`, thisYear);
 
       let tData = [];
       if (teachersState.length == 0) {
@@ -262,7 +261,7 @@ export default function DownloadNewITStatement() {
         september,
         october,
         november,
-        december
+        december,
       );
 
       setLoader(false);
@@ -285,7 +284,7 @@ export default function DownloadNewITStatement() {
     september,
     october,
     november,
-    december
+    december,
   ) => {
     const { id, tname, school, pan, disability, desig, gender } = data;
     try {
@@ -373,7 +372,7 @@ export default function DownloadNewITStatement() {
       const augustBasic = augustSalary?.basic;
       const augustAddl = augustSalary?.addl;
       const augustDA = Math.round(
-        augustSalary?.basic * augustSalary?.daPercent
+        augustSalary?.basic * augustSalary?.daPercent,
       );
       const augustHRA =
         augustSalary?.hraPercent > 10
@@ -391,7 +390,7 @@ export default function DownloadNewITStatement() {
       const septemberBasic = septemberSalary?.basic;
       const septemberAddl = septemberSalary?.addl;
       const septemberDA = Math.round(
-        septemberSalary?.basic * septemberSalary?.daPercent
+        septemberSalary?.basic * septemberSalary?.daPercent,
       );
       const septemberHRA =
         septemberSalary?.hraPercent > 10
@@ -414,7 +413,7 @@ export default function DownloadNewITStatement() {
       const octoberBasic = octoberSalary?.basic;
       const octoberAddl = octoberSalary?.addl;
       const octoberDA = Math.round(
-        octoberSalary?.basic * octoberSalary?.daPercent
+        octoberSalary?.basic * octoberSalary?.daPercent,
       );
       const octoberHRA =
         octoberSalary?.hraPercent > 10
@@ -433,7 +432,7 @@ export default function DownloadNewITStatement() {
       const novemberBasic = novemberSalary?.basic;
       const novemberAddl = novemberSalary?.addl;
       const novemberDA = Math.round(
-        novemberSalary?.basic * novemberSalary?.daPercent
+        novemberSalary?.basic * novemberSalary?.daPercent,
       );
       const novemberHRA =
         novemberSalary?.hraPercent > 10
@@ -452,7 +451,7 @@ export default function DownloadNewITStatement() {
       const decemberBasic = decemberSalary?.basic;
       const decemberAddl = decemberSalary?.addl;
       const decemberDA = Math.round(
-        decemberSalary?.basic * decemberSalary?.daPercent
+        decemberSalary?.basic * decemberSalary?.daPercent,
       );
       const decemberHRA =
         decemberSalary?.hraPercent > 10
@@ -471,7 +470,7 @@ export default function DownloadNewITStatement() {
       const januaryBasic = januarySalary?.basic;
       const januaryAddl = januarySalary?.addl;
       const januaryDA = Math.round(
-        januarySalary?.basic * januarySalary?.daPercent
+        januarySalary?.basic * januarySalary?.daPercent,
       );
       const januaryHRA =
         januarySalary?.hraPercent > 10
@@ -490,7 +489,7 @@ export default function DownloadNewITStatement() {
       const februaryBasic = februarySalary?.basic;
       const februaryAddl = februarySalary?.addl;
       const februaryDA = Math.round(
-        februarySalary?.basic * februarySalary?.daPercent
+        februarySalary?.basic * februarySalary?.daPercent,
       );
       const februaryHRA =
         februarySalary?.hraPercent > 10
@@ -725,7 +724,7 @@ export default function DownloadNewITStatement() {
             : 0;
         FiveITTax = FiveIT * 0.05;
         CalculatedIT = Math.floor(
-          ThirtyITTax + TwentyITTax + FifteenITTax + TenITTax + FiveITTax
+          ThirtyITTax + TwentyITTax + FifteenITTax + TenITTax + FiveITTax,
         ); //H46
         const cal1 = GrossTotalIncome > 700000 ? GrossTotalIncome : 0; //G67
         const cal2 = GrossTotalIncome > 700000 ? cal1 - 700000 : 0; //G68
@@ -781,7 +780,7 @@ export default function DownloadNewITStatement() {
             TwentyITTax +
             FifteenITTax +
             TenITTax +
-            FiveITTax
+            FiveITTax,
         ); //H46
         const cal1 = GrossTotalIncome > 1200000 ? GrossTotalIncome : 0; //G67
         const cal2 = GrossTotalIncome > 1200000 ? cal1 - 700000 : 0; //G68

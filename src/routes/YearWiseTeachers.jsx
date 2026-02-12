@@ -4,7 +4,7 @@ import {
   getServiceLife,
   monthNamesWithIndex,
   months,
-  readCSVFile,
+  readCSVFileV2,
   RoundTo,
   uniqArray,
 } from "../modules/calculatefunctions";
@@ -149,22 +149,22 @@ const YearWiseTeachers = () => {
         const { doj, id } = teacher;
         const joiningMonth = parseInt(doj?.split("-")[1]);
         const joiningMonthName = monthNamesWithIndex.find(
-          (month) => month.rank === joiningMonth
+          (month) => month.rank === joiningMonth,
         ).monthName;
         console.log(joiningMonthName);
         const year = new Date().getFullYear();
 
-        const q1 = await readCSVFile(`january-${year}`);
+        const q1 = await readCSVFileV2(`january-${year}`, year);
         const januaryMonthSalary = q1?.filter((el) => el.id === id)[0];
         teacher.mbasic = januaryMonthSalary.basic;
         const normalIncrement = RoundTo(
           januaryMonthSalary.basic + januaryMonthSalary.basic * 0.03,
-          100
+          100,
         );
         if (joiningMonth < 7) {
           teacher.basic = RoundTo(
             normalIncrement + normalIncrement * 0.03,
-            100
+            100,
           );
         } else {
           teacher.basic = normalIncrement;
@@ -227,8 +227,8 @@ const YearWiseTeachers = () => {
                       onClick={() => {
                         setData(
                           teachersState.filter(
-                            (el) => el.association === "WBTPTA"
-                          )
+                            (el) => el.association === "WBTPTA",
+                          ),
                         );
                         setShowTeacherSelection(false);
                         setIsWBTPTA(true);
@@ -314,7 +314,7 @@ const YearWiseTeachers = () => {
                   {joiningMonths.map((month, index) => {
                     if (
                       moreFilteredData.filter(
-                        (m) => m.doj.split("-")[1] === month.index
+                        (m) => m.doj.split("-")[1] === month.index,
                       ).length > 0
                     ) {
                       return (
@@ -326,11 +326,11 @@ const YearWiseTeachers = () => {
                           {month.monthName +
                             " - " +
                             moreFilteredData.filter(
-                              (m) => m.doj.split("-")[1] === month.index
+                              (m) => m.doj.split("-")[1] === month.index,
                             ).length +
                             ` ${
                               moreFilteredData.filter(
-                                (m) => m.doj.split("-")[1] === month.index
+                                (m) => m.doj.split("-")[1] === month.index,
                               ).length > 1
                                 ? " Teachers"
                                 : " Teacher"
